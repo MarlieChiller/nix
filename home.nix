@@ -25,21 +25,29 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     _1password-gui
+    cargo
     curl
     discord
     firefox
     fzf
-    lunarvim
+    htop
+    lazyvim
+    lshw
     nextdns
-    nerdfonts
-    oh-my-posh
-    oh-my-zsh
+    neofetch
+    wev
+    wezterm
+
     python3
-    cargo
     ripgrep
     signal-desktop
     spotify
-    wezterm
+
+    # fish
+    fish
+    dolphin
+    grc
+    nerdfonts
     zoxide
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -70,30 +78,40 @@
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
 
-  programs.zsh = {
+  programs.fish = {
     enable = true;
-    autosuggestion.enable = true;
-    enableCompletion = true;
-    
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+    plugins = [
+      # Enable a plugin (here grc for colorized command output) from nixpkgs
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
+      # { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
+      # Manually packaging and enable a plugin
+      { name = "z"; src = pkgs.fishPlugins.z.src; }
+    ];
     shellAliases = {
-      cd = "z";
       vi = "lvim";
       vim = "lvim";
-    };
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = ["git" "aliases" "zoxide"];
-    };
-
-
-
+      hm_edit = "$EDITOR /home/marliechiller/.config/home-manager/home.nix";
+      nx_edit = "sudo $EDITOR /etc/nixos/configuration.nix";
+      };
   };
-  programs.oh-my-posh = {
-      enable = true;
-      enableZshIntegration = true;
-      useTheme = "M365Princess";
-    };  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+
+
+  services.hyprpaper = {
+    enable = true;
+    settings.preload = ["~/Pictures/wallpapers/wallpaper.jpg"];
+    settings.wallpaper = [
+      "DP-1,~/Pictures/wallpapers/wallpaper.jpg"
+      "eDP-1,~/Pictures/wallpapers/wallpaper.jpg"
+      "HDMI-A-1,~/Pictures/wallpapers/wallpaper.jpg"
+    ];
+  };
+
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
@@ -123,6 +141,7 @@
     # EDITOR = "emacs";
     EDITOR = "lvim";
   };
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
