@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -7,7 +7,12 @@
   # manage.
   home.username = "marliechiller";
   home.homeDirectory = "/home/marliechiller";
-#  home.users.marliechiller.shell = "zsh";
+  #  home.users.marliechiller.shell = "zsh";
+
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -20,23 +25,34 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ./packages/wezterm/wezterm.nix
+    ./packages/fish.nix
+  ];
   home.packages = with pkgs ; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
     _1password-gui
+    bat
     cargo
     curl
     discord
+    erdtree
+    eza
     firefox
+    fd
     fzf
     htop
-    lazyvim
     lshw
+    ranger
+    traceroute
+    tree
     nextdns
     neofetch
+    neovim
     wev
-    wezterm
 
     python3
     ripgrep
@@ -44,11 +60,17 @@
     spotify
 
     # fish
-    fish
     dolphin
     grc
     nerdfonts
     zoxide
+
+    cachix
+    nil
+    nix-info
+    nixpkgs-fmt
+    nixci
+    nix-health
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -71,9 +93,8 @@
 
     extraConfig.github.user = "MarlieChiller";
   };
-  
-  programs.firefox.enable = true;
 
+  programs.firefox.enable = true;
 
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
@@ -93,23 +114,12 @@
       { name = "z"; src = pkgs.fishPlugins.z.src; }
     ];
     shellAliases = {
-      vi = "lvim";
-      vim = "lvim";
+      vim = "nvim";
       hm_edit = "$EDITOR /home/marliechiller/.config/home-manager/home.nix";
       nx_edit = "sudo $EDITOR /etc/nixos/configuration.nix";
-      };
+    };
   };
 
-
-  services.hyprpaper = {
-    enable = true;
-    settings.preload = ["~/Pictures/wallpapers/wallpaper.jpg"];
-    settings.wallpaper = [
-      "DP-1,~/Pictures/wallpapers/wallpaper.jpg"
-      "eDP-1,~/Pictures/wallpapers/wallpaper.jpg"
-      "HDMI-A-1,~/Pictures/wallpapers/wallpaper.jpg"
-    ];
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -139,7 +149,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    EDITOR = "lvim";
+    EDITOR = "nvim";
   };
 
 
