@@ -1,22 +1,23 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];
-
-  programs.nixvim = {
+    programs.nixvim = {
+      
     enable = true;
 
     # Theme
-    colorschemes.tokyonight.enable = true;
+    colorschemes.nord.enable = true;
 
     # Settings
-    options = {
+    opts = {
       expandtab = true;
       shiftwidth = 2;
       smartindent = true;
       tabstop = 2;
       number = true;
+      relativenumber = true;
     };
 
     # Keymaps
@@ -25,16 +26,13 @@
     };
 
     plugins = {
-
       # UI
       lualine.enable = true;
       bufferline.enable = true;
-      treesitter.enable = true;
       which-key = {
         enable = true;
       };
       noice = {
-        # WARNING: This is considered experimental feature, but provides nice UX
         enable = true;
         presets = {
           bottom_search = true;
@@ -44,31 +42,28 @@
           #lsp_doc_border = false;
         };
       };
-      telescope = {
-        enable = true;
-        keymaps = {
-          "<leader>ff" = {
-            desc = "file finder";
-            action = "find_files";
-          };
-        };
-        extensions = {
-          file_browser.enable = true;
-        };
-      };
+      yazi.enable = true;
+      nvim-autopairs.enable = true;
 
-      # Dev
+     # Dev
       lsp = {
         enable = true;
+        inlayHints = true;
         servers = {
-          hls.enable = true;
+          bashls.enable = true;
+          dockerls.enable = true;
+          helm-ls.enable = true;
+          lua-ls.enable = true;
           marksman.enable = true;
-          nil_ls.enable = true;
+          nil-ls.enable = true;
+          pyright.enable = true;
           rust-analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
           };
+          tsserver.enable = true;
+          yamlls.enable = true;
         };
       };
     };

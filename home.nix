@@ -26,8 +26,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
     ./packages/wezterm/wezterm.nix
+    ./packages/nixvim/nixvim.nix
     ./packages/fish.nix
   ];
   home.packages = with pkgs ; [
@@ -51,7 +51,6 @@
     tree
     nextdns
     neofetch
-    neovim
     wev
 
     python3
@@ -95,6 +94,7 @@
   };
 
   programs.firefox.enable = true;
+  programs.nixvim.enable = true;
 
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
