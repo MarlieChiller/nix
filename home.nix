@@ -46,12 +46,12 @@
     fzf
     htop
     lshw
-    ranger
     traceroute
     tree
     nextdns
     neofetch
     wev
+    yazi
 
     python3
     ripgrep
@@ -70,6 +70,7 @@
     nixpkgs-fmt
     nixci
     nix-health
+
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

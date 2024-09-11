@@ -32,6 +32,7 @@
       which-key = {
         enable = true;
       };
+
       noice = {
         enable = true;
         presets = {
@@ -42,8 +43,22 @@
           #lsp_doc_border = false;
         };
       };
+      nvim-tree = {
+        enable = true;
+        autoReloadOnWrite = true;
+      };
       yazi.enable = true;
       nvim-autopairs.enable = true;
+      treesitter = {
+        enable = true;
+        nixGrammars = true;
+        settings.indent.enable = true;
+      };
+      treesitter-context = {
+        enable = true;
+        settings = { max_lines = 2; };
+      };
+      rainbow-delimiters.enable = true;
 
      # Dev
       lsp = {
