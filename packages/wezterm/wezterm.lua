@@ -28,6 +28,9 @@ else
 	config.color_scheme = "nord"
 end
 
+-- to fix the following bug: https://github.com/wez/wezterm/issues/5990#issuecomment-2305416553
+config.front_end = "WebGpu"
+
 config.font = wezterm.font("JetBrains Mono")
 config.font_size = 13
 
