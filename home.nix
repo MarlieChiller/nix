@@ -26,9 +26,11 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   imports = [
-    ./packages/wezterm/wezterm.nix
-    ./packages/nixvim/nixvim.nix
-    ./packages/fish.nix
+    ./packages/fish
+    ./packages/nixvim
+    ./packages/starship
+    ./packages/wezterm
+    ./packages/yazi
   ];
   home.packages = with pkgs ; [
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -38,20 +40,20 @@
     bat
     cargo
     curl
-    discord
     erdtree
     eza
-    firefox
     fd
+    firefox
     fzf
     htop
+    grc
+    gcc
     lshw
+    neofetch
+    nextdns
     traceroute
     tree
-    nextdns
-    neofetch
     wev
-    yazi
 
     python3
     ripgrep
@@ -60,10 +62,9 @@
 
     # fish
     dolphin
-    grc
     nerdfonts
-    zoxide
 
+    # nix
     cachix
     nil
     nix-info
@@ -71,12 +72,11 @@
     nixci
     nix-health
 
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -99,27 +99,6 @@
 
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
-
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-    '';
-    plugins = [
-      # Enable a plugin (here grc for colorized command output) from nixpkgs
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
-      # { name = "tide"; src = pkgs.fishPlugins.tide.src; }
-      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
-      # Manually packaging and enable a plugin
-      { name = "z"; src = pkgs.fishPlugins.z.src; }
-    ];
-    shellAliases = {
-      vim = "nvim";
-      hm_edit = "$EDITOR /home/marliechiller/.config/home-manager/home.nix";
-      nx_edit = "sudo $EDITOR /etc/nixos/configuration.nix";
-    };
-  };
 
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

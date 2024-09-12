@@ -8,6 +8,18 @@
   programs.fish = {
 
     enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+    plugins = [
+      # Enable a plugin (here grc for colorized command output) from nixpkgs
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
+      # { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
+      # Manually packaging and enable a plugin
+      { name = "z"; src = pkgs.fishPlugins.z.src; }
+    ];
 
     shellAliases = {
       "cp" = "cp -v";

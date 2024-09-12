@@ -23,20 +23,25 @@ end
 
 
 if is_dark() then
-	config.color_scheme = "nord"
+	config.color_scheme = "OneHalfDark"
 else
-	config.color_scheme = "nord"
+	-- config.color_scheme = "OneHalfLight"
+	config.color_scheme = "OneHalfDark"
 end
 
 -- to fix the following bug: https://github.com/wez/wezterm/issues/5990#issuecomment-2305416553
 config.front_end = "WebGpu"
 
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font_with_fallback {
+--  "Cascadia Mono",
+  "JetBrains Mono"
+}
 config.font_size = 13
 
 -- Slightly transparent and blurred background
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
+config.enable_scroll_bar = true
 -- Removes the title bar, leaving only the tab bar. Keeps
 -- the ability to resize by dragging the window's edges.
 -- On macOS, 'RESIZE|INTEGRATED_BUTTONS' also looks nice if
@@ -134,20 +139,30 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 -- Table mapping keypresses to actions
 config.keys = {
+  -- Clears the scrollback and viewport, and then sends CTRL-L to ask the
+  -- shell to redraw its prompt
+  {
+    key = 'K',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.Multiple {
+      wezterm.action.ClearScrollback 'ScrollbackAndViewport',
+      wezterm.action.SendKey { key = 'L', mods = 'CTRL' },
+    },
+  },
 	-- Sends ESC + b and ESC + f sequence, which is used
 	-- for telling your shell to jump back/forward.
 	{
 		-- When the left arrow is pressed
 		key = "LeftArrow",
 		-- With the "Option" key modifier held down
-		mods = "OPT",
+		mods = "ALT",
 		-- Perform this action, in this case - sending ESC + B
 		-- to the terminal
 		action = wezterm.action.SendString("\x1bb"),
 	},
 	{
 		key = "RightArrow",
-		mods = "OPT",
+		mods = "ALT",
 		action = wezterm.action.SendString("\x1bf"),
 	},
 
