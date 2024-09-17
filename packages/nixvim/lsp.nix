@@ -7,14 +7,15 @@
       bashls.enable = true;
       dockerls.enable = true;
       helm-ls.enable = true;
+      html.enable = true;
       lua-ls.enable = true;
       marksman.enable = true;
       nil-ls.enable = true;
       pyright.enable = true;
       rust-analyzer = {
         enable = true;
-        installCargo = false;
-        installRustc = false;
+        installCargo = true;
+        installRustc = true;
       };
       tsserver.enable = true;
       yamlls.enable = true;
