@@ -2,6 +2,8 @@
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    ./comment.nix
+    ./gitsigns.nix
     ./keymappings.nix
     ./lsp.nix
     ./noice.nix
@@ -19,6 +21,7 @@
 
     # Settings
     opts = {
+      autoindent = true;
       clipboard = "unnamedplus";
       cursorline = true;
       expandtab = true;
@@ -31,6 +34,11 @@
       smartindent = true;
       tabstop = 2;
       termguicolors = true;
+
+      # enable persistent undo history
+      undofile = true;
+      swapfile = false;
+      backup = false; 
     };
 
     plugins = {
@@ -39,6 +47,8 @@
       which-key.enable = true;
       nvim-autopairs.enable = true;
       rainbow-delimiters.enable = true;
+      trouble.enable = true;
+      wilder.enable = true;
     };
   };
 }

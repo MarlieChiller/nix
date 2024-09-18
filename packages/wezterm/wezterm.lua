@@ -79,7 +79,7 @@ wezterm.on("update-status", function(window, _)
 	-- darker/lighter depending on whether we're on a dark/light colour
 	-- scheme. Let's establish the "from" and "to" bounds of our gradient.
 	local gradient_to, gradient_from = bg, bg
-	if appearance.is_dark() then
+	if is_dark() then
 		gradient_from = gradient_to:lighten(0.2)
 	else
 		gradient_from = gradient_to:darken(0.2)

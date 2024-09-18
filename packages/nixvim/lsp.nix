@@ -17,7 +17,8 @@
         installCargo = true;
         installRustc = true;
       };
-      tsserver.enable = true;
+      svelte.enable = true;
+      ts-ls.enable = true;
       yamlls.enable = true;
     };
   };

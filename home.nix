@@ -26,6 +26,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   imports = [
+    ./packages/home
     ./packages/fish
     ./packages/nixvim
     ./packages/starship
@@ -46,6 +47,7 @@
     firefox
     fzf
     htop
+    google-chrome
     grc
     gcc
     lshw
@@ -94,7 +96,6 @@
     extraConfig.github.user = "MarlieChiller";
   };
 
-  programs.firefox.enable = true;
   programs.nixvim.enable = true;
 
   programs.fzf.enable = true;
