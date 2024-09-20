@@ -38,7 +38,7 @@
       # enable persistent undo history
       undofile = true;
       swapfile = false;
-      backup = false; 
+      backup = false;
     };
 
     plugins = {

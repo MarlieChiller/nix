@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of marliechiller";
+  description = "NixOS + standalone home-manager config of marliechiller";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -21,20 +21,41 @@
   outputs =
     { self, nixpkgs, home-manager, nixvim, ... } @ inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      inherit (self) outputs;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      homeConfigurations."marliechiller" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
+      packages = forAllSystems (system: nixpkgs.legacyPackages.${system});
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
+      #NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        home-laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nixos/configuration.nix
+          ];
+        };
+      };
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+
+      homeConfigurations = {
+        "marliechiller@home-laptop" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/home.nix
+          ];
+        };
       };
     };
 }
+
