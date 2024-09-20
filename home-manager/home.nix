@@ -49,7 +49,9 @@
     fd
     firefox
     fzf
+    helix
     htop
+    kitty
     google-chrome
     grc
     gcc
