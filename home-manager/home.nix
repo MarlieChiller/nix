@@ -64,6 +64,7 @@
     wev
 
     python3
+    jetbrains.pycharm-professional
     ripgrep
     signal-desktop
     spotify

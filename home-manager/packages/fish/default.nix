@@ -40,10 +40,11 @@
     };
 
     shellAbbrs = {
+      nconfig = "z ~/.config/nix-config";
       # nix abbreviations
       ncg = "nix-collect-garbage";
-      nhb = "home-manager switch --flake .#marliechiller@nixos";
-      nrn = "sudo nixos-rebuild switch --flake .#nixos";
+      nhb = "home-manager switch --flake .#marliechiller@home-laptop";
+      nrn = "sudo nixos-rebuild switch --flake .#home-laptop";
     };
 
   };

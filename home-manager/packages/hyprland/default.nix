@@ -25,12 +25,13 @@
       exec-once = [
         "swww"
         "ags -b hypr"
+        "nm-applet --indicator & disown"
         # "hyprctl setcursor Qogir 24"
       ];
 
       monitor = [
         "HDMI-A-1, preferred, 0x0, 1.5"
-        "eDP-1, preferred, 2880x0, 1"
+        "eDP-1, preferred, 2880x0, 1.5"
         "DP-1, disable"
       ];
 
@@ -48,7 +49,7 @@
         kb_layout = "us";
         follow_mouse = 1;
         touchpad = {
-          natural_scroll = "yes";
+          natural_scroll = false;
           disable_while_typing = true;
           drag_lock = true;
         };
@@ -105,7 +106,26 @@
           "workspaces, 1, 6, default"
         ];
       };
-
+      windowrule = let
+        f = regex: "float, ^(${regex})$";
+      in [
+        (f "org.gnome.Calculator")
+        (f "org.gnome.Nautilus")
+        (f "pavucontrol")
+        (f "nm-connection-editor")
+        (f "blueberry.py")
+        (f "org.gnome.Settings")
+        (f "org.gnome.design.Palette")
+        (f "Color Picker")
+        (f "xdg-desktop-portal")
+        (f "xdg-desktop-portal-gnome")
+        (f "com.github.Aylur.ags")
+        "workspace 7, title:Spotify"
+        "workspace 1, title:Firefox"
+        "workspace 2, title:kitty"
+      ];
+      
+    # https://github.com/Aylur/dotfiles/blob/18b83b2d2c6ef2b9045edefe49a66959f93b358a/home-manager/hyprland.nix
     # bind = let
     #     binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
     #     mvfocus = binding "SUPER" "movefocus";
@@ -116,6 +136,8 @@
     #     e = "exec, ags -b hypr";
     #     arr = [1 2 3 4 5 6 7];
     #   in
+
+
        bind = [
         # General
         "$mod, w, killactive"
@@ -166,7 +188,7 @@
 
         # Applications
         "$mod, t, exec, $terminal"
-        "$mod, space, exec, rofi -show drun"
+        "$mod, space, exec, ags -b hypr -t launcher"
         "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
         "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
         "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"
