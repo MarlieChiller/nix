@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./packages/ags
+    ./packages/hyprland
     ./packages/home
     ./packages/fish
     ./packages/nixvim
@@ -51,7 +53,6 @@
     fzf
     helix
     htop
-    kitty
     google-chrome
     grc
     gcc
