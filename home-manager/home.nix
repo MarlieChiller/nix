@@ -3,9 +3,10 @@
 {
   imports = [
     ./packages/ags
-    ./packages/hyprland
-    ./packages/home
     ./packages/fish
+    ./packages/git
+    ./packages/home
+    ./packages/hyprland
     ./packages/nixvim
     ./packages/starship
     ./packages/wezterm
@@ -13,6 +14,7 @@
   ];
   nixpkgs.config.allowUnfree = true;
 
+  news.display = "show";
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   #  home.users.marliechiller.shell = "zsh";
@@ -85,7 +87,7 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaMono" "CascadiaCode" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -95,12 +97,6 @@
     # '')
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "MarlieChiller";
-    userEmail = "marliechiller@proton.me";
-    extraConfig.github.user = "MarlieChiller";
-  };
 
   programs.nixvim.enable = true;
   programs.fzf.enable = true;

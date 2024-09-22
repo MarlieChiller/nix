@@ -1,10 +1,14 @@
 #https://github.com/Aylur/dotfiles/blob/main/home-manager/hyprland.nix
+{ inputs
+, pkgs
+, config
+, outputs
+, ...
+}:
 {
-  inputs,
-  pkgs,
-  ...
-}: 
-{
+  home.packages = with pkgs; [
+    nwg-displays
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -29,10 +33,12 @@
         # "hyprctl setcursor Qogir 24"
       ];
 
+      # monitor = [ (builtins.readFile ~/.config/hypr/workspaces.conf) ];
       monitor = [
-        "HDMI-A-1, preferred, 0x0, 1.5"
-        "eDP-1, preferred, 2880x0, 1.5"
-        "DP-1, disable"
+        "eDP-1,2880x1800@120.0,2560x0,1.5"
+        "DP-1,0x0@60.0,-1x-1,1.0"
+        "DP-1,disable"
+        "HDMI-A-1,3840x2160@60.0,0x0,1.5"
       ];
 
       general = {
@@ -40,6 +46,10 @@
         resize_on_border = true;
       };
 
+      env = [ 
+        "HYPRCURSOR_THEME,MyCursor"
+        "HYPRCURSOR_SIZE,24"
+      ];
       misc = {
         disable_splash_rendering = true;
         force_default_wallpaper = 1;
@@ -106,100 +116,89 @@
           "workspaces, 1, 6, default"
         ];
       };
-      windowrule = let
-        f = regex: "float, ^(${regex})$";
-      in [
-        (f "org.gnome.Calculator")
-        (f "org.gnome.Nautilus")
-        (f "pavucontrol")
-        (f "nm-connection-editor")
-        (f "blueberry.py")
-        (f "org.gnome.Settings")
-        (f "org.gnome.design.Palette")
-        (f "Color Picker")
-        (f "xdg-desktop-portal")
-        (f "xdg-desktop-portal-gnome")
-        (f "com.github.Aylur.ags")
-        "workspace 7, title:Spotify"
-        "workspace 1, title:Firefox"
-        "workspace 2, title:kitty"
-      ];
-      
-    # https://github.com/Aylur/dotfiles/blob/18b83b2d2c6ef2b9045edefe49a66959f93b358a/home-manager/hyprland.nix
-    # bind = let
-    #     binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
-    #     mvfocus = binding "SUPER" "movefocus";
-    #     ws = binding "SUPER" "workspace";
-    #     resizeactive = binding "SUPER CTRL" "resizeactive";
-    #     mvactive = binding "SUPER ALT" "moveactive";
-    #     mvtows = binding "SUPER SHIFT" "movetoworkspace";
-    #     e = "exec, ags -b hypr";
-    #     arr = [1 2 3 4 5 6 7];
-    #   in
+      windowrule =
+        let
+          f = regex: "float, ^(${regex})$";
+        in
+        [
+          (f "org.gnome.Calculator")
+          (f "org.gnome.Nautilus")
+          (f "pavucontrol")
+          (f "nm-connection-editor")
+          (f "blueberry.py")
+          (f "org.gnome.Settings")
+          (f "org.gnome.design.Palette")
+          (f "Color Picker")
+          (f "xdg-desktop-portal")
+          (f "xdg-desktop-portal-gnome")
+          (f "com.github.Aylur.ags")
+          "workspace 7, title:Spotify"
+          "workspace 1, title:Firefox"
+          "workspace 2, title:kitty"
+        ];
 
+      # https://github.com/Aylur/dotfiles/blob/18b83b2d2c6ef2b9045edefe49a66959f93b358a/home-manager/hyprland.nix
+      bind =
+        let
+          e = "exec, ags -b hypr";
+        in
+        [
+          # General
+          "$mod, w, killactive"
+          "$mod SHIFT, e, exit"
+          "$mod SHIFT, l, exec, ${pkgs.hyprlock}/bin/hyprlock"
 
-       bind = [
-        # General
-        "$mod, w, killactive"
-        "$mod SHIFT, e, exit"
-        "$mod SHIFT, l, exec, ${pkgs.hyprlock}/bin/hyprlock"
+          # Screen focus
+          "$mod, v, togglefloating"
+          "$mod, u, focusurgentorlast"
+          "$mod, tab, focuscurrentorlast"
+          "$mod, f, fullscreen"
+          "$mod, p, togglesplit"
 
-        # Screen focus
-        "$mod, v, togglefloating"
-        "$mod, u, focusurgentorlast"
-        "$mod, tab, focuscurrentorlast"
-        "$mod, f, fullscreen"
+          # Screen resize
+          "$mod CTRL, h, resizeactive, -20 0"
+          "$mod CTRL, l, resizeactive, 20 0"
+          "$mod CTRL, k, resizeactive, 0 -20"
+          "$mod CTRL, j, resizeactive, 0 20"
 
-        # Screen resize
-        "$mod CTRL, h, resizeactive, -20 0"
-        "$mod CTRL, l, resizeactive, 20 0"
-        "$mod CTRL, k, resizeactive, 0 -20"
-        "$mod CTRL, j, resizeactive, 0 20"
+          # Workspaces
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
+          "$mod, 5, workspace, 5"
+          "$mod, 6, workspace, 6"
+          "$mod, 7, workspace, 7"
+          "$mod, 8, workspace, 8"
+          "$mod, 9, workspace, 9"
+          "$mod, 0, workspace, 10"
 
-        # Workspaces
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod, 0, workspace, 10"
+          # Move to workspaces
+          "$mod SHIFT, 1, movetoworkspace,1"
+          "$mod SHIFT, 2, movetoworkspace,2"
+          "$mod SHIFT, 3, movetoworkspace,3"
+          "$mod SHIFT, 4, movetoworkspace,4"
+          "$mod SHIFT, 5, movetoworkspace,5"
+          "$mod SHIFT, 6, movetoworkspace,6"
+          "$mod SHIFT, 7, movetoworkspace,7"
+          "$mod SHIFT, 8, movetoworkspace,8"
+          "$mod SHIFT, 9, movetoworkspace,9"
+          "$mod SHIFT, 0, movetoworkspace,10"
 
-        # Move to workspaces
-        "$mod SHIFT, 1, movetoworkspace,1"
-        "$mod SHIFT, 2, movetoworkspace,2"
-        "$mod SHIFT, 3, movetoworkspace,3"
-        "$mod SHIFT, 4, movetoworkspace,4"
-        "$mod SHIFT, 5, movetoworkspace,5"
-        "$mod SHIFT, 6, movetoworkspace,6"
-        "$mod SHIFT, 7, movetoworkspace,7"
-        "$mod SHIFT, 8, movetoworkspace,8"
-        "$mod SHIFT, 9, movetoworkspace,9"
-        "$mod SHIFT, 0, movetoworkspace,10"
+          # Navigation
+          "$mod, h, movefocus, l"
+          "$mod, l, movefocus, r"
+          "$mod, k, movefocus, u"
+          "$mod, j, movefocus, d"
 
-        # Navigation
-        "$mod, h, movefocus, l"
-        "$mod, l, movefocus, r"
-        "$mod, k, movefocus, u"
-        "$mod, j, movefocus, d"
-
-        # Applications
-        "$mod, t, exec, $terminal"
-        "$mod, space, exec, ags -b hypr -t launcher"
-        "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
-        "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
-        "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"
-
-        # Clipboard
-        # "$mod ALT, v, exec, pkill fuzzel || cliphist list | fuzzel --no-fuzzy --dmenu | cliphist decode | wl-copy"
-
-        # Screencapture
-        # "$mod, S, exec, ${pkgs.grim}/bin/grim | wl-copy"
-        # "$mod SHIFT+ALT, S, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${pkgs.swappy}/bin/swappy -f -"
-      ];
+          # Applications
+          "$mod SHIFT, R,  ${e} quit; ags -b hypr"
+          "$mod, t, exec, $terminal"
+          "$mod, space, exec, ${e} -t launcher"
+          "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
+          "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
+          "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"
+        ];
 
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -208,4 +207,39 @@
 
     };
   };
+    # services.greetd = {
+    #   enable = true;
+    #   settings.default_session.command = pkgs.writeShellScript "greeter" ''
+    #     export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
+    #     export XCURSOR_THEME=Qogir
+    #     ${outputs.packages}/bin/greeter
+    #   '';
+    # };
+    #
+    # systemd.tmpfiles.rules = [
+    #   "d '/var/cache/greeter' - greeter greeter - -"
+    # ];
+    #
+    # system.activationScripts.wallpaper = let
+    #   wp = pkgs.writeShellScript "wp" ''
+    #     CACHE="/var/cache/greeter"
+    #     OPTS="$CACHE/options.json"
+    #     HOME="/home/$(find /home -maxdepth 1 -printf '%f\n' | tail -n 1)"
+    #
+    #     mkdir -p "$CACHE"
+    #     chown greeter:greeter $CACHE
+    #
+    #     if [[ -f "$HOME/.cache/ags/options.json" ]]; then
+    #       cp $HOME/.cache/ags/options.json $OPTS
+    #       chown greeter:greeter $OPTS
+    #     fi
+    #
+    #     if [[ -f "$HOME/.config/background" ]]; then
+    #       cp "$HOME/.config/background" $CACHE/background
+    #       chown greeter:greeter "$CACHE/background"
+    #     fi
+    #   '';
+    # in
+    #   builtins.readFile wp;
+    #
 }
