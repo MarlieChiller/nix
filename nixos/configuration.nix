@@ -80,8 +80,11 @@
   services.printing.enable = true;
 
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+    pam.services.hyprlock = {};
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -96,8 +99,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marliechiller = {

@@ -49,6 +49,13 @@
       env = [ 
         "HYPRCURSOR_THEME,MyCursor"
         "HYPRCURSOR_SIZE,24"
+        "NIXOS_OZONE_WL,1"
+        "LIBVA_DRIVER_NAME,nvidia"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,wayland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
       misc = {
         disable_splash_rendering = true;
@@ -125,7 +132,6 @@
           (f "org.gnome.Nautilus")
           (f "pavucontrol")
           (f "nm-connection-editor")
-          (f "blueberry.py")
           (f "org.gnome.Settings")
           (f "org.gnome.design.Palette")
           (f "Color Picker")

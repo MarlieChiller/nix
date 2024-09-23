@@ -5,8 +5,8 @@
     ./packages/ags
     ./packages/fish
     ./packages/git
-    ./packages/home
     ./packages/hyprland
+    ./packages/hyprlock
     ./packages/nixvim
     ./packages/starship
     ./packages/wezterm
