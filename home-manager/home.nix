@@ -5,6 +5,7 @@
     ./packages/ags
     ./packages/fish
     ./packages/git
+    ./packages/kitty
     ./packages/hyprland
     ./packages/hyprlock
     ./packages/nixvim

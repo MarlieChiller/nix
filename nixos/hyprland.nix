@@ -7,10 +7,8 @@
   programs.nm-applet.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
-    kitty
     libnotify
     networkmanagerapplet
-    waybar
 
     # from https://github.com/Aylur/dotfiles/blob/main/nixos/hyprland.nix
     morewaita-icon-theme

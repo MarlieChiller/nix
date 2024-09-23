@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   yazi-plugins = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
@@ -15,10 +15,12 @@ in
     enable = true;
     enableFishIntegration = true;
     shellWrapperName = "yy";
+    theme = lib.importTOML ./tokyo-night.toml;
 
     settings = {
       manager = {
         show_hidden = true;
+        ratio = [1 3 4];
       };
       preview = {
         max_width = 1000;
