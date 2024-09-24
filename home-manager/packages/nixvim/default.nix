@@ -3,6 +3,7 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./comment.nix
+    ./conform.nix
     ./gitsigns.nix
     ./keymappings.nix
     ./lsp.nix

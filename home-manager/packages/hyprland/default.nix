@@ -22,7 +22,12 @@
       # plugins.borderspp
     ];
 
-    settings = {
+    settings = let 
+      playerctl = "${pkgs.playerctl}/bin/playerctl";
+      brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+      pactl = "${pkgs.pulseaudio}/bin/pactl";
+    in
+      {
       "$terminal" = "kitty";
       "$mod" = "SUPER";
       "$fileManager" = "dolphin";
@@ -212,11 +217,26 @@
           "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
           "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
           "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"
-        ];
 
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
+          ];
+
+      bindle = [
+        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
+        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
+        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+        ",XF86AudioMute,         exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+      ];
+
+      bindl = [
+        ",XF86AudioPlay,    exec, ${playerctl} play-pause"
+        ",XF86AudioStop,    exec, ${playerctl} pause"
+        ",XF86AudioPause,   exec, ${playerctl} pause"
+        ",XF86AudioPrev,    exec, ${playerctl} previous"
+        ",XF86AudioNext,    exec, ${playerctl} next"
+        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
       ];
 
     };

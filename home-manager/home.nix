@@ -6,6 +6,7 @@
     ./packages/fish
     ./packages/git
     ./packages/kitty
+    ./packages/helix
     ./packages/hyprland
     ./packages/hyprlock
     ./packages/nixvim
@@ -132,7 +133,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    EDITOR = "nvim";
+    EDITOR = "hx";
   };
 
   systemd.user.startServices = "sd-switch";

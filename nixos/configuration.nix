@@ -58,15 +58,16 @@
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.defaultSession = "plasma";
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
-        user = "greeter";
-      };
-    };
-  };
+
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
 
   services.xserver = {
     enable = true;
@@ -129,7 +130,6 @@
     git
     home-manager
     vim
-    greetd.tuigreet
   ];
 
   # https://nixos.org/manual/nixos/stable/options.html#opt-nix.settings.allowed-users
