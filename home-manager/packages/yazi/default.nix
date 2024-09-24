@@ -38,6 +38,8 @@ in
         rev = "20d5a4d4544124bade559b31d51ad41561dad92b";
         sha256 = "024nmc0ldkf9xzi6ymnk45d3ij2wismwfcd4p9025p5rdfsy4ynj";
       };
+      smart-enter = ./plugins/smart-enter.yazi;
+      smart-paste = ./plugins/smart-paste.yazi;
     };
 
     initLua = ''
@@ -56,6 +58,21 @@ in
           on = [ "c" "m" ];
           run = "plugin chmod";
           desc = "Chmod on selected files";
+        }
+        {
+          on = "l";
+          run = "plugin --sync smart-enter";
+          desc = "Enter the child directory, or open the file";
+        }
+        {
+          on = "enter";
+          run = "plugin --sync smart-enter";
+          desc = "Enter the child directory, or open the file";
+        }
+        {
+          on = "p";
+          run = "plugin --sync smart-paste";
+          desc = "Paste into the hovered directory or CWD";
         }
       ];
     };

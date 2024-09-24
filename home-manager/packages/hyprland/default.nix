@@ -7,7 +7,9 @@
 }:
 {
   home.packages = with pkgs; [
+    rose-pine-cursor
     nwg-displays
+    nwg-look
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -30,7 +32,11 @@
         "swww"
         "ags -b hypr"
         "nm-applet --indicator & disown"
-        # "hyprctl setcursor Qogir 24"
+        "hyprctl setcursor rose-pine-hyprcursor 24"
+
+        # https://github.com/hyprwm/Hyprland/issues/6320
+        "gsettings set org.gnome.desktop.interface cursor-theme rose-pine-hyprcursor"
+        "gsettings set org.gnome.desktop.interface cursor-size 24"
       ];
 
       # monitor = [ (builtins.readFile ~/.config/hypr/workspaces.conf) ];
@@ -47,8 +53,10 @@
       };
 
       env = [ 
-        "HYPRCURSOR_THEME,MyCursor"
+        "HYPRCURSOR_THEME,rose-pine-hyprcursor"
         "HYPRCURSOR_SIZE,24"
+        "XCURSOR_THEME,rose-pine-cursor"
+        "XCURSOR_SIZE,24"
         "NIXOS_OZONE_WL,1"
         "LIBVA_DRIVER_NAME,nvidia"
         "XDG_SESSION_TYPE,wayland"
@@ -200,7 +208,7 @@
           # Applications
           "$mod SHIFT, R,  ${e} quit; ags -b hypr"
           "$mod, t, exec, $terminal"
-          "$mod, space, exec, ${e} -t launcher"
+          "$mod, space, ${e} -t launcher"
           "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
           "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
           "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"

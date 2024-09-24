@@ -1,11 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
   programs.nm-applet.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     libnotify
     networkmanagerapplet
@@ -33,6 +32,8 @@
     pavucontrol
     brightnessctl
     swww
+
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
   xdg.portal = {
     enable = true;

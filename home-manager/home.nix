@@ -47,6 +47,7 @@
     # pkgs.hello
     _1password-gui
     bat
+    btop
     cargo
     curl
     erdtree
@@ -70,7 +71,7 @@
     jetbrains.pycharm-professional
     ripgrep
     signal-desktop
-    spotify
+    spotifywm
 
     # fish
     dolphin
