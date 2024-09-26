@@ -40,7 +40,7 @@
     };
 
     shellAbbrs = {
-      nconfig = "z ~/.config/nix-config";
+      nconfig = "z ~/.config/cfg-nix";
       # nix abbreviations
       ncg = "nix-collect-garbage";
       nhb = "home-manager switch --flake .#marliechiller@home-laptop";

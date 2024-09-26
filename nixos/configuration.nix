@@ -5,13 +5,12 @@
 { config, pkgs, lib, inputs, outputs, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./hyprland.nix
-      ./nvidia.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./hyprland.nix
+    ./nvidia.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -52,7 +51,6 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-
   # Enable the KDE Plasma Desktop Environment.
   # services.desktopManager.plasma6.enable = true;
   # services.displayManager.sddm.enable = true;
@@ -92,7 +90,7 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services.hyprlock = {};
+    pam.services.hyprlock = { };
   };
   services.pipewire = {
     enable = true;
@@ -108,14 +106,15 @@
     #media-session.enable = true;
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marliechiller = {
     isNormalUser = true;
     description = "MarlieChiller";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvT8OYoGidygyDAhEC6M7XiDNFy5DZ1eSn256uAqHPa" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvT8OYoGidygyDAhEC6M7XiDNFy5DZ1eSn256uAqHPa"
+    ];
   };
 
   # Allow unfree packages
@@ -123,7 +122,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   programs.fish.enable = true;
-
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -153,7 +151,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
