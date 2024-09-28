@@ -23,10 +23,10 @@
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     helix.url = "github:helix-editor/helix";
     rycee-nurpkgs = {
-      url = gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons;
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nurpkgs.url = github:nix-community/NUR;
+    nurpkgs.url = "github:nix-community/NUR";
 
   };
 

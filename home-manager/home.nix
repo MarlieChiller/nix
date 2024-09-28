@@ -47,7 +47,8 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    _1password-gui
+
+    # cli
     bat
     btop
     cargo
@@ -56,26 +57,31 @@
     eza
     fd
     fzf
-    htop
-    google-chrome
-    grc
     gcc
+    grc
+    htop
+    lazygit
     lshw
     neofetch
     nextdns
+    python3
+    ripgrep
+    ruff
     traceroute
     tree
     wev
 
-    python3
+    # programs
+    _1password-gui
+    google-chrome
     jetbrains.pycharm-professional
-    ripgrep
     signal-desktop
     spotifywm
+    wireshark
 
-    # fish
-    dolphin
+    # other
     nerdfonts
+    dolphin
 
     # nix
     cachix
@@ -101,7 +107,7 @@
     # '')
   ];
 
-  programs.nixvim.enable = true;
+  # programs.nixvim.enable = true;
   programs.fzf.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -132,7 +138,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    EDITOR = "hx";
+    EDITOR = "nvim";
   };
 
   systemd.user.startServices = "sd-switch";

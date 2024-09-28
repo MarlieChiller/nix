@@ -50,6 +50,16 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNS=45.90.28.0#661869.dns.nextdns.io
+      DNS=2a07:a8c0::#661869.dns.nextdns.io
+      DNS=45.90.30.0#661869.dns.nextdns.io
+      DNS=2a07:a8c1::#661869.dns.nextdns.io
+      DNSOverTLS=yes
+    '';
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   # services.desktopManager.plasma6.enable = true;
