@@ -3,7 +3,12 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mac-app-util.url = "github:hraban/mac-app-util";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,24 +19,10 @@
       # url = "github:nix-community/nixvim/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ags.url = "github:Aylur/ags";
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    helix.url = "github:helix-editor/helix";
-    rycee-nurpkgs = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nurpkgs.url = "github:nix-community/NUR";
-
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nixvim, ... } @ inputs:
+    { self, nixpkgs, nix-darwin, home-manager, nixvim, mac-app-util, ... } @ inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -46,22 +37,21 @@
     {
       packages = forAllSystems (system: nixpkgs.legacyPackages.${system});
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-      #NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        home-laptop = nixpkgs.lib.nixosSystem {
+      
+      darwinConfigurations = {
+        "charliemiller@MOCULON03" = nix-darwin.lib.darwinSystem {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./nixos/configuration.nix
+            mac-app-util.darwinModules.default
+            ./darwin/configuration.nix
           ];
         };
       };
 
-
       homeConfigurations = {
-        "marliechiller@home-laptop" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        "charliemiller@MOCULON03" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/home.nix

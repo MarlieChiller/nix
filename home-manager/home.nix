@@ -2,25 +2,25 @@
 
 {
   imports = [
-    ./packages/ags
+    #./packages/ags
     ./packages/fish
-    ./packages/firefox
+    #./packages/firefox
     ./packages/git
     ./packages/kitty
     ./packages/helix
-    ./packages/hyprland
-    ./packages/hyprlock
+    #./packages/hyprland
+    #./packages/hyprlock
     ./packages/nixvim
     ./packages/starship
     ./packages/wezterm
     ./packages/yazi
+    inputs.mac-app-util.homeManagerModules.default
+
   ];
   nixpkgs.config.allowUnfree = true;
 
   news.display = "show";
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  #  home.users.marliechiller.shell = "zsh";
+  # Home Manager needs a bit of information about you and the paths it should manage.
 
   nix = {
     package = pkgs.nix;
@@ -35,8 +35,8 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home = {
-    username = "marliechiller";
-    homeDirectory = "/home/marliechiller";
+    username = "charliemiller";
+    homeDirectory = "/Users/charliemiller";
     stateVersion = "23.11"; # Please read the comment before changing.
   };
 
@@ -56,38 +56,34 @@
     erdtree
     eza
     fd
+    fish
     fzf
     gcc
     grc
     htop
     lazygit
-    lshw
+    #lshw
     neofetch
     nextdns
     python3
     ripgrep
     ruff
-    traceroute
-    tree
-    wev
+    #traceroute
+    #tree
+    #wev
 
     # programs
-    _1password-gui
-    google-chrome
-    jetbrains.pycharm-professional
-    signal-desktop
-    spotifywm
+    #_1password-gui
+    #signal-desktop
     wireshark
 
     # other
     nerdfonts
-    dolphin
 
     # nix
     cachix
     nil
     nix-info
-    nixpkgs-fmt
     nixci
     nix-health
 
@@ -107,8 +103,9 @@
     # '')
   ];
 
-  # programs.nixvim.enable = true;
+  programs.nixvim.enable = true;
   programs.fzf.enable = true;
+  programs.fish.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
