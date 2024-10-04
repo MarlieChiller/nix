@@ -35,9 +35,10 @@
       "spotify"
 
       # ocula
-      "visual-studio-code"
       "dbeaver-community"
       "docker"
+      "postico"
+      "visual-studio-code"
     ];
     onActivation = {
       upgrade = true;

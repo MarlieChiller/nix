@@ -278,6 +278,9 @@ format = " exs [$symbol $version OTP $otp_version ]($style)"
 symbol = "◩ "
 format = " elm [$symbol($version )]($style)"
 
+[gcloud]
+format = " [$symbol $project $region]($style)"
+
 [golang]
 symbol = "∩ "
 format = " go [$symbol($version )]($style)"

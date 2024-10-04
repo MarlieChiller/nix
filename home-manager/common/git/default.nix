@@ -8,9 +8,9 @@ in {
       core.editor = "nvim";
       credential.helper = "store";
       github.user = name;
-     commit.gpgsign = true;
-     push.autoSetupRemote = true;
-    rerere.enable = true;
+      commit.sshsign = true;
+      push.autoSetupRemote = true;
+      rerere.enable = true;
     };
     userEmail = "${name}@protonmail.me";
     userName = name;
