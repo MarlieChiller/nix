@@ -7,38 +7,36 @@
   ...
 }: {
   imports = [
-    ./packages/ags
-    ./packages/fish
-    ./packages/firefox
-    ./packages/git
-    ./packages/kitty
-    ./packages/helix
-    ./packages/hyprland
-    ./packages/hyprlock
-    ./packages/nixvim
-    ./packages/starship
-    ./packages/wezterm
-    ./packages/yazi
+    ./ags
+    ./firefox
+    ./fish
+    ./hyprland
+    ./hyprlock
+    ../common
   ];
   home = {
-    # Todo: change me to marliechiller in nixos
     username = "marliechiller";
-    homeDirectory = "/Users/charliemiller";
+    homeDirectory = "/home/marliechiller";
     stateVersion = "23.11"; # Please read the comment before changing.
   };
 
   home.packages = with pkgs; [
     # NixOS specific packages
+    dolphin
+    spotifywm
 
     # cli
+    fd
     lshw
     traceroute
     wev
 
     # programs
     _1password-gui
+    google-chrome
     signal-desktop
     wireshark
+
   ];
 
   programs.ssh = {

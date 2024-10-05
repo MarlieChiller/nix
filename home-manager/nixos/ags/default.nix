@@ -8,25 +8,24 @@
   ];
 
   home.packages = with pkgs; [
+    brightnessctl
     bun
     dart-sass
-    fd
-    brightnessctl
-    swww
+    gtk3
+    hyprpicker
     inputs.matugen.packages.${system}.default
+    networkmanager
+    pavucontrol
+    swappy
+    swww
+    wayshot
     wf-recorder
     wl-clipboard
-    wayshot
-    swappy
-    hyprpicker
-    pavucontrol
-    networkmanager
-    gtk3
   ];
 
   programs.ags = {
     enable = true;
-    configDir = ../../../ags;
+    configDir = ../../../hosts/nixos/ags;
     extraPackages = with pkgs; [
       accountsservice
     ];
