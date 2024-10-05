@@ -11,7 +11,6 @@
       fish_add_path /opt/homebrew/bin
     '';
 
-    shellAliases = {};
     shellAbbrs = {
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
