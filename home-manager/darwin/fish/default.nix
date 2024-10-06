@@ -5,10 +5,19 @@
 }: {
   programs.fish = {
     # MacOS specific fish settings
+    shellInit = ''
+      set -Ux PYENV_ROOT $HOME/.pyenv
+      fish_add_path $PYENV_ROOT/bin
+      pyenv init - | source
+    '';
     interactiveShellInit = ''
       # Add Nix profile to the $PATH, idempotent and only required for non-NixOS hosts.
       fish_add_path ~/.nix-profile/bin/
       fish_add_path /opt/homebrew/bin
+      set -Ux PYENV_ROOT $HOME/.pyenv
+      fish_add_path $PYENV_ROOT/bin
+      pyenv init - | source
+
     '';
 
     shellAliases = {};

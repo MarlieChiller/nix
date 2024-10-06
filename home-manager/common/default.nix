@@ -1,10 +1,6 @@
 # common configuration across all hosts
 {
-  config,
   pkgs,
-  lib,
-  inputs,
-  outputs,
   ...
 }: {
   imports = [
@@ -44,8 +40,8 @@
     neofetch
     nerdfonts
     nextdns
-    python3
-    pyenv
+    # pyenv
+    poetry
     ripgrep
     ruff
 

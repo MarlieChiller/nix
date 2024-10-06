@@ -22,15 +22,25 @@
     };
   };
   # Use homebrew to install casks and Mac App Store apps
+  # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
     enable = true;
 
+    brews = [
+      "coreutils"
+    ];
+
+    taps = [
+      "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
+      "FelixKratz/formulae" # janky borders - highlight active window borders
+    ];
     casks = [
       "1password"
+      "aerospace"
       "chatgpt"
+      "font-hack-nerd-font"
       "firefox"
       "karabiner-elements"
-      # "nikitabobko/tap/aerospace"
       "obsidian"
       "spotify"
 
@@ -61,7 +71,6 @@
   system.stateVersion = 5;
   system.keyboard = {
     enableKeyMapping = true;
-    remapCapsLockToControl = true;
   };
 
   users.users.charliemiller = {
@@ -73,13 +82,17 @@
     # minimal dock
     dock = {
       autohide = true;
-      orientation = "left";
+      orientation = "bottom";
     };
-    # a finder that tells me what I want to know and lets me work
+    NSGlobalDomain."com.apple.swipescrolldirection" = false;
+    # Finder that tells me what I want to know and lets me work
     finder = {
       AppleShowAllExtensions = true;
-      ShowPathbar = true;
+      AppleShowAllFiles = true;
       FXEnableExtensionChangeWarning = false;
+      ShowStatusBar = true;
+      ShowPathbar = true;
+      QuitMenuItem = true;
     };
   };
 }

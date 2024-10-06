@@ -1,5 +1,5 @@
 {
-  description = "NixOS + standalone home-manager config of marliechiller";
+ description = "NixOS + standalone home-manager config of marliechiller";
 
   inputs = {
     # common
@@ -32,7 +32,7 @@
     };
     nurpkgs.url = "github:nix-community/NUR";
 
-    # darwin    
+    # darwin
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,15 +58,15 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    # --- change this depending on system ---
     sys_config = {
-    host = "home-laptop";
-    # host = "MOCULON03"";
-    user = "marliechiller";
-    # user = "charliemiller";
-    # ---------------------------------------
+      # --- change this depending on system ---
+      # host = "home-laptop";
+      host = "MOCULON03";
+      # user = "marliechiller";
+      user = "charliemiller";
+      # ---------------------------------------
     };
-    system = forAllSystems (system: nixpkgs.${system});
+    system = forAllSystems (system: nixpkgs.legacyPackages.${system});
 
   in {
 
@@ -81,19 +81,19 @@
 
     darwinConfigurations = {
       "${sys_config.user}@${sys_config.host}" = nix-darwin.lib.darwinSystem {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
-        specialArgs = {inherit inputs outputs sys_config;};
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin; 
+        specialArgs = { inherit inputs outputs sys_config; };
         modules = [
-          mac-app-util.darwinModules.default
           ./hosts/darwin/configuration.nix
+          mac-app-util.darwinModules.default
         ];
       };
     };
 
     homeConfigurations = {
       "${sys_config.user}@${sys_config.host}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs system sys_config;};
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin; # CHANGE POSTFIX THIS PER SYSTEM
+        extraSpecialArgs = { inherit inputs outputs system sys_config; };
         modules = [
           ./home-manager/home.nix
         ];

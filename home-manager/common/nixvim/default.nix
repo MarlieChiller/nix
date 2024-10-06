@@ -24,6 +24,7 @@
     ./plugins/nvim-cmp.nix
     ./plugins/mini.nix
     ./plugins/treesitter.nix
+    ./plugins/yazi.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
@@ -39,6 +40,7 @@
     # NOTE: Configure your own plugins `see https://nix-community.github.io/nixvim/`
     # Add your plugins to ./plugins/custom/plugins and import them below
   ];
+
 
   /*
   =====================================================================
