@@ -141,6 +141,7 @@
         (f "org.gnome.Calculator")
         (f "org.gnome.Nautilus")
         (f "pavucontrol")
+        (f "protonvpn-app")
         (f "nm-connection-editor")
         (f "org.gnome.Settings")
         (f "org.gnome.design.Palette")

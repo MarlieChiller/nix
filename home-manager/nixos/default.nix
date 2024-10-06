@@ -34,7 +34,11 @@
     # programs
     _1password-gui
     google-chrome
+    plex
+    protonvpn-gui
     signal-desktop
+    qbittorrent
+    vlc
     wireshark
 
   ];

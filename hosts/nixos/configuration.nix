@@ -54,16 +54,16 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  services.resolved = {
-    enable = true;
-    extraConfig = ''
-      DNS=45.90.28.0#661869.dns.nextdns.io
-      DNS=2a07:a8c0::#661869.dns.nextdns.io
-      DNS=45.90.30.0#661869.dns.nextdns.io
-      DNS=2a07:a8c1::#661869.dns.nextdns.io
-      DNSOverTLS=yes
-    '';
-  };
+  # services.resolved = {
+  #   enable = true;
+  #   extraConfig = ''
+  #     DNS=45.90.28.0#661869.dns.nextdns.io
+  #     DNS=2a07:a8c0::#661869.dns.nextdns.io
+  #     DNS=45.90.30.0#661869.dns.nextdns.io
+  #     DNS=2a07:a8c1::#661869.dns.nextdns.io
+  #     DNSOverTLS=yes
+  #   '';
+  # };
 
   # Enable the KDE Plasma Desktop Environment.
   # services.desktopManager.plasma6.enable = true;
@@ -143,6 +143,11 @@
     home-manager
     vim
   ];
+#   services.nextdns = {
+#     enable = true;
+#     arguments = [ "-config" "10.0.3.0/24=661869" "-cache-size" "10MB" ];
+# };
+
 
   # https://nixos.org/manual/nixos/stable/options.html#opt-nix.settings.allowed-users
   nix = {
