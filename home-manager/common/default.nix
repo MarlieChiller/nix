@@ -1,8 +1,5 @@
 # common configuration across all hosts
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./bat
     ./fish
@@ -41,7 +38,6 @@
     nerdfonts
     nextdns
     # pyenv
-    poetry
     ripgrep
     ruff
 

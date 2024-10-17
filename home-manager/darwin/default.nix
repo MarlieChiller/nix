@@ -26,7 +26,7 @@
     # MacOS specific home manager packages
     google-cloud-sdk
     terraform
-    
+
     # ui
     jankyborders
     sketchybar

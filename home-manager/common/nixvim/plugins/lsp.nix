@@ -69,7 +69,7 @@
       #  - settings: Override the default settings passed when initializing the server.
       #        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       servers = {
-        nil-ls = {
+        nil_ls = {
           enable = true;
         };
         pyright = {
@@ -84,13 +84,13 @@
         marksman = {
           enable = true;
         };
-        ts-ls = {
-            enable = true;
+        ts_ls = {
+          enable = true;
         };
         dockerls = {
           enable = true;
         };
-        docker-compose-language-service = {
+        docker_compose_language_service = {
           enable = true;
         };
         # clangd = {
@@ -115,7 +115,7 @@
         #  enable = true;
         #}
 
-        lua-ls = {
+        lua_ls = {
           enable = true;
 
           # cmd = {

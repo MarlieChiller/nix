@@ -1,4 +1,16 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    # formatters
+    alejandra
+    hadolint
+    eslint
+    nodePackages.jsonlint
+    markdownlint-cli
+    ruff
+    tflint
+    vale
+  ];
+
   programs.nixvim = {
     # Dependencies
     #
@@ -28,9 +40,10 @@
         '';
         formatters_by_ft = {
           lua = ["stylua"];
+          python = ["ruff"];
+          json = ["jsonlint"];
+          nix = ["alejandra"];
           # Conform can also run multiple formatters sequentially
-          # python = [ "isort "black" ];
-          #
           # You can use a sublist to tell conform to run *until* a formatter
           # is found
           # javascript = [ [ "prettierd" "prettier" ] ];

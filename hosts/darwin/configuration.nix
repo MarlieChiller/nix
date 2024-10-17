@@ -28,23 +28,32 @@
 
     brews = [
       "coreutils"
+      "zlib"
+      "libpq"
+      "postgresql"
     ];
-
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       "FelixKratz/formulae" # janky borders - highlight active window borders
+      "homebrew/services"
     ];
     casks = [
       "1password"
       "aerospace"
       "chatgpt"
-      "font-hack-nerd-font"
       "firefox"
+      "font-hack-nerd-font"
+      "gimp"
+      "gitkraken"
       "karabiner-elements"
       "obsidian"
+      "pycharm"
       "spotify"
+      "whatsapp"
+      "zed"
 
       # ocula
+      "postman"
       "dbeaver-community"
       "docker"
       "postico"

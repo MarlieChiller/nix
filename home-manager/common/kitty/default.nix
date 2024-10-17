@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   programs.kitty = lib.mkForce {
     enable = true;
     themeFile = "Nord";
@@ -11,6 +8,9 @@
       size = 14;
     };
     settings = {
+      scrollback_lines = 10000;
+      scrollback_pager = "nvim -c 'setlocal nonumber nolist showtabline=0 foldcolumn=0|Man!' -c 'autocmd VimEnter * normal G' -";
+      scrollback_pager_history_size = 256;
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;
       enable_audio_bell = true;
