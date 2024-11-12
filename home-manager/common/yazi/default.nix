@@ -17,7 +17,7 @@ in {
     enable = true;
     enableFishIntegration = true;
     shellWrapperName = "yy";
-    theme = lib.importTOML ./tokyo-night.toml;
+    # theme = lib.importTOML ./tokyo-night.toml;
 
     settings = {
       manager = {

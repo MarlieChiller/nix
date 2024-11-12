@@ -48,6 +48,7 @@
       "karabiner-elements"
       "obsidian"
       "pycharm"
+      "sf-symbols"
       "spotify"
       "whatsapp"
       "zed"

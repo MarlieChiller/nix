@@ -8,6 +8,7 @@
     ./helix
     ./nixvim
     ./starship
+    ./stylix
     ./wezterm
     ./yazi
   ];

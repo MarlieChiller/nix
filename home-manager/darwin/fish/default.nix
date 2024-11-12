@@ -52,7 +52,7 @@
       db_stg_big_boi = ''
         gcloud config set project ocula-platform-staging;
         gcloud compute ssh bastion-vm-staging-europe-west2 \
-          --project ocula-platform-dev \
+          --project ocula-platform-staging \
           --ssh-flag="-L 6666:localhost:5432" \
           --ssh-flag="-N" \
           --zone="europe-west2-a"

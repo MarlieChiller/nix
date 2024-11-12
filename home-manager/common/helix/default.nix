@@ -6,7 +6,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "nord";
+      # theme = "nord";
       editor.cursor-shape = {
         normal = "block";
         insert = "bar";
@@ -20,11 +20,5 @@
         formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
       }
     ];
-    themes = {
-      autumn_night_transparent = {
-        "inherits" = "nord";
-        "ui.background" = {};
-      };
-    };
   };
 }
