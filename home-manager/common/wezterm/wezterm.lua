@@ -7,6 +7,8 @@ config.set_environment_variables = {
 	PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
 }
 
+-- Spawn a fish shell in login mode
+config.default_prog = { "/Users/charliemiller/.nix-profile/bin/fish" }
 
 local function is_dark()
 	-- wezterm.gui is not always available, depending on what
@@ -21,21 +23,20 @@ local function is_dark()
 	return true
 end
 
-
 if is_dark() then
-	config.color_scheme = "OneHalfDark"
+	config.color_scheme = "rose-pine"
 else
 	-- config.color_scheme = "OneHalfLight"
-	config.color_scheme = "OneHalfDark"
+	config.color_scheme = "rose-pine-dawn"
 end
 
 -- to fix the following bug: https://github.com/wez/wezterm/issues/5990#issuecomment-2305416553
 config.front_end = "WebGpu"
 
-config.font = wezterm.font_with_fallback {
---  "Cascadia Mono",
-  "JetBrains Mono"
-}
+config.font = wezterm.font_with_fallback({
+	--  "Cascadia Mono",
+	"JetBrains Mono",
+})
 config.font_size = 13
 
 -- Slightly transparent and blurred background
@@ -59,8 +60,6 @@ config.window_frame = {
 local function segments_for_right_status(window)
 	return {
 		window:active_workspace(),
-		wezterm.strftime("%a %b %-d %H:%M"),
-		wezterm.hostname(),
 	}
 end
 
@@ -132,74 +131,43 @@ local function resize_pane(key, direction)
 	}
 end
 
--- If you're using emacs you probably wanna choose a different leader here,
--- since we're gonna be making it a bit harder to CTRL + A for jumping to
--- the start of a line
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "CMD|SHIFT", timeout_milliseconds = 1000 }
 
 -- Table mapping keypresses to actions
 config.keys = {
-  -- Clears the scrollback and viewport, and then sends CTRL-L to ask the
-  -- shell to redraw its prompt
-  {
-    key = 'K',
-    mods = 'CTRL|SHIFT',
-    action = wezterm.action.Multiple {
-      wezterm.action.ClearScrollback 'ScrollbackAndViewport',
-      wezterm.action.SendKey { key = 'L', mods = 'CTRL' },
-    },
-  },
-	-- Sends ESC + b and ESC + f sequence, which is used
-	-- for telling your shell to jump back/forward.
-	{
-		-- When the left arrow is pressed
-		key = "LeftArrow",
-		-- With the "Option" key modifier held down
-		mods = "ALT",
-		-- Perform this action, in this case - sending ESC + B
-		-- to the terminal
-		action = wezterm.action.SendString("\x1bb"),
-	},
-	{
-		key = "RightArrow",
-		mods = "ALT",
-		action = wezterm.action.SendString("\x1bf"),
-	},
 
+	{ key = "d", mods = "SHIFT|CMD", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "d", mods = "CMD", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	-- movement
+	{ key = "DownArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Down") },
+	{ key = "UpArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "LeftArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Right") },
+	{ key = "h", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Right") },
+	--
+	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	{
-		key = ",",
-		mods = "SUPER",
-		action = wezterm.action.SpawnCommandInNewTab({
-			cwd = wezterm.home_dir,
-			args = { "nvim", wezterm.config_file },
+		key = "r",
+		mods = "LEADER",
+		action = wezterm.action.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
+	},
+	{ key = "c", mods = "CMD", action = wezterm.action.CopyTo("Clipboard") },
+	{ key = "n", mods = "CMD", action = wezterm.action.SpawnWindow },
+	{ key = "v", mods = "CMD", action = wezterm.action.PasteFrom("Clipboard") },
+
+	-- Clears the scrollback and viewport, and then sends CTRL-L to ask the
+	-- shell to redraw its prompt
+	{
+		key = "K",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.Multiple({
+			wezterm.action.ClearScrollback("ScrollbackAndViewport"),
+			wezterm.action.SendKey({ key = "L", mods = "CTRL" }),
 		}),
 	},
-
-	{
-		-- I'm used to tmux bindings, so am using the quotes (") key to
-		-- split horizontally, and the percent (%) key to split vertically.
-		key = '"',
-		-- Note that instead of a key modifier mapped to a key on your keyboard
-		-- like CTRL or ALT, we can use the LEADER modifier instead.
-		-- This means that this binding will be invoked when you press the leader
-		-- (CTRL + A), quickly followed by quotes (").
-		mods = "LEADER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "%",
-		mods = "LEADER",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-
-	{
-		key = "a",
-		-- When we're in leader mode _and_ CTRL + A is pressed...
-		mods = "LEADER|CTRL",
-		-- Actually send CTRL + A key to the terminal
-		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
-	},
-
 	move_pane("j", "Down"),
 	move_pane("k", "Up"),
 	move_pane("h", "Left"),
@@ -220,7 +188,7 @@ config.keys = {
 		}),
 	},
 
-  {
+	{
 		key = "f",
 		mods = "LEADER",
 		-- Present a list of existing workspaces
