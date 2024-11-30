@@ -148,6 +148,10 @@
 #     arguments = [ "-config" "10.0.3.0/24=661869" "-cache-size" "10MB" ];
 # };
 
+  fonts.packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.caskaydia-cove
+  ];
 
   # https://nixos.org/manual/nixos/stable/options.html#opt-nix.settings.allowed-users
   nix = {
