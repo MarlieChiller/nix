@@ -37,11 +37,10 @@
     processing
     protonvpn-gui
     qbittorrent
+    rofi
     signal-desktop
     vlc
     wireshark
-    yofi
-
   ];
 
   programs.ssh = {

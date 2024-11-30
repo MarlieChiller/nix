@@ -1,11 +1,5 @@
 #https://github.com/Aylur/dotfiles/blob/main/home-manager/hyprland.nix
-{
-  inputs,
-  pkgs,
-  config,
-  outputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     rose-pine-cursor
     nwg-displays
@@ -104,10 +98,11 @@
 
       decoration = {
         rounding = 5;
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+        };
 
         dim_inactive = false;
 
@@ -152,6 +147,7 @@
         "workspace 7, title:Spotify"
         "workspace 1, title:Firefox"
         "workspace 2, title:kitty"
+        "workspace 2, title:wezterm"
       ];
 
       # https://github.com/Aylur/dotfiles/blob/18b83b2d2c6ef2b9045edefe49a66959f93b358a/home-manager/hyprland.nix
@@ -209,7 +205,7 @@
         # Applications
         "$mod SHIFT, R,  ${e} quit; ags -b hypr"
         "$mod, t, exec, $terminal"
-        "$mod, space, ${e} -t launcher"
+        "$mod, space, ${e} -t $menu"
         "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
         "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
         "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"

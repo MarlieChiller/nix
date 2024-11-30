@@ -1,14 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  outputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -143,14 +136,15 @@
     home-manager
     vim
   ];
-#   services.nextdns = {
-#     enable = true;
-#     arguments = [ "-config" "10.0.3.0/24=661869" "-cache-size" "10MB" ];
-# };
+  #   services.nextdns = {
+  #     enable = true;
+  #     arguments = [ "-config" "10.0.3.0/24=661869" "-cache-size" "10MB" ];
+  # };
 
   fonts.packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.caskaydia-cove
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.symbols-only
   ];
 
   # https://nixos.org/manual/nixos/stable/options.html#opt-nix.settings.allowed-users
