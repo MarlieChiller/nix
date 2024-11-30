@@ -11,8 +11,6 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      set -Ux PYENV_ROOT $HOME/.pyenv
-      fish_add_path $PYENV_ROOT/bin
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs

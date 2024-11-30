@@ -22,19 +22,39 @@
     };
   };
   # Use homebrew to install casks and Mac App Store apps
+  # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
     enable = true;
 
+    brews = [
+      "coreutils"
+      "zlib"
+      "libpq"
+      "postgresql"
+    ];
+    taps = [
+      "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
+      "FelixKratz/formulae" # janky borders - highlight active window borders
+      "homebrew/services"
+    ];
     casks = [
       "1password"
+      "aerospace"
       "chatgpt"
       "firefox"
+      "font-hack-nerd-font"
+      "gimp"
+      "gitkraken"
       "karabiner-elements"
-      # "nikitabobko/tap/aerospace"
       "obsidian"
+      "pycharm-ce"
+      "sf-symbols"
       "spotify"
+      "whatsapp"
+      "zed"
 
       # ocula
+      "postman"
       "dbeaver-community"
       "docker"
       "postico"
@@ -55,13 +75,13 @@
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
+  programs.fish.enable = true; # default shell on catalina
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 5;
   system.keyboard = {
     enableKeyMapping = true;
-    remapCapsLockToControl = true;
   };
 
   users.users.charliemiller = {
@@ -73,13 +93,17 @@
     # minimal dock
     dock = {
       autohide = true;
-      orientation = "left";
+      orientation = "bottom";
     };
-    # a finder that tells me what I want to know and lets me work
+    NSGlobalDomain."com.apple.swipescrolldirection" = false;
+    # Finder that tells me what I want to know and lets me work
     finder = {
       AppleShowAllExtensions = true;
-      ShowPathbar = true;
+      AppleShowAllFiles = true;
       FXEnableExtensionChangeWarning = false;
+      ShowStatusBar = true;
+      ShowPathbar = true;
+      QuitMenuItem = true;
     };
   };
 }

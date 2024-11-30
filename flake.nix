@@ -16,6 +16,7 @@
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
 
     # nixos
     ags.url = "github:Aylur/ags";
@@ -32,7 +33,7 @@
     };
     nurpkgs.url = "github:nix-community/NUR";
 
-    # darwin    
+    # darwin
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +48,7 @@
     home-manager,
     nixvim,
     alejandra,
+    stylix,
     mac-app-util,
     ...
   } @ inputs: let
@@ -61,31 +63,29 @@
     # --- change this depending on system ---
     sys_config = {
     host = "home-laptop";
-    # host = "MOCULON03"";
     user = "marliechiller";
+    # host = "MOCULON03"";
     # user = "charliemiller";
     # ---------------------------------------
     };
-    system = forAllSystems (system: nixpkgs.${system});
-
+    system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
-
     nixosConfigurations = {
       "${sys_config.user}@${sys_config.host}" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs sys_config; };
-          modules = [
-            ./hosts/nixos/configuration.nix
-          ];
-        };
+        specialArgs = {inherit inputs outputs sys_config;};
+        modules = [
+          ./hosts/nixos/configuration.nix
+        ];
       };
+    };
 
     darwinConfigurations = {
       "${sys_config.user}@${sys_config.host}" = nix-darwin.lib.darwinSystem {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         specialArgs = {inherit inputs outputs sys_config;};
         modules = [
-          mac-app-util.darwinModules.default
           ./hosts/darwin/configuration.nix
+          mac-app-util.darwinModules.default
         ];
       };
     };
@@ -96,6 +96,7 @@
         extraSpecialArgs = {inherit inputs outputs system sys_config;};
         modules = [
           ./home-manager/home.nix
+          stylix.homeManagerModules.stylix
         ];
       };
     };

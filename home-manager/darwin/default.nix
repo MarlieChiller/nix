@@ -9,6 +9,7 @@
   imports = [
     ../common
     ./fish
+    ./aerospace
     inputs.mac-app-util.homeManagerModules.default
   ];
 
@@ -24,7 +25,10 @@
   home.packages = with pkgs; [
     # MacOS specific home manager packages
     google-cloud-sdk
-    poetry
     terraform
+
+    # ui
+    jankyborders
+    sketchybar
   ];
 }

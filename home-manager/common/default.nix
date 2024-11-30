@@ -1,12 +1,5 @@
 # common configuration across all hosts
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  outputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./bat
     ./fish
@@ -15,6 +8,7 @@
     ./helix
     ./nixvim
     ./starship
+    ./stylix
     ./wezterm
     ./yazi
   ];
@@ -43,8 +37,7 @@
     lazygit
     neofetch
     nextdns
-    python3
-    pyenv
+    # pyenv
     ripgrep
     ruff
 

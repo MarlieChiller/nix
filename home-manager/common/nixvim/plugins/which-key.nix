@@ -21,8 +21,8 @@
             group = "[R]ename";
           }
           {
-            __unkeyed-1 = "<leader>s";
-            group = "[S]earch";
+            __unkeyed-1 = "<leader>f";
+            group = "[F]ind";
           }
           {
             __unkeyed-1 = "<leader>w";

@@ -7,6 +7,7 @@ config.set_environment_variables = {
 	PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
 }
 
+config.default_prog = { "/Users/charliemiller/.nix-profile/bin/fish" }
 
 local function is_dark()
 	-- wezterm.gui is not always available, depending on what
@@ -21,26 +22,25 @@ local function is_dark()
 	return true
 end
 
-
 if is_dark() then
-	config.color_scheme = "OneHalfDark"
+	config.color_scheme = "rose-pine"
 else
 	-- config.color_scheme = "OneHalfLight"
-	config.color_scheme = "OneHalfDark"
+	config.color_scheme = "rose-pine-dawn"
 end
 
 -- to fix the following bug: https://github.com/wez/wezterm/issues/5990#issuecomment-2305416553
 config.front_end = "WebGpu"
 
-config.font = wezterm.font_with_fallback {
---  "Cascadia Mono",
-  "JetBrains Mono"
-}
-config.font_size = 13
+config.font = wezterm.font_with_fallback({
+	-- "Cascadia Mono",
+	"JetBrains Mono",
+})
+config.font_size = 14
 
 -- Slightly transparent and blurred background
-config.window_background_opacity = 0.9
-config.macos_window_background_blur = 30
+config.window_background_opacity = 1
+-- config.macos_window_background_blur = 0
 config.enable_scroll_bar = true
 -- Removes the title bar, leaving only the tab bar. Keeps
 -- the ability to resize by dragging the window's edges.
@@ -49,73 +49,10 @@ config.enable_scroll_bar = true
 -- them into the tab bar.
 config.window_decorations = "RESIZE"
 -- Sets the font for the window frame (tab bar)
+config.use_fancy_tab_bar = true
 config.window_frame = {
-	-- Berkeley Mono for me again, though an idea could be to try a
-	-- serif font here instead of monospace for a nicer look?
-	font = wezterm.font({ family = "Berkeley Mono", weight = "Bold" }),
 	font_size = 11,
 }
-
-local function segments_for_right_status(window)
-	return {
-		window:active_workspace(),
-		wezterm.strftime("%a %b %-d %H:%M"),
-		wezterm.hostname(),
-	}
-end
-
-wezterm.on("update-status", function(window, _)
-	local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
-	local segments = segments_for_right_status(window)
-
-	local color_scheme = window:effective_config().resolved_palette
-	-- Note the use of wezterm.color.parse here, this returns
-	-- a Color object, which comes with functionality for lightening
-	-- or darkening the colour (amongst other things).
-	local bg = wezterm.color.parse(color_scheme.background)
-	local fg = color_scheme.foreground
-
-	-- Each powerline segment is going to be coloured progressively
-	-- darker/lighter depending on whether we're on a dark/light colour
-	-- scheme. Let's establish the "from" and "to" bounds of our gradient.
-	local gradient_to, gradient_from = bg, bg
-	if is_dark() then
-		gradient_from = gradient_to:lighten(0.2)
-	else
-		gradient_from = gradient_to:darken(0.2)
-	end
-
-	-- Yes, WezTerm supports creating gradients, because why not?! Although
-	-- they'd usually be used for setting high fidelity gradients on your terminal's
-	-- background, we'll use them here to give us a sample of the powerline segment
-	-- colours we need.
-	local gradient = wezterm.color.gradient(
-		{
-			orientation = "Horizontal",
-			colors = { gradient_from, gradient_to },
-		},
-		#segments -- only gives us as many colours as we have segments.
-	)
-
-	-- We'll build up the elements to send to wezterm.format in this table.
-	local elements = {}
-
-	for i, seg in ipairs(segments) do
-		local is_first = i == 1
-
-		if is_first then
-			table.insert(elements, { Background = { Color = "none" } })
-		end
-		table.insert(elements, { Foreground = { Color = gradient[i] } })
-		table.insert(elements, { Text = SOLID_LEFT_ARROW })
-
-		table.insert(elements, { Foreground = { Color = fg } })
-		table.insert(elements, { Background = { Color = gradient[i] } })
-		table.insert(elements, { Text = " " .. seg .. " " })
-	end
-
-	window:set_right_status(wezterm.format(elements))
-end)
 
 local function move_pane(key, direction)
 	return {
@@ -132,74 +69,43 @@ local function resize_pane(key, direction)
 	}
 end
 
--- If you're using emacs you probably wanna choose a different leader here,
--- since we're gonna be making it a bit harder to CTRL + A for jumping to
--- the start of a line
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "CMD|SHIFT", timeout_milliseconds = 1000 }
 
 -- Table mapping keypresses to actions
 config.keys = {
-  -- Clears the scrollback and viewport, and then sends CTRL-L to ask the
-  -- shell to redraw its prompt
-  {
-    key = 'K',
-    mods = 'CTRL|SHIFT',
-    action = wezterm.action.Multiple {
-      wezterm.action.ClearScrollback 'ScrollbackAndViewport',
-      wezterm.action.SendKey { key = 'L', mods = 'CTRL' },
-    },
-  },
-	-- Sends ESC + b and ESC + f sequence, which is used
-	-- for telling your shell to jump back/forward.
-	{
-		-- When the left arrow is pressed
-		key = "LeftArrow",
-		-- With the "Option" key modifier held down
-		mods = "ALT",
-		-- Perform this action, in this case - sending ESC + B
-		-- to the terminal
-		action = wezterm.action.SendString("\x1bb"),
-	},
-	{
-		key = "RightArrow",
-		mods = "ALT",
-		action = wezterm.action.SendString("\x1bf"),
-	},
 
+	{ key = "d", mods = "SHIFT|CMD", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "d", mods = "CMD", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	-- movement
+	{ key = "DownArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Down") },
+	{ key = "UpArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "LeftArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "SHIFT", action = wezterm.action.ActivatePaneDirection("Right") },
+	{ key = "h", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Right") },
+	--
+	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	{
-		key = ",",
-		mods = "SUPER",
-		action = wezterm.action.SpawnCommandInNewTab({
-			cwd = wezterm.home_dir,
-			args = { "nvim", wezterm.config_file },
+		key = "r",
+		mods = "LEADER",
+		action = wezterm.action.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
+	},
+	{ key = "c", mods = "CMD", action = wezterm.action.CopyTo("Clipboard") },
+	{ key = "n", mods = "CMD", action = wezterm.action.SpawnWindow },
+	{ key = "v", mods = "CMD", action = wezterm.action.PasteFrom("Clipboard") },
+
+	-- Clears the scrollback and viewport, and then sends CTRL-L to ask the
+	-- shell to redraw its prompt
+	{
+		key = "K",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.Multiple({
+			wezterm.action.ClearScrollback("ScrollbackAndViewport"),
+			wezterm.action.SendKey({ key = "L", mods = "CTRL" }),
 		}),
 	},
-
-	{
-		-- I'm used to tmux bindings, so am using the quotes (") key to
-		-- split horizontally, and the percent (%) key to split vertically.
-		key = '"',
-		-- Note that instead of a key modifier mapped to a key on your keyboard
-		-- like CTRL or ALT, we can use the LEADER modifier instead.
-		-- This means that this binding will be invoked when you press the leader
-		-- (CTRL + A), quickly followed by quotes (").
-		mods = "LEADER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "%",
-		mods = "LEADER",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-
-	{
-		key = "a",
-		-- When we're in leader mode _and_ CTRL + A is pressed...
-		mods = "LEADER|CTRL",
-		-- Actually send CTRL + A key to the terminal
-		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
-	},
-
 	move_pane("j", "Down"),
 	move_pane("k", "Up"),
 	move_pane("h", "Left"),
@@ -220,7 +126,7 @@ config.keys = {
 		}),
 	},
 
-  {
+	{
 		key = "f",
 		mods = "LEADER",
 		-- Present a list of existing workspaces
