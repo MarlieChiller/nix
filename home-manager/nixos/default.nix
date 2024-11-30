@@ -33,12 +33,14 @@
     # programs
     _1password-gui
     google-chrome
+    jetbrains.pycharm-community
     processing
     protonvpn-gui
-    signal-desktop
     qbittorrent
+    signal-desktop
     vlc
     wireshark
+    yofi
 
   ];
 
