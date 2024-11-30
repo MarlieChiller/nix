@@ -79,6 +79,13 @@
           --ssh-flag="-N" \
           --zone="europe-west2-a"
       '';
+      db_prod_company_api = ''
+        gcloud config set project ocula-platform;
+        gcloud compute ssh bastion-company-prod-europe-west2 \
+          --ssh-flag="-L 6666:localhost:5432" \
+          --ssh-flag="-N" \
+          --zone="europe-west2-a"
+      '';
     };
   };
 }
