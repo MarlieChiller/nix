@@ -22,7 +22,6 @@
 
   home.packages = with pkgs; [
     # NixOS specific packages
-    dolphin
     spotifywm
 
     # cli
@@ -34,7 +33,7 @@
     # programs
     _1password-gui
     google-chrome
-    plex
+    processing
     protonvpn-gui
     signal-desktop
     qbittorrent

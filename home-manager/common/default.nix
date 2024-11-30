@@ -42,15 +42,11 @@
     grc
     lazygit
     neofetch
-    nerdfonts
     nextdns
     python3
     pyenv
     ripgrep
     ruff
-
-    # other
-    nerdfonts
 
     # nix
     alejandra
