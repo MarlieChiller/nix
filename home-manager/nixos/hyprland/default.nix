@@ -28,7 +28,6 @@
 
       exec-once = [
         "swww"
-        "ags -b hypr"
         "nm-applet --indicator & disown"
         "hyprctl setcursor rose-pine-hyprcursor 24"
 
@@ -143,7 +142,6 @@
         (f "Color Picker")
         (f "xdg-desktop-portal")
         (f "xdg-desktop-portal-gnome")
-        (f "com.github.Aylur.ags")
         "workspace 7, title:Spotify"
         "workspace 1, title:Firefox"
         "workspace 2, title:kitty"
@@ -151,9 +149,7 @@
       ];
 
       # https://github.com/Aylur/dotfiles/blob/18b83b2d2c6ef2b9045edefe49a66959f93b358a/home-manager/hyprland.nix
-      bind = let
-        e = "exec, ags -b hypr";
-      in [
+      bind = [
         # General
         "$mod, w, killactive"
         "$mod SHIFT, e, exit"
@@ -203,9 +199,8 @@
         "$mod, j, movefocus, d"
 
         # Applications
-        "$mod SHIFT, R,  ${e} quit; ags -b hypr"
         "$mod, t, exec, $terminal"
-        "$mod, space, ${e} -t $menu"
+        "$mod, space, exec, -t $menu"
         "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
         "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
         "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"
@@ -231,39 +226,4 @@
       ];
     };
   };
-  # services.greetd = {
-  #   enable = true;
-  #   settings.default_session.command = pkgs.writeShellScript "greeter" ''
-  #     export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
-  #     export XCURSOR_THEME=Qogir
-  #     ${outputs.packages}/bin/greeter
-  #   '';
-  # };
-  #
-  # systemd.tmpfiles.rules = [
-  #   "d '/var/cache/greeter' - greeter greeter - -"
-  # ];
-  #
-  # system.activationScripts.wallpaper = let
-  #   wp = pkgs.writeShellScript "wp" ''
-  #     CACHE="/var/cache/greeter"
-  #     OPTS="$CACHE/options.json"
-  #     HOME="/home/$(find /home -maxdepth 1 -printf '%f\n' | tail -n 1)"
-  #
-  #     mkdir -p "$CACHE"
-  #     chown greeter:greeter $CACHE
-  #
-  #     if [[ -f "$HOME/.cache/ags/options.json" ]]; then
-  #       cp $HOME/.cache/ags/options.json $OPTS
-  #       chown greeter:greeter $OPTS
-  #     fi
-  #
-  #     if [[ -f "$HOME/.config/background" ]]; then
-  #       cp "$HOME/.config/background" $CACHE/background
-  #       chown greeter:greeter "$CACHE/background"
-  #     fi
-  #   '';
-  # in
-  #   builtins.readFile wp;
-  #
 }

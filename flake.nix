@@ -19,7 +19,6 @@
     stylix.url = "github:danth/stylix";
 
     # nixos
-    ags.url = "github:Aylur/ags";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     hyprlock = {
       url = "github:hyprwm/hyprlock";
