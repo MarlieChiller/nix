@@ -15,10 +15,10 @@ in {
   programs.firefox = {
     enable = true;
     profiles = {
-      "user" = {
+      "marliechiller" = {
         id = 0;
         isDefault = true;
-
+        containersForce = true;
         search.engines = {
           "Nix Packages" = {
             urls = [

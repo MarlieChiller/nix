@@ -60,18 +60,24 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
+    currentContext = "home";
     # --- change this depending on system ---
     sys_config = {
-    host = "home-laptop";
-    user = "marliechiller";
-    # host = "MOCULON03"";
-    # user = "charliemiller";
-    # ---------------------------------------
+      home = {
+        host = "home-laptop";
+        user = "marliechiller";
+      };
+      work = {
+        host = "MOCULON03";
+        user = "charliemiller";
+      };
+      # ---------------------------------------
     };
+    current_config = sys_config.${currentContext};
     system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
     nixosConfigurations = {
-      "${sys_config.user}@${sys_config.host}" = nixpkgs.lib.nixosSystem {
+      "${sys_config.home.user}@${sys_config.home.host}" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs sys_config;};
         modules = [
           ./hosts/nixos/configuration.nix
@@ -80,7 +86,7 @@
     };
 
     darwinConfigurations = {
-      "${sys_config.user}@${sys_config.host}" = nix-darwin.lib.darwinSystem {
+      "${sys_config.work.user}@${sys_config.work.host}" = nix-darwin.lib.darwinSystem {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         specialArgs = {inherit inputs outputs sys_config;};
         modules = [
@@ -91,7 +97,7 @@
     };
 
     homeConfigurations = {
-      "${sys_config.user}@${sys_config.host}" = home-manager.lib.homeManagerConfiguration {
+      "${current_config.user}@${current_config.host}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs system sys_config;};
         modules = [
