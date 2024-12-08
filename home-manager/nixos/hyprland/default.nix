@@ -24,7 +24,7 @@
       "$terminal" = "kitty";
       "$mod" = "SUPER";
       "$fileManager" = "dolphin";
-      "$menu" = "rofi --show drun";
+      "$menu" = "rofi -show drun";
 
       exec-once = [
         "swww"
@@ -200,7 +200,7 @@
 
         # Applications
         "$mod, t, exec, $terminal"
-        "$mod, space, exec, -t $menu"
+        "$mod, space, exec, $menu"
         "$mod, b, exec, ${pkgs.firefox}/bin/firefox"
         "$mod ALT, e, exec, $terminal --hold -e ${pkgs.yazi}/bin/yazi"
         "$mod ALT, o, exec, ${pkgs.obsidian}/bin/obsidian"

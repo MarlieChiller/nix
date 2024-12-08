@@ -7,7 +7,6 @@
   ...
 }: {
   imports = [
-    ./firefox
     ./fish
     ./hyprland
     ./hyprlock
