@@ -59,7 +59,7 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    currentContext = "home";
+    currentContext = "work";
     # --- change this depending on system ---
     sys_config = {
       home = {
@@ -72,7 +72,7 @@
       };
       # ---------------------------------------
     };
-    current_config = sys_config.${currentContext};
+    current_config = builtins.getAttr currentContext sys_config;
     system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
     nixosConfigurations = {
