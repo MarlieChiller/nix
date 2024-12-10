@@ -41,9 +41,7 @@
     # pyenv
     ripgrep
     ruff
-
-    # other
-    nerdfonts
+    uv
 
     # nix
     alejandra
