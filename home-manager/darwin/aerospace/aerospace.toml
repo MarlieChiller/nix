@@ -13,13 +13,9 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget sketchybar --config $HOME/Projects/nix/home-manager/darwin/sketchybar/sketchybarrc --reload',
     'exec-and-forget /Users/charliemiller/.nix-profile/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
 ]
 
-exec-on-workspace-change = ['/bin/bash', '-c',
- 'sketchybar --config $HOME/Projects/nix/home-manager/darwin/sketchybar/sketchybarrc --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
 
 # Start AeroSpace at login
 start-at-login = true

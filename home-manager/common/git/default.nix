@@ -10,7 +10,7 @@ in {
       github.user = name;
       gitlab.user = name;
       commit.sshsign = true;
-      commit.gpgsign = false;
+      commit.gpgsign = true;
       push.autoSetupRemote = true;
       rerere.enable = true;
     };

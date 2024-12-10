@@ -40,6 +40,7 @@
     # pyenv
     ripgrep
     ruff
+    uv
 
     # nix
     alejandra

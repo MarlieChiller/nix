@@ -97,7 +97,7 @@
 
     homeConfigurations = {
       "${current_config.user}@${current_config.host}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin; # CHANGE POSTFIX THIS PER SYSTEM
         extraSpecialArgs = {inherit inputs outputs system sys_config;};
         modules = [
           ./home-manager/home.nix

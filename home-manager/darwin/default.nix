@@ -1,9 +1,6 @@
 {
-  config,
   pkgs,
-  lib,
   inputs,
-  outputs,
   ...
 }: {
   imports = [
@@ -29,6 +26,5 @@
 
     # ui
     jankyborders
-    sketchybar
   ];
 }
