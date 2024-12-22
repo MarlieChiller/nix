@@ -1,0 +1,4 @@
+- install darwin
+- install lazyvim
+  - `git clone https://github.com/LazyVim/starter ~/.config/nvim`
+  - add `https://github.com/echasnovski/mini.base16` for stylix to theme properly
