@@ -27,6 +27,9 @@
     shellAbbrs = {
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
+
+      # --- dev ---
+
       db_dev_big_boi = ''
         gcloud config set project ocula-platform-dev;
         gcloud compute ssh bastion-vm-dev-europe-west2 \
@@ -49,6 +52,9 @@
           --ssh-flag="-N" \
           --zone="europe-west2-a"
       '';
+
+      # --- stg ---
+
       db_stg_big_boi = ''
         gcloud config set project ocula-platform-staging;
         gcloud compute ssh bastion-vm-staging-europe-west2 \
@@ -57,7 +63,7 @@
           --ssh-flag="-N" \
           --zone="europe-west2-a"
       '';
-      db_stg_dev_ingestion = ''
+      db_stg_ingestion = ''
         gcloud config set project ocula-platform-staging;
         gcloud compute ssh bastion-ingestion-staging-europe-west2 \
           --ssh-flag="-L 6666:localhost:5432" \
@@ -71,6 +77,9 @@
           --ssh-flag="-N" \
           --zone="europe-west2-a"
       '';
+
+      # --- prod ---
+
       db_prod_big_boi = ''
         gcloud config set project ocula-platform;
         gcloud compute ssh bastion-vm-prod-europe-west2 \
@@ -82,6 +91,13 @@
       db_prod_company_api = ''
         gcloud config set project ocula-platform;
         gcloud compute ssh bastion-company-prod-europe-west2 \
+          --ssh-flag="-L 6666:localhost:5432" \
+          --ssh-flag="-N" \
+          --zone="europe-west2-a"
+      '';
+      db_prod_ingestion = ''
+        gcloud config set project ocula-platform;
+        gcloud compute ssh bastion-ingestion-prod-europe-west2 \
           --ssh-flag="-L 6666:localhost:5432" \
           --ssh-flag="-N" \
           --zone="europe-west2-a"
