@@ -11,6 +11,10 @@
   # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
     enable = true;
+    # mac store apps
+    masApps = {
+      nextdns = 1464122853;
+  };
     casks = [
       "discord"
       "obsidian"

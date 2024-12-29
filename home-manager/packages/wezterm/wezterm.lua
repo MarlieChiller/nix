@@ -9,25 +9,6 @@ config.set_environment_variables = {
 
 config.default_prog = { "/etc/profiles/per-user/marliechiller/bin/fish" }
 
-local function is_dark()
-	-- wezterm.gui is not always available, depending on what
-	-- environment wezterm is operating in. Just return true
-	-- if it's not defined.
-	if wezterm.gui then
-		-- Some systems report appearance like "Dark High Contrast"
-		-- so let's just look for the string "Dark" and if we find
-		-- it assume appearance is dark.
-		return wezterm.gui.get_appearance():find("Dark")
-	end
-	return true
-end
-
-if is_dark() then
-	config.color_scheme = "rose-pine"
-else
-	config.color_scheme = "rose-pine-dawn"
-end
-
 -- to fix the following bug: https://github.com/wez/wezterm/issues/5990#issuecomment-2305416553
 config.front_end = "WebGpu"
 

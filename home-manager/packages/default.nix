@@ -38,6 +38,7 @@
     # darwin
     jankyborders
 
+
     # nix
     alejandra
     cachix

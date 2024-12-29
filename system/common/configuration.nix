@@ -33,6 +33,7 @@
       "chatgpt"
       "firefox"
       "font-hack-nerd-font"
+      "google-chrome"
       "karabiner-elements"
       "pycharm-ce"
       "sf-symbols"
@@ -77,9 +78,14 @@
       AppleShowAllFiles = true;
       _FXShowPosixPathInTitle = true;  # show full path in finder title
       FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
       ShowStatusBar = true;
       ShowPathbar = true;
       QuitMenuItem = true;
+    };
+    controlcenter = {
+      BatteryShowPercentage = true;
+      Bluetooth = true;
     };
   };
 }

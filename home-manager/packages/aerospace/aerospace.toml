@@ -55,12 +55,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical = 5
-outer.left = 5
-outer.bottom = 5
-outer.top = 5
-outer.right = 5
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 8
+outer.right = 8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -90,14 +90,14 @@ outer.right = 5
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-alt-t = '''exec-and-forget osascript -e '
+ctrl-alt-shift-t = '''exec-and-forget osascript -e '
 tell application "Kitty"
     do script
     activate
 end tell'
 # '''
 
-alt-b = '''exec-and-forget osascript -e '
+ctrl-alt-shift-b = '''exec-and-forget osascript -e '
 tell application "Google Chrome"
     do script
     activate
@@ -105,75 +105,68 @@ end tell'
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
+ctrl-alt-shift-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-f = 'fullscreen'
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+ctrl-alt-shift-esc = 'enable toggle'
+ctrl-alt-shift-f = 'fullscreen'
+cmd-ctrl-alt-shift-f = 'macos-native-fullscreen'
+ctrl-alt-shift-m = 'macos-native-minimize'
+ctrl-alt-shift-h = 'focus left'
+ctrl-alt-shift-j = 'focus down'
+ctrl-alt-shift-k = 'focus up'
+ctrl-alt-shift-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
-alt-shift-l = 'move right'
+cmd-ctrl-alt-shift-h = 'move left'
+cmd-ctrl-alt-shift-j = 'move down'
+cmd-ctrl-alt-shift-k = 'move up'
+cmd-ctrl-alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+ctrl-alt-shift-minus = 'resize smart -50'
+ctrl-alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
-
-alt-keypad1 = 'workspace 1'
-alt-keypad2 = 'workspace 2'
-alt-keypad3 = 'workspace 3'
-alt-keypad4 = 'workspace 4'
-alt-keypad5 = 'workspace 5'
-alt-keypad6 = 'workspace 6'
-alt-keypad7 = 'workspace 7'
-alt-keypad8 = 'workspace 8'
-alt-keypad9 = 'workspace 9'
+ctrl-alt-shift-1 = 'workspace 1'
+ctrl-alt-shift-2 = 'workspace 2'
+ctrl-alt-shift-3 = 'workspace 3'
+ctrl-alt-shift-4 = 'workspace 4'
+ctrl-alt-shift-5 = 'workspace 5'
+ctrl-alt-shift-6 = 'workspace 6'
+ctrl-alt-shift-7 = 'workspace 7'
+ctrl-alt-shift-8 = 'workspace 8'
+ctrl-alt-shift-9 = 'workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
+cmd-ctrl-alt-shift-2 = 'move-node-to-workspace 2'
+cmd-ctrl-alt-shift-3 = 'move-node-to-workspace 3'
+cmd-ctrl-alt-shift-4 = 'move-node-to-workspace 4'
+cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
+cmd-ctrl-alt-shift-6 = 'move-node-to-workspace 6'
+cmd-ctrl-alt-shift-7 = 'move-node-to-workspace 7'
+cmd-ctrl-alt-shift-8 = 'move-node-to-workspace 8'
+cmd-ctrl-alt-shift-9 = 'move-node-to-workspace 9'
 
-alt-shift-keypad1 = 'move-node-to-workspace 1'
-alt-shift-keypad2 = 'move-node-to-workspace 2'
-alt-shift-keypad3 = 'move-node-to-workspace 3'
-alt-shift-keypad4 = 'move-node-to-workspace 4'
-alt-shift-keypad5 = 'move-node-to-workspace 5'
-alt-shift-keypad6 = 'move-node-to-workspace 6'
-alt-shift-keypad7 = 'move-node-to-workspace 7'
-alt-shift-keypad8 = 'move-node-to-workspace 8'
-alt-shift-keypad9 = 'move-node-to-workspace 9'
+cmd-ctrl-alt-shift-keypad1 = 'move-node-to-workspace 1'
+cmd-ctrl-alt-shift-keypad2 = 'move-node-to-workspace 2'
+cmd-ctrl-alt-shift-keypad3 = 'move-node-to-workspace 3'
+cmd-ctrl-alt-shift-keypad4 = 'move-node-to-workspace 4'
+cmd-ctrl-alt-shift-keypad5 = 'move-node-to-workspace 5'
+cmd-ctrl-alt-shift-keypad6 = 'move-node-to-workspace 6'
+cmd-ctrl-alt-shift-keypad7 = 'move-node-to-workspace 7'
+cmd-ctrl-alt-shift-keypad8 = 'move-node-to-workspace 8'
+cmd-ctrl-alt-shift-keypad9 = 'move-node-to-workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+ctrl-alt-shift-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
+cmd-ctrl-alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -187,11 +180,11 @@ f = [
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
-# dont know what this does but it clashes?
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+# Merge window to section
+cmd-ctrl-alt-shift-h = ['join-with left', 'mode main']
+cmd-ctrl-alt-shift-j = ['join-with down', 'mode main']
+cmd-ctrl-alt-shift-k = ['join-with up', 'mode main']
+cmd-ctrl-alt-shift-l = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]

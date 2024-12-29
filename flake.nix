@@ -44,6 +44,7 @@
   } @ inputs: let
     inherit (self) outputs;
     home_user = "marliechiller";
+    work_user = "charliemiller";
     systems = [
       "aarch64-darwin"
     ];
@@ -53,7 +54,6 @@
     darwinConfigurations = {
       "${home_user}@mba" = nix-darwin.lib.darwinSystem {
         pkgs = import nixpkgs { system = "aarch64-darwin"; config.allowUnfree = true; };
-#        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         specialArgs = {inherit inputs outputs;};
         modules = [
           system/home/configuration.nix
@@ -69,20 +69,19 @@
           stylix.darwinModules.stylix
         ];
       };
-      "charliemiler@MOCULON03" = nix-darwin.lib.darwinSystem {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      "${work_user}@MOCULON03" = nix-darwin.lib.darwinSystem {
+        pkgs = import nixpkgs { system = "aarch64-darwin"; config.allowUnfree = true; };
         specialArgs = {inherit inputs outputs;};
         modules = [
           system/work/configuration.nix
           mac-app-util.darwinModules.default
-#          home-manager.darwinModules.home-manager
-#          {
-#            home-manager.useGlobalPkgs = true;
-#            home-manager.useUserPackages = true;
-#            home-manager.users.charliemiller = import ./hosts/work/default.nix;
-#          }
-#                              stylix.homeManagerModules.stylix
-
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.charliemiller = import home-manager/hosts/work/default.nix;
+          }
+          stylix.darwinModules.stylix
         ];
       };
     };

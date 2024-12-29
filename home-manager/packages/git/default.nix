@@ -11,7 +11,7 @@ in {
       github.user = name;
       gitlab.user = name;
       commit.sshsign = true;
-      commit.gpgsign = true;
+      commit.gpgsign = false;
       "gpg \"ssh\"" = {
           program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       };
