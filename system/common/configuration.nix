@@ -21,6 +21,7 @@
   # Use homebrew to install casks and Mac App Store apps
   # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
+    brews = [];
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       "FelixKratz/formulae" # janky borders - highlight active window borders

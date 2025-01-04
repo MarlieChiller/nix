@@ -20,6 +20,7 @@
       "obsidian"
       "protonvpn"
       "signal"
+      "qbittorrent"
       "whatsapp"
     ];
   };

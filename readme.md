@@ -1,4 +1,8 @@
 - install darwin
+- install neovim
+  - `curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+tar xzf nvim-macos-arm64.tar.gz
+./nvim-macos-arm64/bin/nvim`
 - install lazyvim
   - `git clone https://github.com/LazyVim/starter ~/.config/nvim`
   - add `https://github.com/echasnovski/mini.base16` for stylix to theme properly
