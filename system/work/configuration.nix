@@ -1,9 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  imports = ["system/common/configuration.nix"];
+{pkgs, ...}: {
+  imports = [../common/configuration.nix];
   # Use a custom configuration.nix location.
   environment.darwinConfig = "$HOME/Projects/nix/system/work/configuration.nix";
 
@@ -25,7 +21,6 @@
       "postico"
       "visual-studio-code"
     ];
-
   };
 
   stylix = {
@@ -37,5 +32,4 @@
     home = "/Users/charliemiller";
     shell = pkgs.fish;
   };
-
 }

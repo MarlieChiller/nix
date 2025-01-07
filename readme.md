@@ -5,6 +5,9 @@ tar xzf nvim-macos-arm64.tar.gz
 ./nvim-macos-arm64/bin/nvim`
 - install lazyvim
   - `git clone https://github.com/LazyVim/starter ~/.config/nvim`
+  - edit lazyvim_plugin_setup.lua colour scheme
+  - `cp -v ~/Projects/nix/system/common/lazyvim_plugin_setup.lua ~/.config/nvim/lua/plugins/`
+  - `rm -rf ~/.config/nvim/.git`
   - add `https://github.com/echasnovski/mini.base16` for stylix to theme properly
 - add to karabiner: 
 

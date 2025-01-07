@@ -7,7 +7,9 @@ config.set_environment_variables = {
 	PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
 }
 
-config.default_prog = { "/etc/profiles/per-user/marliechiller/bin/fish" }
+local username = os.getenv("USER") or os.getenv("USERNAME")
+prog_path = "/etc/profiles/per-user/".. username .."/bin/fish" 
+config.default_prog = { prog_path }
 
 -- to fix the following bug: https://github.com/wez/wezterm/issues/5990#issuecomment-2305416553
 config.front_end = "WebGpu"
