@@ -49,9 +49,10 @@
 
   programs.fzf.enable = true;
   programs.fish.enable = true;
-  programs.neovim = {
-    enable = true;
-  };
+
+  # programs.neovim = {
+  #  enable = true;
+  # };
   home.sessionVariables = {
     EDITOR = "nvim";
   };

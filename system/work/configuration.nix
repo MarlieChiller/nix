@@ -11,14 +11,13 @@
       "zlib"
       "libpq"
       "postgresql"
+      "docker-compose"
     ];
     casks = [
       # ocula
-      "zed"
       "postman"
       "dbeaver-community"
       "docker"
-      "postico"
       "visual-studio-code"
     ];
   };

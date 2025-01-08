@@ -1,13 +1,12 @@
 - install darwin
 - install neovim
-  - `curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
-tar xzf nvim-macos-arm64.tar.gz
+  - follow binary install steps from here: https://github.com/neovim/neovim/releases
+  - `sudo mkdir -p /usr/local/nvim`
+  - `sudo mv nvim-macos-arm64/ /usr/local/nvim`
+  - fish shell is already set to read path from previous step in home-manager but just in case, you added `set -U fish_user_paths /usr/local/nvim/bin $fish_user_paths` to it
 ./nvim-macos-arm64/bin/nvim`
 - install lazyvim
   - `git clone https://github.com/LazyVim/starter ~/.config/nvim`
-  - edit lazyvim_plugin_setup.lua colour scheme
-  - `cp -v ~/Projects/nix/system/common/lazyvim_plugin_setup.lua ~/.config/nvim/lua/plugins/`
-  - `rm -rf ~/.config/nvim/.git`
   - add `https://github.com/echasnovski/mini.base16` for stylix to theme properly
 - add to karabiner: 
 

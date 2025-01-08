@@ -13,7 +13,8 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget /Users/marliechiller/.nix-profile/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
+    'exec-and-forget /etc/profiles/per-user/charliemiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
+    'exec-and-forget /etc/profiles/per-user/marliechiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
 ]
 
 
@@ -68,8 +69,8 @@ outer.right = 8
 
 # doesnt work yet
 # [key-mapping.key-notation-to-key-code]
-# hyper = 'ctrl+alt+shift+cmd'
-# meh = 'ctrl+alt+shift'
+#  hyper = 'alt-shift-ctrl-cmd'
+#  meh = 'alt-shift-ctrl'
 
 [mode.main.binding]
 
@@ -90,14 +91,14 @@ outer.right = 8
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-ctrl-alt-shift-t = '''exec-and-forget osascript -e '
+alt-shift-ctrl-t = '''exec-and-forget osascript -e '
 tell application "Kitty"
     do script
     activate
 end tell'
 # '''
 
-ctrl-alt-shift-b = '''exec-and-forget osascript -e '
+alt-shift-ctrl-b = '''exec-and-forget osascript -e '
 tell application "Google Chrome"
     do script
     activate
@@ -105,68 +106,76 @@ end tell'
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
-ctrl-alt-shift-comma = 'layout accordion horizontal vertical'
+alt-shift-ctrl-slash = 'layout tiles horizontal vertical'
+alt-shift-ctrl-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-alt-shift-esc = 'enable toggle'
-ctrl-alt-shift-f = 'fullscreen'
-cmd-ctrl-alt-shift-f = 'macos-native-fullscreen'
-ctrl-alt-shift-m = 'macos-native-minimize'
-ctrl-alt-shift-h = 'focus left'
-ctrl-alt-shift-j = 'focus down'
-ctrl-alt-shift-k = 'focus up'
-ctrl-alt-shift-l = 'focus right'
+alt-shift-ctrl-esc = 'enable toggle'
+alt-shift-ctrl-f = 'fullscreen'
+alt-shift-ctrl-cmd-f = 'macos-native-fullscreen'
+alt-shift-ctrl-m = 'macos-native-minimize'
+alt-shift-ctrl-h = 'focus left'
+alt-shift-ctrl-j = 'focus down'
+alt-shift-ctrl-k = 'focus up'
+alt-shift-ctrl-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-ctrl-alt-shift-h = 'move left'
-cmd-ctrl-alt-shift-j = 'move down'
-cmd-ctrl-alt-shift-k = 'move up'
-cmd-ctrl-alt-shift-l = 'move right'
+alt-shift-ctrl-cmd-h = 'move left'
+alt-shift-ctrl-cmd-j = 'move down'
+alt-shift-ctrl-cmd-k = 'move up'
+alt-shift-ctrl-cmd-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-ctrl-alt-shift-minus = 'resize smart -50'
-ctrl-alt-shift-equal = 'resize smart +50'
+alt-shift-ctrl-minus = 'resize smart -50'
+alt-shift-ctrl-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-ctrl-alt-shift-1 = 'workspace 1'
-ctrl-alt-shift-2 = 'workspace 2'
-ctrl-alt-shift-3 = 'workspace 3'
-ctrl-alt-shift-4 = 'workspace 4'
-ctrl-alt-shift-5 = 'workspace 5'
-ctrl-alt-shift-6 = 'workspace 6'
-ctrl-alt-shift-7 = 'workspace 7'
-ctrl-alt-shift-8 = 'workspace 8'
-ctrl-alt-shift-9 = 'workspace 9'
+alt-shift-ctrl-1 = 'workspace 1'
+alt-shift-ctrl-2 = 'workspace 2'
+alt-shift-ctrl-3 = 'workspace 3'
+alt-shift-ctrl-4 = 'workspace 4'
+alt-shift-ctrl-5 = 'workspace 5'
+alt-shift-ctrl-6 = 'workspace 6'
+alt-shift-ctrl-7 = 'workspace 7'
+alt-shift-ctrl-8 = 'workspace 8'
+alt-shift-ctrl-9 = 'workspace 9'
+alt-shift-ctrl-keypad1 = 'workspace 1'
+alt-shift-ctrl-keypad2 = 'workspace 2'
+alt-shift-ctrl-keypad3 = 'workspace 3'
+alt-shift-ctrl-keypad4 = 'workspace 4'
+alt-shift-ctrl-keypad5 = 'workspace 5'
+alt-shift-ctrl-keypad6 = 'workspace 6'
+alt-shift-ctrl-keypad7 = 'workspace 7'
+alt-shift-ctrl-keypad8 = 'workspace 8'
+alt-shift-ctrl-keypad9 = 'workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
-cmd-ctrl-alt-shift-2 = 'move-node-to-workspace 2'
-cmd-ctrl-alt-shift-3 = 'move-node-to-workspace 3'
-cmd-ctrl-alt-shift-4 = 'move-node-to-workspace 4'
-cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
-cmd-ctrl-alt-shift-6 = 'move-node-to-workspace 6'
-cmd-ctrl-alt-shift-7 = 'move-node-to-workspace 7'
-cmd-ctrl-alt-shift-8 = 'move-node-to-workspace 8'
-cmd-ctrl-alt-shift-9 = 'move-node-to-workspace 9'
-
-cmd-ctrl-alt-shift-keypad1 = 'move-node-to-workspace 1'
-cmd-ctrl-alt-shift-keypad2 = 'move-node-to-workspace 2'
-cmd-ctrl-alt-shift-keypad3 = 'move-node-to-workspace 3'
-cmd-ctrl-alt-shift-keypad4 = 'move-node-to-workspace 4'
-cmd-ctrl-alt-shift-keypad5 = 'move-node-to-workspace 5'
-cmd-ctrl-alt-shift-keypad6 = 'move-node-to-workspace 6'
-cmd-ctrl-alt-shift-keypad7 = 'move-node-to-workspace 7'
-cmd-ctrl-alt-shift-keypad8 = 'move-node-to-workspace 8'
-cmd-ctrl-alt-shift-keypad9 = 'move-node-to-workspace 9'
+alt-shift-ctrl-cmd-1 = 'move-node-to-workspace 1'
+alt-shift-ctrl-cmd-2 = 'move-node-to-workspace 2'
+alt-shift-ctrl-cmd-3 = 'move-node-to-workspace 3'
+alt-shift-ctrl-cmd-4 = 'move-node-to-workspace 4'
+alt-shift-ctrl-cmd-5 = 'move-node-to-workspace 5'
+alt-shift-ctrl-cmd-6 = 'move-node-to-workspace 6'
+alt-shift-ctrl-cmd-7 = 'move-node-to-workspace 7'
+alt-shift-ctrl-cmd-8 = 'move-node-to-workspace 8'
+alt-shift-ctrl-cmd-9 = 'move-node-to-workspace 9'
+alt-shift-ctrl-cmd-keypad1 = 'move-node-to-workspace 1'
+alt-shift-ctrl-cmd-keypad2 = 'move-node-to-workspace 2'
+alt-shift-ctrl-cmd-keypad3 = 'move-node-to-workspace 3'
+alt-shift-ctrl-cmd-keypad4 = 'move-node-to-workspace 4'
+alt-shift-ctrl-cmd-keypad5 = 'move-node-to-workspace 5'
+alt-shift-ctrl-cmd-keypad6 = 'move-node-to-workspace 6'
+alt-shift-ctrl-cmd-keypad7 = 'move-node-to-workspace 7'
+alt-shift-ctrl-cmd-keypad8 = 'move-node-to-workspace 8'
+alt-shift-ctrl-cmd-keypad9 = 'move-node-to-workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-ctrl-alt-shift-tab = 'workspace-back-and-forth'
+alt-shift-ctrl-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-ctrl-cmd-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-ctrl-alt-shift-semicolon = 'mode service'
+alt-shift-ctrl-cmd-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -181,10 +190,10 @@ f = [
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # Merge window to section
-cmd-ctrl-alt-shift-h = ['join-with left', 'mode main']
-cmd-ctrl-alt-shift-j = ['join-with down', 'mode main']
-cmd-ctrl-alt-shift-k = ['join-with up', 'mode main']
-cmd-ctrl-alt-shift-l = ['join-with right', 'mode main']
+alt-shift-ctrl-cmd-h = ['join-with left', 'mode main']
+alt-shift-ctrl-cmd-j = ['join-with down', 'mode main']
+alt-shift-ctrl-cmd-k = ['join-with up', 'mode main']
+alt-shift-ctrl-cmd-l = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]

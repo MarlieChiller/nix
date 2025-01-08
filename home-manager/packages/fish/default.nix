@@ -11,6 +11,7 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
+      set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
