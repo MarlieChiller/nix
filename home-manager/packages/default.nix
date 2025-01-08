@@ -12,7 +12,6 @@
     ./wezterm
     ./yazi
   ];
-  nixpkgs.config.allowUnfree = true;
 
   news.display = "show";
 
