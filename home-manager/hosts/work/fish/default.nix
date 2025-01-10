@@ -25,6 +25,7 @@
 
     shellAliases = {};
     shellAbbrs = {
+      dstop = "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)";
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
 

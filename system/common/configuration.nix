@@ -22,7 +22,7 @@
   # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
     enable = true;
-    brews = [];
+    brews = ["node"];
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       "FelixKratz/formulae" # janky borders - highlight active window borders
