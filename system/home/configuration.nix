@@ -22,6 +22,7 @@
       "signal"
       "qbittorrent"
       "whatsapp"
+      "steam"
     ];
   };
   stylix = {
