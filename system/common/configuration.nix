@@ -41,6 +41,7 @@
       "pycharm-ce"
       "sf-symbols"
       "spotify"
+      "wireshark"
     ];
     onActivation = {
       upgrade = true;
