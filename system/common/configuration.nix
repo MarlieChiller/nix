@@ -8,7 +8,6 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.fish
-    pkgs.ghostty
     pkgs.wireshark
   ];
 
@@ -43,6 +42,9 @@
       "pycharm-ce"
       "sf-symbols"
       "spotify"
+
+      "ghostty"
+
     ];
     onActivation = {
       upgrade = true;
