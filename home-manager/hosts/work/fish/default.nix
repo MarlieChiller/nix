@@ -10,7 +10,7 @@
       # Add Nix profile to the $PATH, idempotent and only required for non-NixOS system.
       fish_add_path ~/.nix-profile/bin/
       fish_add_path /opt/homebrew/bin
-      set -U fish_user_paths /Users/marliechiller/.local/bin $fish_user_paths
+      set -U fish_user_paths /Users/charliemiller/.local/bin $fish_user_paths
       set -U fish_user_paths /opt/homebrew/opt/postgresql/bin $fish_user_paths
       set -Ux PYENV_ROOT $HOME/.pyenv
       set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths

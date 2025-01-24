@@ -8,6 +8,8 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.fish
+    pkgs.ghostty
+    pkgs.wireshark
   ];
 
   # Auto upgrade nix package and the daemon service.
@@ -41,7 +43,6 @@
       "pycharm-ce"
       "sf-symbols"
       "spotify"
-      "wireshark"
     ];
     onActivation = {
       upgrade = true;
