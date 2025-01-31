@@ -37,14 +37,13 @@
       "chatgpt"
       "firefox"
       "font-hack-nerd-font"
+      "ghostty"
       "google-chrome"
       "karabiner-elements"
       "pycharm-ce"
       "sf-symbols"
       "spotify"
-
-      "ghostty"
-
+      "stats"
     ];
     onActivation = {
       upgrade = true;

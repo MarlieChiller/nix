@@ -13,8 +13,8 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget /etc/profiles/per-user/charliemiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
-    'exec-and-forget /etc/profiles/per-user/marliechiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
+  'exec-and-forget /etc/profiles/per-user/charliemiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
+  'exec-and-forget /etc/profiles/per-user/marliechiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
 ]
 
 
@@ -130,44 +130,44 @@ alt-shift-ctrl-minus = 'resize smart -50'
 alt-shift-ctrl-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-shift-ctrl-1 = 'workspace 1'
-alt-shift-ctrl-2 = 'workspace 2'
-alt-shift-ctrl-3 = 'workspace 3'
-alt-shift-ctrl-4 = 'workspace 4'
-alt-shift-ctrl-5 = 'workspace 5'
-alt-shift-ctrl-6 = 'workspace 6'
-alt-shift-ctrl-7 = 'workspace 7'
-alt-shift-ctrl-8 = 'workspace 8'
-alt-shift-ctrl-9 = 'workspace 9'
-alt-shift-ctrl-keypad1 = 'workspace 1'
-alt-shift-ctrl-keypad2 = 'workspace 2'
-alt-shift-ctrl-keypad3 = 'workspace 3'
-alt-shift-ctrl-keypad4 = 'workspace 4'
-alt-shift-ctrl-keypad5 = 'workspace 5'
-alt-shift-ctrl-keypad6 = 'workspace 6'
-alt-shift-ctrl-keypad7 = 'workspace 7'
-alt-shift-ctrl-keypad8 = 'workspace 8'
-alt-shift-ctrl-keypad9 = 'workspace 9'
+alt-shift-ctrl-1 = 'workspace ➊○○○○○○○○'
+alt-shift-ctrl-2 = 'workspace ○➋○○○○○○○'
+alt-shift-ctrl-3 = 'workspace ○○➌○○○○○○'
+alt-shift-ctrl-4 = 'workspace ○○○➍○○○○○'
+alt-shift-ctrl-5 = 'workspace ○○○○➎○○○○'
+alt-shift-ctrl-6 = 'workspace ○○○○○➏○○○'
+alt-shift-ctrl-7 = 'workspace ○○○○○○➐○○'
+alt-shift-ctrl-8 = 'workspace ○○○○○○○➑○'
+alt-shift-ctrl-9 = 'workspace ○○○○○○○○➒'
+alt-shift-ctrl-keypad1 = 'workspace ➊○○○○○○○○'
+alt-shift-ctrl-keypad2 = 'workspace ○➋○○○○○○○'
+alt-shift-ctrl-keypad3 = 'workspace ○○➌○○○○○○'
+alt-shift-ctrl-keypad4 = 'workspace ○○○➍○○○○○'
+alt-shift-ctrl-keypad5 = 'workspace ○○○○➎○○○○'
+alt-shift-ctrl-keypad6 = 'workspace ○○○○○➏○○○'
+alt-shift-ctrl-keypad7 = 'workspace ○○○○○○➐○○'
+alt-shift-ctrl-keypad8 = 'workspace ○○○○○○○➑○'
+alt-shift-ctrl-keypad9 = 'workspace ○○○○○○○○➒'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-ctrl-cmd-1 = 'move-node-to-workspace 1'
-alt-shift-ctrl-cmd-2 = 'move-node-to-workspace 2'
-alt-shift-ctrl-cmd-3 = 'move-node-to-workspace 3'
-alt-shift-ctrl-cmd-4 = 'move-node-to-workspace 4'
-alt-shift-ctrl-cmd-5 = 'move-node-to-workspace 5'
-alt-shift-ctrl-cmd-6 = 'move-node-to-workspace 6'
-alt-shift-ctrl-cmd-7 = 'move-node-to-workspace 7'
-alt-shift-ctrl-cmd-8 = 'move-node-to-workspace 8'
-alt-shift-ctrl-cmd-9 = 'move-node-to-workspace 9'
-alt-shift-ctrl-cmd-keypad1 = 'move-node-to-workspace 1'
-alt-shift-ctrl-cmd-keypad2 = 'move-node-to-workspace 2'
-alt-shift-ctrl-cmd-keypad3 = 'move-node-to-workspace 3'
-alt-shift-ctrl-cmd-keypad4 = 'move-node-to-workspace 4'
-alt-shift-ctrl-cmd-keypad5 = 'move-node-to-workspace 5'
-alt-shift-ctrl-cmd-keypad6 = 'move-node-to-workspace 6'
-alt-shift-ctrl-cmd-keypad7 = 'move-node-to-workspace 7'
-alt-shift-ctrl-cmd-keypad8 = 'move-node-to-workspace 8'
-alt-shift-ctrl-cmd-keypad9 = 'move-node-to-workspace 9'
+alt-shift-ctrl-cmd-1 = 'move-node-to-workspace ➊○○○○○○○○'
+alt-shift-ctrl-cmd-2 = 'move-node-to-workspace ○➋○○○○○○○'
+alt-shift-ctrl-cmd-3 = 'move-node-to-workspace ○○➌○○○○○○'
+alt-shift-ctrl-cmd-4 = 'move-node-to-workspace ○○○➍○○○○○'
+alt-shift-ctrl-cmd-5 = 'move-node-to-workspace ○○○○➎○○○○'
+alt-shift-ctrl-cmd-6 = 'move-node-to-workspace ○○○○○➏○○○'
+alt-shift-ctrl-cmd-7 = 'move-node-to-workspace ○○○○○○➐○○'
+alt-shift-ctrl-cmd-8 = 'move-node-to-workspace ○○○○○○○➑○'
+alt-shift-ctrl-cmd-9 = 'move-node-to-workspace ○○○○○○○○➒'
+alt-shift-ctrl-cmd-keypad1 = 'move-node-to-workspace ➊○○○○○○○○'
+alt-shift-ctrl-cmd-keypad2 = 'move-node-to-workspace ○➋○○○○○○○'
+alt-shift-ctrl-cmd-keypad3 = 'move-node-to-workspace ○○➌○○○○○○'
+alt-shift-ctrl-cmd-keypad4 = 'move-node-to-workspace ○○○➍○○○○○'
+alt-shift-ctrl-cmd-keypad5 = 'move-node-to-workspace ○○○○➎○○○○'
+alt-shift-ctrl-cmd-keypad6 = 'move-node-to-workspace ○○○○○➏○○○'
+alt-shift-ctrl-cmd-keypad7 = 'move-node-to-workspace ○○○○○○➐○○'
+alt-shift-ctrl-cmd-keypad8 = 'move-node-to-workspace ○○○○○○○➑○'
+alt-shift-ctrl-cmd-keypad9 = 'move-node-to-workspace ○○○○○○○○➒'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-shift-ctrl-tab = 'workspace-back-and-forth'
@@ -184,8 +184,8 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = [
-    'layout floating tiling',
-    'mode main',
+  'layout floating tiling',
+  'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
@@ -198,43 +198,47 @@ alt-shift-ctrl-cmd-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace  ➊○○○○○○○○'
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace  ➊○○○○○○○○'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace ○➋○○○○○○○'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm.ce'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace ○➋○○○○○○○'
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace ○○➌○○○○○○'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace ○○➌○○○○○○'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace ○○➌○○○○○○'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace ○○○○➎○○○○'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
-run = 'move-node-to-workspace 8'
+run = 'move-node-to-workspace ○○○○○○○➑○'
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
-run = 'move-node-to-workspace 9'
+run = 'move-node-to-workspace ○○○○○○○○➒'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 9'
+run = 'move-node-to-workspace ○○○○○○○○➒'
 
 [exec.env-vars]
 PATH = '${HOME}/bin:${PATH}'
