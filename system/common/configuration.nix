@@ -12,7 +12,6 @@
   ];
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   nix = {
     package = pkgs.nix;
     settings = {
@@ -23,7 +22,10 @@
   # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
     enable = true;
-    brews = ["node"];
+    brews = [
+      "node"
+      "gettext"
+    ];
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       "FelixKratz/formulae" # janky borders - highlight active window borders
@@ -57,7 +59,6 @@
   # $ work-rebuild switch -I work-config=$HOME/.config/nixpkgs/work/configuration.nix
 
   # Auto upgrade nix package and the daemon service.
-  # services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-work environment.
