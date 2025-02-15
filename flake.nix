@@ -52,7 +52,7 @@
     system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
     darwinConfigurations = {
-      "${home_user}@mba" = nix-darwin.lib.darwinSystem {
+      "${home_user}@MacBook-Air" = nix-darwin.lib.darwinSystem {
         pkgs = import nixpkgs { system = "aarch64-darwin"; config.allowUnfree = true; };
         specialArgs = {inherit inputs outputs;};
         modules = [

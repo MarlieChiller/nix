@@ -1,5 +1,6 @@
 - install nix (determinate with determinate flag disabled)
 - install darwin
+- install homebrew
 - install neovim
   - follow binary install steps from here: https://github.com/neovim/neovim/releases
   - `sudo mkdir -p /usr/local/nvim`
