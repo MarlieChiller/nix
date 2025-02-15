@@ -1,3 +1,4 @@
+- install nix (determinate with determinate flag disabled)
 - install darwin
 - install neovim
   - follow binary install steps from here: https://github.com/neovim/neovim/releases
