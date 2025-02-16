@@ -37,6 +37,7 @@
       "aerospace"
       "alfred"
       "chatgpt"
+      "cursor"
       "firefox"
       "font-hack-nerd-font"
       "ghostty"
