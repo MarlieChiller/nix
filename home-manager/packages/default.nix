@@ -31,6 +31,7 @@
     neofetch
     ripgrep
     ruff
+    tre-command
     uv
     yazi
 
