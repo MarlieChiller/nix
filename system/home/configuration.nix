@@ -19,10 +19,11 @@
       "discord"
       "obsidian"
       "protonvpn"
-      "signal"
       "qbittorrent"
-      "whatsapp"
+      "rawtherapee"
+      "signal"
       "steam"
+      "whatsapp"
     ];
   };
   stylix = {
