@@ -229,6 +229,10 @@ if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace ○○○○➎○○○○'
 
 [[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace ○○○○➎○○○○'
+
+[[on-window-detected]]
 if.app-id = 'com.openai.chat'
 run = 'move-node-to-workspace ○○○○○○○➑○'
 
