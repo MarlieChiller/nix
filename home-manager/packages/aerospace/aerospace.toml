@@ -225,6 +225,10 @@ if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace ○○➌○○○○○○'
 
 [[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
+run = 'move-node-to-workspace ○○○➍○○○○○'
+
+[[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace ○○○○➎○○○○'
 
