@@ -8,10 +8,11 @@
   homebrew = {
     brews = [
       "coreutils"
-      "zlib"
-      "libpq"
-      "postgresql"
       "docker-compose"
+      "libpq"
+      "pipx"
+      "postgresql"
+      "zlib"
     ];
     casks = [
       # ocula

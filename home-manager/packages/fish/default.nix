@@ -12,6 +12,7 @@
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       set -U fish_user_paths /opt/homebrew/bin/
+      eval (/opt/homebrew/bin/brew shellenv)
       set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
     '';
     plugins = [
