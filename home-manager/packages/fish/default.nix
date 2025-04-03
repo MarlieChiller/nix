@@ -14,6 +14,7 @@
       set -U fish_user_paths /opt/homebrew/bin/
       eval (/opt/homebrew/bin/brew shellenv)
       set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
+      op completion fish | source  # 1password autocomplete
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
@@ -40,6 +41,7 @@
     shellAbbrs = {
       # nix abbreviations
       # "vim" = "nvim";
+      gpass = "op item get google --vault Ocula --reveal --fields label=password | pbcopy";
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
       ncg = "nix-collect-garbage";

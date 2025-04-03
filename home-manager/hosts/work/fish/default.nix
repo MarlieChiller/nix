@@ -55,7 +55,7 @@
       '';
       db_dev_copygen = ''
         gcloud config set project ocula-platform-dev;
-        gcloud compute ssh bastion-boost_copy_db-dev-europe-west2 \
+        gcloud compute ssh bastion-boost-copy-dev-europe-west2 \
           --ssh-flag="-L 6666:localhost:5432" \
           --ssh-flag="-N" \
           --zone="europe-west2-a"
