@@ -47,6 +47,7 @@
       "sf-symbols"
       "spotify"
       "stats"
+      "zed"
     ];
     onActivation = {
       upgrade = true;
