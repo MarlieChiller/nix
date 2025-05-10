@@ -29,7 +29,6 @@
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       "FelixKratz/formulae" # janky borders - highlight active window borders
-      "homebrew/services"
     ];
     casks = [
       "1password"
@@ -43,7 +42,7 @@
       "ghostty"
       "google-chrome"
       "karabiner-elements"
-      "pycharm-ce"
+      "pycharm"
       "sf-symbols"
       "spotify"
       "stats"

@@ -15,6 +15,9 @@
     masApps = {
       nextdns = 1464122853;
   };
+    brews = [
+      "postgresql@17"
+    ];
     casks = [
       "discord"
       "obsidian"
