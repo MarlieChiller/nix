@@ -113,7 +113,7 @@ alt-shift-ctrl-comma = 'layout accordion horizontal vertical'
 alt-shift-ctrl-esc = 'enable toggle'
 alt-shift-ctrl-f = 'fullscreen'
 alt-shift-ctrl-cmd-f = 'macos-native-fullscreen'
-alt-shift-ctrl-m = 'macos-native-minimize'
+# alt-shift-ctrl-m = 'macos-native-minimize'
 alt-shift-ctrl-h = 'focus left'
 alt-shift-ctrl-j = 'focus down'
 alt-shift-ctrl-k = 'focus up'
@@ -264,7 +264,7 @@ run = 'move-node-to-workspace P'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'

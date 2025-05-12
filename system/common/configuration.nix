@@ -42,7 +42,7 @@
       "ghostty"
       "google-chrome"
       "karabiner-elements"
-      "pycharm"
+      "pycharm-ce"
       "sf-symbols"
       "spotify"
       "stats"
