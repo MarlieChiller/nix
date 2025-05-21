@@ -39,6 +39,7 @@
       "chatgpt"
       "cursor"
       "firefox"
+      "fork"
       "font-hack-nerd-font"
       "ghostty"
       "google-chrome"
