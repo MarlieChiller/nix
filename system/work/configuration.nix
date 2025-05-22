@@ -17,6 +17,7 @@
     casks = [
       # ocula
       "postman"
+      "datagrip"
       "dbeaver-community"
       "docker"
       "visual-studio-code"
