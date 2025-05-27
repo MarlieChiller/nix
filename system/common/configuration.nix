@@ -43,6 +43,7 @@
       "ghostty"
       "google-chrome"
       "karabiner-elements"
+      "obsidian"
       "pycharm-ce"
       "sf-symbols"
       "spotify"
