@@ -30,8 +30,8 @@ in {
       chmod = "${yazi-plugins}/chmod.yazi";
       full-border = "${yazi-plugins}/full-border.yazi";
       max-preview = "${yazi-plugins}/max-preview.yazi";
-      smart-enter = ./plugins/smart-enter.yazi;
-      smart-paste = ./plugins/smart-paste.yazi;
+      smart-enter = "${yazi-plugins}/smart-enter.yazi";
+      smart-paste = "${yazi-plugins}/smart-paste.yazi";
     };
 #
 #    initLua = ''

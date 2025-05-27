@@ -33,6 +33,7 @@
     image = ../assets/wallpapers/mountain.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
   };
+  system.primaryUser = "marliechiller";
   users.users.marliechiller = {
     home = "/Users/marliechiller";
     shell = pkgs.fish;
