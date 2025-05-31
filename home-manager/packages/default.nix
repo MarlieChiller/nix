@@ -7,6 +7,7 @@
     ./git
     ./kitty
     ./helix
+    ./nixvim
     ./starship
     ./ssh
     ./wezterm

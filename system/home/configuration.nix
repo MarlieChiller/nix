@@ -30,7 +30,7 @@
   };
   stylix = {
     enable = true;
-    image = ../assets/wallpapers/mountain.jpg;
+    image = ../../home-manager/assets/wallpapers/mountain.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
   };
   system.primaryUser = "marliechiller";
