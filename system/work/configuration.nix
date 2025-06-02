@@ -25,7 +25,7 @@
   };
 
   stylix = {
-    image = ../assets/wallpapers/leaves.jpg;
+    image = ../../home-manager/assets/wallpapers/leaves.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
   };
   system.primaryUser = "charliemiller";

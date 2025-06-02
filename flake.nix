@@ -63,9 +63,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.marliechiller = import home-manager/hosts/home/default.nix;
-  home-manager.extraSpecialArgs = {
-    inherit inputs;
-  };
+            home-manager.extraSpecialArgs = {
+            inherit inputs;
+          };
 
           }
           stylix.darwinModules.stylix
@@ -82,6 +82,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.charliemiller = import home-manager/hosts/work/default.nix;
+                        home-manager.extraSpecialArgs = {
+            inherit inputs;
+          };
           }
           stylix.darwinModules.stylix
         ];
