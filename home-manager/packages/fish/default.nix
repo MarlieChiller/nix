@@ -15,6 +15,7 @@
       eval (/opt/homebrew/bin/brew shellenv)
       set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
       op completion fish | source  # 1password autocomplete
+      atuin init fish | source  # atuin shell
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
