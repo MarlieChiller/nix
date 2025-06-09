@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
@@ -86,7 +82,7 @@
     finder = {
       AppleShowAllExtensions = true;
       AppleShowAllFiles = true;
-      _FXShowPosixPathInTitle = true;  # show full path in finder title
+      _FXShowPosixPathInTitle = true; # show full path in finder title
       FXEnableExtensionChangeWarning = false;
       FXPreferredViewStyle = "Nlsv";
       ShowStatusBar = true;
