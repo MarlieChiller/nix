@@ -21,6 +21,7 @@
     brews = [
       "node"
       "gettext"
+      "coreutils"  # provides grealpath needed by yazi.nvim
     ];
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS

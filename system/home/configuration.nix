@@ -2,8 +2,9 @@
   config,
   pkgs,
   ...
-}: {
-  imports = [../common/configuration.nix];
+}:
+{
+  imports = [ ../common/configuration.nix ];
   # Use a custom configuration.nix location.
   environment.darwinConfig = "$HOME/Projects/nix/system/home/configuration.nix";
 
@@ -14,12 +15,14 @@
     # mac store apps
     masApps = {
       nextdns = 1464122853;
-  };
+    };
     brews = [
+      "docker-compose"
       "postgresql@17"
     ];
     casks = [
       "discord"
+      "docker"
       "protonvpn"
       "qbittorrent"
       "rawtherapee"
@@ -38,5 +41,4 @@
     home = "/Users/marliechiller";
     shell = pkgs.fish;
   };
-
 }

@@ -27,6 +27,7 @@
     fish
     fzf
     gcc
+    glow
     grc
     lazygit
     neofetch
@@ -38,7 +39,6 @@
 
     # darwin
     jankyborders
-
 
     # nix
     alejandra

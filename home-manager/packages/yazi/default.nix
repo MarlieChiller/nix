@@ -1,13 +1,13 @@
 {
   pkgs,
-  lib,
+  inputs,
   ...
 }: let
   yazi-plugins = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "b6597919540731691158831bf1ff36ed38c1964e";
-    sha256 = "07dm70s48mas4d38zhnrfw9p3sgk83ki70xi1jb2d191ya7a2p3j";
+    rev = "3d1efb706924112daed986a4eef634e408bad65e";
+    sha256 = "sha256-GgEg1A5sxaH7hR1CUOO9WV21kH8B2YUGAtOapcWLP7Y=";
   };
 in {
   programs.yazi = {
@@ -16,56 +16,53 @@ in {
     shellWrapperName = "yy";
 
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
-        ratio = [1 3 4];
+        ratio = [
+          1
+          3
+          4
+        ];
       };
       preview = {
         max_width = 1000;
         max_height = 1000;
       };
-    };
-
-    plugins = {
-      chmod = "${yazi-plugins}/chmod.yazi";
-      full-border = "${yazi-plugins}/full-border.yazi";
-      max-preview = "${yazi-plugins}/max-preview.yazi";
-      smart-enter = "${yazi-plugins}/smart-enter.yazi";
-      smart-paste = "${yazi-plugins}/smart-paste.yazi";
-    };
-#
-#    initLua = ''
-#      require("full-border"):setup()
-#    '';
-
-    keymap = {
-      manager.prepend_keymap = [
+      plugin.prepend_previewers = [
         {
-          on = "T";
-          run = "plugin max-preview";
-          desc = "Maximize or restore the preview pane";
+          name = "*.md";
+          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
         }
         {
-          on = ["c" "m"];
-          run = "plugin chmod";
-          desc = "Chmod on selected files";
+          name = "*.markdown";
+          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
         }
         {
-          on = "l";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
+          name = "*.mdown";
+          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
         }
         {
-          on = "enter";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
+          name = "*.mkd";
+          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
         }
         {
-          on = "p";
-          run = "plugin smart-paste";
-          desc = "Paste into the hovered directory or CWD";
+          name = "*.mkdn";
+          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
         }
       ];
     };
+
+    plugins = {
+      full-border = "${pkgs.yaziPlugins.full-border}";
+      smart-enter = "${pkgs.yaziPlugins.smart-enter}";
+      starship = "${pkgs.yaziPlugins.starship}";
+      jump-to-char = "${pkgs.yaziPlugins.jump-to-char}";
+      relative-motions = "${pkgs.yaziPlugins.relative-motions}";
+      piper = "${yazi-plugins}/piper.yazi";
+    };
+
+    #    initLua = ''
+    #      require("full-border"):setup()
+    #    '';
   };
 }
