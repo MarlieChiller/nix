@@ -2,9 +2,8 @@
   config,
   pkgs,
   ...
-}:
-{
-  imports = [ ../common/configuration.nix ];
+}: {
+  imports = [../common/configuration.nix];
   # Use a custom configuration.nix location.
   environment.darwinConfig = "$HOME/Projects/nix/system/home/configuration.nix";
 
@@ -35,6 +34,15 @@
     enable = true;
     image = ../../home-manager/assets/wallpapers/mountain.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sizes = {
+        terminal = 14;
+      };
+    };
   };
   system.primaryUser = "marliechiller";
   users.users.marliechiller = {

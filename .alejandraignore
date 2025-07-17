@@ -1,0 +1,15 @@
+# Vim undo directories
+**/.vim/
+**/undodir/
+
+# Common ignore patterns
+.git/
+*.lock
+result/
+.direnv/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~

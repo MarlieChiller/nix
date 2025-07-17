@@ -6,7 +6,7 @@
   imports = [
     ../../packages
     ./fish
-#    inputs.mac-app-util.homeManagerModules.default
+    #    inputs.mac-app-util.homeManagerModules.default
   ];
 
   home = {

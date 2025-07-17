@@ -79,7 +79,7 @@
       pumheight = 0;
 
       colorcolumn = "80"; # Show column guide
-      
+
       # Enable system clipboard
       clipboard = "unnamedplus";
     };

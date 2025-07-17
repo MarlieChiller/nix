@@ -1,5 +1,8 @@
-{pkgs, lib, ...}:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   name = "marliechiller";
 in {
   programs.git = {
@@ -13,7 +16,7 @@ in {
       commit.sshsign = true;
       commit.gpgsign = false;
       "gpg \"ssh\"" = {
-          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+        program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       };
       push.autoSetupRemote = true;
       rerere.enable = true;
@@ -21,9 +24,8 @@ in {
     userEmail = "${name}@protonmail.me";
     userName = name;
     signing = {
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvT8OYoGidygyDAhEC6M7XiDNFy5DZ1eSn256uAqHPa";
+      # SSH key managed by 1Password - no need to hardcode
       signByDefault = true;
     };
   };
 }
-

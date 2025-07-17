@@ -60,9 +60,5 @@ in {
       relative-motions = "${pkgs.yaziPlugins.relative-motions}";
       piper = "${yazi-plugins}/piper.yazi";
     };
-
-    #    initLua = ''
-    #      require("full-border"):setup()
-    #    '';
   };
 }

@@ -1,5 +1,5 @@
 {
-  description = "";
+  description = "Multi-host macOS configuration using Nix Darwin + Home Manager for personal and work environments";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -35,73 +35,69 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nix-darwin,
-      home-manager,
-      nixvim,
-      alejandra,
-      stylix,
-      mac-app-util,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      home_user = "marliechiller";
-      work_user = "charliemiller";
-      systems = [
-        "aarch64-darwin"
-      ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-      system = forAllSystems (system: nixpkgs.legacyPackages.${system});
-    in
-    {
-      darwinConfigurations = {
-        "${home_user}@MacBook-Air" = nix-darwin.lib.darwinSystem {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            system/home/configuration.nix
-            mac-app-util.darwinModules.default
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marliechiller = import home-manager/hosts/home/default.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-
-            }
-            stylix.darwinModules.stylix
-          ];
+  outputs = {
+    self,
+    nixpkgs,
+    nix-darwin,
+    home-manager,
+    nixvim,
+    alejandra,
+    stylix,
+    mac-app-util,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    home_user = "marliechiller";
+    work_user = "charliemiller";
+    systems = [
+      "aarch64-darwin"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+    system = forAllSystems (system: nixpkgs.legacyPackages.${system});
+  in {
+    darwinConfigurations = {
+      "${home_user}@MacBook-Air" = nix-darwin.lib.darwinSystem {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
         };
-        "${work_user}@MOCULON03" = nix-darwin.lib.darwinSystem {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            system/work/configuration.nix
-            mac-app-util.darwinModules.default
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.charliemiller = import home-manager/hosts/work/default.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-            }
-            stylix.darwinModules.stylix
-          ];
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          system/home/configuration.nix
+          mac-app-util.darwinModules.default
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.marliechiller = import home-manager/hosts/home/default.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+          }
+          stylix.darwinModules.stylix
+        ];
+      };
+      "${work_user}@MOCULON03" = nix-darwin.lib.darwinSystem {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
         };
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          system/work/configuration.nix
+          mac-app-util.darwinModules.default
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.charliemiller = import home-manager/hosts/work/default.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+          }
+          stylix.darwinModules.stylix
+        ];
       };
     };
+  };
 }

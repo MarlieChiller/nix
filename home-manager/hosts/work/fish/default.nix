@@ -106,7 +106,6 @@
           --zone="europe-west2-a"
       '';
 
-
       # --- prod ---
 
       db_prod_big_boi = ''

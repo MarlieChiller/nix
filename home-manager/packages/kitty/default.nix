@@ -3,18 +3,9 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    kitty
-  ];
-
-  programs.kitty = lib.mkForce {
+  programs.kitty = {
     enable = true;
-    themeFile = "Nord";
     shellIntegration.enableFishIntegration = true;
-    font = {
-      name = "JetBrainsMono Nerd Font Mono";
-      size = 14;
-    };
     settings = {
       shell = "${pkgs.fish}/bin/fish";
       confirm_os_window_close = 0;
@@ -25,7 +16,6 @@
       tab_bar_edge = "top";
       mouse_hide_wait = "-1.0";
       window_padding_width = 10;
-      # background_opacity = "0.95";
       background_blur = 0;
 
       # Search functionality
@@ -57,7 +47,5 @@
       in
         (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
     };
-
-    keybindings = {};
   };
 }

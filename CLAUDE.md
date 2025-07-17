@@ -1,23 +1,14 @@
-# Claude Configuration
+# Nix Darwin + Home Manager Configuration
 
-This repository contains a comprehensive Nix Darwin + Home Manager configuration for macOS.
-
-## For Claude Code Sessions
-
-A detailed prompt about this repository structure and conventions is available in `.claude/prompt.md`. This prompt provides essential context about:
-
-- Repository organization and patterns
-- Multi-host setup (work/home configurations)
-- Package management conventions
-- Configuration patterns and best practices
-- Common operations and workflows
+Multi-host macOS configuration for personal and work environments.
 
 ## Quick Context
 
 - **Platform**: macOS (Apple Silicon)
 - **Users**: marliechiller (home), charliemiller (work)
-- **Management**: Nix Darwin + Home Manager
-- **Structure**: Modular configuration with shared and host-specific components
+- **Theming**: Stylix with Nord (home) / Rose Pine (work)
+- **Font**: JetBrains Mono Nerd Font
+- **Shell**: Fish + Zellij
 
 ## Build Commands
 
@@ -25,16 +16,40 @@ A detailed prompt about this repository structure and conventions is available i
 # Build and switch
 darwin-rebuild switch --flake .
 
-# Build only
+# Build only (test changes)
 darwin-rebuild build --flake .
 
-# Format
+# Format code
 alejandra .
+
+# Check flake
+nix flake check
 ```
 
-## Key Directories
+## Structure
 
-- `system/` - System-level configurations
-- `home-manager/packages/` - Application configurations
-- `home-manager/hosts/` - Host-specific configurations
-- `flake.nix` - Main flake configuration
+```
+├── flake.nix                    # Main flake configuration
+├── system/
+│   ├── common/                  # Shared system config
+│   ├── home/                    # Home-specific system config
+│   └── work/                    # Work-specific system config
+└── home-manager/
+    ├── packages/                # Application configurations
+    ├── hosts/                   # Host-specific user configs
+    └── common/                  # Shared user configs
+```
+
+## Key Applications
+
+- **Terminal**: Kitty + Fish + Zellij
+- **Editor**: Neovim (nixvim)
+- **Git**: 1Password SSH signing
+- **File Manager**: Yazi
+- **Window Manager**: Aerospace
+
+## Security Notes
+
+- SSH keys managed by 1Password
+- No hardcoded secrets in configuration
+- Stylix handles theming consistently

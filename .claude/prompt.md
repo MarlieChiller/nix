@@ -21,6 +21,7 @@ This is a personal macOS configuration managed with Nix Darwin and Home Manager.
     │   ├── kitty/              # Kitty terminal configuration
     │   ├── ghostty/            # Ghostty terminal configuration
     │   ├── wezterm/            # WezTerm terminal configuration
+    │   ├── zellij/             # Zellij multiplexer configuration
     │   ├── nixvim/             # Neovim configuration
     │   ├── helix/              # Helix editor configuration
     │   ├── git/                # Git configuration
@@ -80,12 +81,14 @@ Each application in `home-manager/packages/` follows the pattern:
 ### Shell Configuration
 - **Default shell**: Fish (configured in both system and home-manager)
 - **Shell integration**: Kitty has fish integration enabled
+- **Terminal multiplexer**: Zellij auto-starts with fish, configured with compact layout
 - **Abbreviations**: Extensive fish abbreviations for common commands
 - **Homebrew**: Sourced in fish shell init
 
 ### Development Environment
 - **Editor**: Neovim via nixvim with extensive configuration
 - **Terminal**: Multiple terminals configured (kitty, ghostty, wezterm)
+- **Multiplexer**: Zellij with neovim integration (scrollback editor)
 - **Git**: Configured with fish integration
 - **CLI tools**: Modern replacements (eza, fd, ripgrep, etc.)
 

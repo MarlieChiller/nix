@@ -3,10 +3,6 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    fish
-  ];
-
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -47,7 +43,6 @@
     shellAbbrs = {
       # nix abbreviations
       # "vim" = "nvim";
-      gpass = "op item get google --vault Ocula --reveal --fields label=password | pbcopy";
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
       ncg = "nix-collect-garbage";

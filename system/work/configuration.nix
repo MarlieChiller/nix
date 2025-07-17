@@ -27,6 +27,15 @@
   stylix = {
     image = ../../home-manager/assets/wallpapers/leaves.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sizes = {
+        terminal = 14;
+      };
+    };
   };
   system.primaryUser = "charliemiller";
 
