@@ -1,5 +1,5 @@
 # common configuration across all system
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   imports = [
     ./aerospace
     ./bat
@@ -12,6 +12,8 @@
     ./ssh
     ./wezterm
     ./yazi
+    ./zellij
+    inputs.mac-app-util.homeManagerModules.default
   ];
 
   news.display = "show";
@@ -36,6 +38,7 @@
     tre-command
     uv
     yazi
+    zellij
 
     # darwin
     jankyborders

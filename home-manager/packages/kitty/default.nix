@@ -1,4 +1,8 @@
-{lib, ...}: {
+{lib, pkgs, ...}: {
+  home.packages = with pkgs; [
+    kitty
+  ];
+
   programs.kitty = lib.mkForce {
     enable = true;
     themeFile = "Nord";
