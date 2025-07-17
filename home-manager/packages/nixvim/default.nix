@@ -333,6 +333,81 @@
           ];
         };
       };
+
+      # Better treesitter text objects
+      treesitter-textobjects = {
+        enable = true;
+        select = {
+          enable = true;
+          keymaps = {
+            "af" = "@function.outer";
+            "if" = "@function.inner";
+            "ac" = "@class.outer";
+            "ic" = "@class.inner";
+            "aa" = "@parameter.outer";
+            "ia" = "@parameter.inner";
+          };
+        };
+      };
+
+      # Commenting functionality
+      comment = {
+        enable = true;
+        settings = {
+          toggler = {
+            line = "gcc";
+            block = "gbc";
+          };
+          opleader = {
+            line = "gc";
+            block = "gb";
+          };
+        };
+      };
+
+      # Surround functionality
+      nvim-surround.enable = true;
+
+      # Indent guides
+      indent-blankline = {
+        enable = true;
+        settings = {
+          indent = {
+            char = "│";
+          };
+          scope = {
+            enabled = true;
+            show_start = true;
+            show_end = true;
+          };
+        };
+      };
+
+      # Better diagnostic viewer
+      trouble = {
+        enable = true;
+        settings = {
+          modes = {
+            diagnostics = {
+              auto_open = false;
+              auto_close = true;
+            };
+          };
+        };
+      };
+
+      # Buffer line (tab-like display)
+      bufferline = {
+        enable = true;
+        settings = {
+          options = {
+            diagnostics = "nvim_lsp";
+            show_buffer_close_icons = false;
+            show_close_icon = false;
+            separator_style = "thin";
+          };
+        };
+      };
     };
 
     # Key mappings
