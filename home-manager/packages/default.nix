@@ -1,5 +1,9 @@
 # common configuration across all system
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./aerospace
     ./bat
@@ -70,5 +74,8 @@
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+    # backupFileExtension = true;
+  };
 }

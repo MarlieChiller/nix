@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     kitty
   ];
@@ -12,18 +16,23 @@
       size = 14;
     };
     settings = {
-      scrollback_lines = 10000;
-      scrollback_pager = "nvim -c 'setlocal nonumber nolist showtabline=0 foldcolumn=0|Man!' -c 'autocmd VimEnter * normal G' -";
-      scrollback_pager_history_size = 256;
+      shell = "${pkgs.fish}/bin/fish";
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;
       enable_audio_bell = true;
       macos_titlebar_color = "background";
+      macos_option_as_alt = "yes";
       tab_bar_edge = "top";
       mouse_hide_wait = "-1.0";
       window_padding_width = 10;
       # background_opacity = "0.95";
       background_blur = 0;
+
+      # Search functionality
+      search_result_color = "#3E4451";
+      search_result_bg_color = "#528BFF";
+      search_current_match_color = "#000000";
+      search_current_match_bg_color = "#FFD700";
       symbol_map = let
         mappings = [
           "U+23FB-U+23FE"
@@ -48,5 +57,7 @@
       in
         (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
     };
+
+    keybindings = {};
   };
 }
