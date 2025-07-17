@@ -60,5 +60,202 @@ in {
       relative-motions = "${pkgs.yaziPlugins.relative-motions}";
       piper = "${yazi-plugins}/piper.yazi";
     };
+
+    theme = {
+      icon = {
+        append_exts = [
+          {
+            name = "py";
+            text = "󰌠";
+          }
+          {
+            name = "js";
+            text = "󰌞";
+          }
+          {
+            name = "ts";
+            text = "󰛦";
+          }
+          {
+            name = "json";
+            text = "󰘦";
+          }
+          {
+            name = "md";
+            text = "󰍔";
+          }
+          {
+            name = "nix";
+            text = "󱄅";
+          }
+          {
+            name = "yml";
+            text = "󰈙";
+          }
+          {
+            name = "yaml";
+            text = "󰈙";
+          }
+          {
+            name = "toml";
+            text = "󰈙";
+          }
+          {
+            name = "txt";
+            text = "󰈙";
+          }
+          {
+            name = "pdf";
+            text = "󰈦";
+          }
+          {
+            name = "zip";
+            text = "󰗄";
+          }
+          {
+            name = "tar";
+            text = "󰗄";
+          }
+          {
+            name = "gz";
+            text = "󰗄";
+          }
+          {
+            name = "png";
+            text = "󰉏";
+          }
+          {
+            name = "jpg";
+            text = "󰉏";
+          }
+          {
+            name = "jpeg";
+            text = "󰉏";
+          }
+          {
+            name = "gif";
+            text = "󰉏";
+          }
+          {
+            name = "svg";
+            text = "󰜡";
+          }
+          {
+            name = "mp3";
+            text = "󰎆";
+          }
+          {
+            name = "mp4";
+            text = "󰎁";
+          }
+          {
+            name = "mkv";
+            text = "󰎁";
+          }
+          {
+            name = "avi";
+            text = "󰎁";
+          }
+          {
+            name = "html";
+            text = "󰌝";
+          }
+          {
+            name = "css";
+            text = "󰌜";
+          }
+          {
+            name = "rs";
+            text = "󱘗";
+          }
+          {
+            name = "go";
+            text = "󰟓";
+          }
+          {
+            name = "java";
+            text = "󰬷";
+          }
+          {
+            name = "cpp";
+            text = "󰙲";
+          }
+          {
+            name = "c";
+            text = "󰙱";
+          }
+          {
+            name = "sh";
+            text = "󱆃";
+          }
+          {
+            name = "zsh";
+            text = "󱆃";
+          }
+          {
+            name = "fish";
+            text = "󰈺";
+          }
+          {
+            name = "vim";
+            text = "󰕷";
+          }
+          {
+            name = "lua";
+            text = "󰢱";
+          }
+          {
+            name = "rb";
+            text = "󰴭";
+          }
+          {
+            name = "php";
+            text = "󰌟";
+          }
+          {
+            name = "lock";
+            text = "󰌾";
+          }
+        ];
+        append_dirs = [
+          {
+            name = ".git";
+            text = "󰊢";
+          }
+          {
+            name = "node_modules";
+            text = "󰎙";
+          }
+          {
+            name = ".config";
+            text = "󰒓";
+          }
+          {
+            name = "Desktop";
+            text = "󰧨";
+          }
+          {
+            name = "Documents";
+            text = "󰈙";
+          }
+          {
+            name = "Downloads";
+            text = "󰇚";
+          }
+          {
+            name = "Pictures";
+            text = "󰉏";
+          }
+          {
+            name = "Music";
+            text = "󱍙";
+          }
+          {
+            name = "Videos";
+            text = "󰉏";
+          }
+        ];
+      };
+    };
   };
 }

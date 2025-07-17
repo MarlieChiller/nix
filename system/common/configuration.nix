@@ -37,6 +37,7 @@
       "firefox"
       "fork"
       "font-hack-nerd-font"
+      "font-jetbrains-mono-nerd-font"
       "google-chrome"
       "karabiner-elements"
       "obsidian"
