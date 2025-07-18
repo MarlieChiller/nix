@@ -29,8 +29,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Mono";
+        package = pkgs.nerd-fonts.hack;
+        name = "Hack Nerd Font Mono";
       };
       sizes = {
         terminal = 14;

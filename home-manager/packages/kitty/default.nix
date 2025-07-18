@@ -6,6 +6,11 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
+    font = lib.mkForce {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono Nerd Font Mono";
+      size = 14;
+    };
     settings = {
       shell = "${pkgs.fish}/bin/fish";
       confirm_os_window_close = 0;
@@ -45,7 +50,7 @@
           "U+E5FA-U+E62B"
         ];
       in
-        (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
+        (builtins.concatStringsSep "," mappings) + " JetBrainsMono Nerd Font Mono";
     };
   };
 }
