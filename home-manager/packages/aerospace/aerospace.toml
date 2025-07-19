@@ -251,6 +251,10 @@ if.app-id = 'org.mozilla.firefox'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
 if.app-id = 'com.jetbrains.pycharm'
 run = 'move-node-to-workspace C'
 
