@@ -10,6 +10,18 @@
           "bind \"Ctrl t\"" = {
             SwitchToMode = "Tab";
           };
+          "bind \"Alt h\"" = {
+            MoveFocusOrTab = "Left";
+          };
+          "bind \"Alt l\"" = {
+            MoveFocusOrTab = "Right";
+          };
+          "bind \"Alt Shift h\"" = {
+            GoToPreviousTab = {};
+          };
+          "bind \"Alt Shift l\"" = {
+            GoToNextTab = {};
+          };
         };
         tab = {
           "bind \"h\"" = {
