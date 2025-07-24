@@ -22,6 +22,12 @@
           "bind \"Alt Shift l\"" = {
             GoToNextTab = {};
           };
+          "bind \"Alt p\"" = {
+            MovePane = {};
+          };
+          "bind \"Alt b\"" = {
+            BreakPane = {};
+          };
         };
         tab = {
           "bind \"h\"" = {
