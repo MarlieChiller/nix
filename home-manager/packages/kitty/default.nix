@@ -23,6 +23,18 @@
       window_padding_width = 10;
       background_blur = 0;
 
+      # Performance settings
+      sync_to_monitor = true;
+      input_delay = 3;
+
+      # Convenience features
+      copy_on_select = true;
+      strip_trailing_spaces = "smart";
+      scrollback_lines = 10000;
+
+      # Window appearance
+      hide_window_decorations = "titlebar-only";
+
       # Search functionality
       search_result_color = "#3E4451";
       search_result_bg_color = "#528BFF";
