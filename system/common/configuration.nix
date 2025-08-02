@@ -39,6 +39,7 @@
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"
       "google-chrome"
+      "jordanbaird-ice"
       "karabiner-elements"
       "obsidian"
       "pycharm-ce"

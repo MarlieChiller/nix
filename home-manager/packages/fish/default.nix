@@ -13,10 +13,6 @@
       op completion fish | source  # 1password autocomplete
       atuin init fish | source  # atuin shell
 
-      # Auto-start zellij if not already inside a zellij session
-      if not set -q ZELLIJ
-        exec zellij
-      end
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs

@@ -16,7 +16,6 @@
     ./ssh
     ./wezterm
     ./yazi
-    ./zellij
     inputs.mac-app-util.homeManagerModules.default
   ];
 
@@ -42,7 +41,6 @@
     tre-command
     uv
     yazi
-    zellij
 
     # darwin
     jankyborders
