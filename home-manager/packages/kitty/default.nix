@@ -31,6 +31,9 @@
       copy_on_select = true;
       strip_trailing_spaces = "smart";
       scrollback_lines = 10000;
+      
+      # Directory restoration
+      shell_integration = "enabled";
 
       # Window appearance
       hide_window_decorations = "titlebar-only";
