@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+  imports = [inputs.nixvim.homeModules.nixvim];
 
   programs.nixvim = {
     enable = true;
@@ -153,6 +153,10 @@
               };
             };
           };
+
+          gopls = {
+            enable = true;
+          };
         };
       };
 
@@ -167,6 +171,7 @@
           formatters_by_ft = {
             nix = ["alejandra"];
             python = ["ruff_format"];
+            go = ["gofmt"];
           };
         };
       };
@@ -322,6 +327,7 @@
           ensure_installed = [
             "python"
             "rust"
+            "go"
             "nix"
             "lua"
             "javascript"

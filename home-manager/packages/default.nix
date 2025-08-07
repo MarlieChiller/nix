@@ -33,6 +33,7 @@
     fzf
     gcc
     glow
+    go
     grc
     lazygit
     neofetch
