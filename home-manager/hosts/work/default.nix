@@ -20,8 +20,7 @@
 
   home.packages = with pkgs; [
     # MacOS specific home manager packages
-    # installs gcloud with extra components like kubectl
-    (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.kubectl])
+    awscli2
     terraform
   ];
 }
