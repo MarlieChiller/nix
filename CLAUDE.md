@@ -5,7 +5,7 @@ Multi-host macOS configuration for personal and work environments.
 ## Quick Context
 
 - **Platform**: macOS (Apple Silicon)
-- **Users**: marliechiller (home), charliemiller (work)
+- **Users**: marliechiller (home), charlie.miller (work)
 - **Theming**: Stylix with Nord (home) / Rose Pine (work)
 - **Font**: JetBrains Mono Nerd Font
 - **Shell**: Fish + Zellij

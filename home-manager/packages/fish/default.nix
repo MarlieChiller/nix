@@ -38,7 +38,7 @@
 
     shellAbbrs = {
       # nix abbreviations
-      # "vim" = "nvim";
+      "vim" = "nvim";
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
       ncg = "nix-collect-garbage";

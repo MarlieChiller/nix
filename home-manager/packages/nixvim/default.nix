@@ -414,6 +414,11 @@
           };
         };
       };
+
+      # Rainbow brackets for better code readability
+      rainbow-delimiters = {
+        enable = true;
+      };
     };
 
     # Key mappings
