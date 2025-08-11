@@ -25,6 +25,7 @@
     # cli
     btop
     cargo
+    claude-code
     curl
     erdtree
     eza
@@ -34,6 +35,7 @@
     gcc
     glow
     go
+    gh
     grc
     lazygit
     neofetch

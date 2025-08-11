@@ -149,7 +149,7 @@ format = '\[[$symbol$stack]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [python]
-format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+format = '\[[${symbol}(${version})(\($virtualenv\))]($style)\]'
 
 [raku]
 format = '\[[$symbol($version-$vm_version)]($style)\]'

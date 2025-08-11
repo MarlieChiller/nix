@@ -10,8 +10,8 @@
   ];
 
   home = {
-    username = "charliemiller";
-    homeDirectory = "/Users/charliemiller";
+    username = "charlie.miller";
+    homeDirectory = "/Users/charlie.miller";
     stateVersion = "23.11"; # Please read the comment before changing.
   };
 

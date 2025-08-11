@@ -47,8 +47,6 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    home_user = "marliechiller";
-    work_user = "charliemiller";
     systems = [
       "aarch64-darwin"
     ];
@@ -56,7 +54,7 @@
     system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
     darwinConfigurations = {
-      "${home_user}@MacBook-Air" = nix-darwin.lib.darwinSystem {
+      home_machine = nix-darwin.lib.darwinSystem {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -77,7 +75,7 @@
           stylix.darwinModules.stylix
         ];
       };
-      "${work_user}@MOCULON03" = nix-darwin.lib.darwinSystem {
+      work_machine = nix-darwin.lib.darwinSystem {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -90,7 +88,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.charliemiller = import home-manager/hosts/work/default.nix;
+            home-manager.users."charlie.miller" = import home-manager/hosts/work/default.nix;
             home-manager.extraSpecialArgs = {
               inherit inputs;
             };

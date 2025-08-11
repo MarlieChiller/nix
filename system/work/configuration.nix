@@ -2,6 +2,7 @@
   imports = [../common/configuration.nix];
   # Use a custom configuration.nix location.
   environment.darwinConfig = "$HOME/Projects/nix/system/work/configuration.nix";
+  nix.enable = false;
 
   # Use homebrew to install casks and Mac App Store apps
   # https://daiderd.com/nix-darwin/manual/index.html
@@ -15,10 +16,9 @@
       "zlib"
     ];
     casks = [
-      # ocula
+      # zego
       "postman"
       "datagrip"
-      "dbeaver-community"
       "docker"
       "visual-studio-code"
     ];
@@ -37,10 +37,10 @@
       };
     };
   };
-  system.primaryUser = "charliemiller";
+  system.primaryUser = "charlie.miller";
 
-  users.users.charliemiller = {
-    home = "/Users/charliemiller";
+  users.users."charlie.miller" = {
+    home = "/Users/charlie.miller";
     shell = pkgs.fish;
   };
 }
