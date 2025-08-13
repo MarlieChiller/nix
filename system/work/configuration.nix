@@ -1,5 +1,4 @@
-{pkgs, ...}:
-let
+{pkgs, ...}: let
   users = import ../../users.nix;
   userConfig = users.work;
 in {
@@ -23,7 +22,6 @@ in {
       "pycharm"
       "postman"
       "datagrip"
-      "docker"
     ];
   };
 
