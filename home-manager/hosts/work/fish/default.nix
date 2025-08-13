@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  userConfig,
   ...
 }: {
   programs.fish = {
@@ -10,7 +11,7 @@
       # Add Nix profile to the $PATH, idempotent and only required for non-NixOS system.
       fish_add_path ~/.nix-profile/bin/
       fish_add_path /opt/homebrew/bin
-      set -U fish_user_paths /Users/charlie.miller/.local/bin $fish_user_paths
+      set -U fish_user_paths /Users/${userConfig.username}/.local/bin $fish_user_paths
       set -U fish_user_paths /opt/homebrew/opt/postgresql/bin $fish_user_paths
 
       # stupid postgres stuff

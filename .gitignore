@@ -1,1 +1,4 @@
 .idea/
+
+# Personal user configuration
+users.nix

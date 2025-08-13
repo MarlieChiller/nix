@@ -1,18 +1,17 @@
 {
   pkgs,
   lib,
+  userConfig,
   ...
-}: let
-  name = "marliechiller";
-in {
+}: {
   programs.git = {
     enable = true;
     extraConfig = {
       color.ui = true;
       core.editor = "nvim";
       credential.helper = "store";
-      github.user = name;
-      gitlab.user = name;
+      github.user = userConfig.username;
+      gitlab.user = userConfig.username;
       commit.sshsign = true;
       commit.gpgsign = false;
       "gpg \"ssh\"" = {
@@ -21,8 +20,8 @@ in {
       push.autoSetupRemote = true;
       rerere.enable = true;
     };
-    userEmail = "${name}@protonmail.me";
-    userName = name;
+    userEmail = userConfig.email;
+    userName = userConfig.gitName;
     signing = {
       # SSH key managed by 1Password - no need to hardcode
       signByDefault = true;

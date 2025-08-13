@@ -13,11 +13,12 @@
     };
     settings = {
       shell = "${pkgs.fish}/bin/fish";
+      editor = "${pkgs.neovim}/bin/nvim";
       confirm_os_window_close = 0;
       dynamic_background_opacity = true;
       enable_audio_bell = true;
       macos_titlebar_color = "background";
-      macos_option_as_alt = "yes";
+      macos_option_as_alt = "no";
       tab_bar_edge = "top";
       mouse_hide_wait = "-1.0";
       window_padding_width = 10;

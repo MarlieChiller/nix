@@ -2,7 +2,11 @@
   config,
   pkgs,
   ...
-}: {
+}:
+let
+  users = import ../../users.nix;
+  userConfig = users.home;
+in {
   imports = [../common/configuration.nix];
   # Use a custom configuration.nix location.
   environment.darwinConfig = "$HOME/Projects/nix/system/home/configuration.nix";
@@ -16,13 +20,13 @@
       nextdns = 1464122853;
     };
     brews = [
-      "docker-compose"
       "postgresql@17"
     ];
     casks = [
       "discord"
-      "docker"
+      "firefox"
       "protonvpn"
+      "pycharm-ce"
       "qbittorrent"
       "rawtherapee"
       "signal"
@@ -44,9 +48,9 @@
       };
     };
   };
-  system.primaryUser = "marliechiller";
-  users.users.marliechiller = {
-    home = "/Users/marliechiller";
+  system.primaryUser = userConfig.username;
+  users.users.${userConfig.username} = {
+    home = "/Users/${userConfig.username}";
     shell = pkgs.fish;
   };
 }

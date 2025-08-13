@@ -47,6 +47,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    users = import ./users.nix;
     systems = [
       "aarch64-darwin"
     ];
@@ -67,7 +68,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.marliechiller = import home-manager/hosts/home/default.nix;
+            home-manager.users.${users.home.username} = import home-manager/hosts/home/default.nix;
             home-manager.extraSpecialArgs = {
               inherit inputs;
             };
@@ -88,7 +89,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users."charlie.miller" = import home-manager/hosts/work/default.nix;
+            home-manager.users.${users.work.username} = import home-manager/hosts/work/default.nix;
             home-manager.extraSpecialArgs = {
               inherit inputs;
             };

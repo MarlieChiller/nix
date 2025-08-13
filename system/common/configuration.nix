@@ -19,6 +19,7 @@
   homebrew = {
     enable = true;
     brews = [
+      "docker-compose"
       "node"
       "gettext"
       "coreutils" # provides grealpath needed by yazi.nvim
@@ -33,8 +34,7 @@
       "aerospace"
       "alfred"
       "chatgpt"
-      "cursor"
-      "firefox"
+      "docker"
       "fork"
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"
@@ -42,11 +42,9 @@
       "jordanbaird-ice"
       "karabiner-elements"
       "obsidian"
-      "pycharm-ce"
       "sf-symbols"
       "spotify"
       "stats"
-      "zed"
     ];
     onActivation = {
       upgrade = true;

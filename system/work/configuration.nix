@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}:
+let
+  users = import ../../users.nix;
+  userConfig = users.work;
+in {
   imports = [../common/configuration.nix];
   # Use a custom configuration.nix location.
   environment.darwinConfig = "$HOME/Projects/nix/system/work/configuration.nix";
@@ -9,7 +13,6 @@
   homebrew = {
     brews = [
       "coreutils"
-      "docker-compose"
       "libpq"
       "pipx"
       "postgresql"
@@ -17,10 +20,10 @@
     ];
     casks = [
       # zego
+      "pycharm"
       "postman"
       "datagrip"
       "docker"
-      "visual-studio-code"
     ];
   };
 
@@ -37,10 +40,10 @@
       };
     };
   };
-  system.primaryUser = "charlie.miller";
+  system.primaryUser = userConfig.username;
 
-  users.users."charlie.miller" = {
-    home = "/Users/charlie.miller";
+  users.users.${userConfig.username} = {
+    home = "/Users/${userConfig.username}";
     shell = pkgs.fish;
   };
 }
