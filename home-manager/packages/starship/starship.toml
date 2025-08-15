@@ -1,5 +1,6 @@
 [aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+format = '\[[$symbol$profile]($style)\]'
+symbol = '󰸏 '
 
 [bun]
 format = '\[[$symbol($version)]($style)\]'

@@ -92,7 +92,9 @@
       # File tree explorer
       nvim-tree = {
         enable = true;
-        hijackNetrw = true;
+        settings = {
+          hijack_netrw = true;
+        };
       };
 
       # Fuzzy finder
@@ -547,6 +549,27 @@
 
     # Additional Lua configuration
     extraConfigLua = ''
+      -- Configure rainbow-delimiters
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = require('rainbow-delimiters.strategy.global'),
+          vim = require('rainbow-delimiters.strategy.local'),
+        },
+        query = {
+          [""] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      }
+
       -- Configure yazi.nvim for proper file opening
       require('yazi').setup({
         open_for_directories = true,

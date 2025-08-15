@@ -49,7 +49,6 @@
     ];
     onActivation = {
       upgrade = true;
-      cleanup = "zap";
     };
   };
   stylix = {

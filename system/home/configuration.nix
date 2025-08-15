@@ -31,6 +31,11 @@ in {
       "steam"
       "whatsapp"
     ];
+    # Cleanup must be in child configs (not common) to prevent double-application
+    # which causes packages to be removed and reinstalled on every rebuild
+    onActivation = {
+      cleanup = "zap";
+    };
   };
   stylix = {
     enable = true;

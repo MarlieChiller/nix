@@ -8,6 +8,7 @@
 in {
   imports = [
     ../../packages
+    ../../packages/granted
     ./fish
     #    inputs.mac-app-util.homeManagerModules.default
   ];
@@ -28,6 +29,5 @@ in {
     # MacOS specific home manager packages
     awscli2
     terraform
-    granted
   ];
 }

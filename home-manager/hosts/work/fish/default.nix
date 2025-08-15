@@ -19,6 +19,11 @@
       set -x LDFLAGS "-L/opt/homebrew/opt/openssl/lib -L/opt/homebrew/opt/zlib/lib"
       set -x CPPFLAGS "-I/opt/homebrew/opt/openssl/include -I/opt/homebrew/opt/zlib/include"
       set -x PKG_CONFIG_PATH "/opt/homebrew/opt/openssl/lib/pkgconfig:/opt/homebrew/opt/zlib/lib/pkgconfig"
+
+      # uv keyring authentication for AWS CodeArtifact
+      # Note: Run `uv tool install keyring --with keyrings.codeartifact` to install keyring
+      set -x UV_KEYRING_PROVIDER subprocess
+      set -x UV_INDEX_ZEGO_USERNAME aws
     '';
 
     shellAliases = {};
