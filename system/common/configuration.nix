@@ -35,6 +35,7 @@
       "alfred"
       "chatgpt"
       "docker"
+      "firefox"
       "fork"
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"

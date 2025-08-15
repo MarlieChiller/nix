@@ -2,8 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   users = import ../../../users.nix;
   userConfig = users.work;
 in {
@@ -20,7 +19,7 @@ in {
   };
 
   # Pass user config to all imported modules
-  _module.args.userConfig = userConfig // { gitName = users.gitName; };
+  _module.args.userConfig = userConfig // {gitName = users.gitName;};
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -29,5 +28,6 @@ in {
     # MacOS specific home manager packages
     awscli2
     terraform
+    granted
   ];
 }

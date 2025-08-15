@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   users = import ../../users.nix;
   userConfig = users.home;
 in {
@@ -24,7 +23,6 @@ in {
     ];
     casks = [
       "discord"
-      "firefox"
       "protonvpn"
       "pycharm-ce"
       "qbittorrent"
