@@ -15,6 +15,7 @@ in {
       "libpq"
       "pipx"
       "postgresql"
+      "unixodbc"
       "zlib"
     ];
     casks = [

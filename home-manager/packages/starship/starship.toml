@@ -151,6 +151,7 @@ format = '\[[$symbol($version)]($style)\]'
 
 [python]
 format = '\[[${symbol}(${version})(\($virtualenv\))]($style)\]'
+symbol = '󰌠 '
 
 [raku]
 format = '\[[$symbol($version-$vm_version)]($style)\]'
