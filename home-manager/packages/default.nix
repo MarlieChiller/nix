@@ -37,6 +37,7 @@
     go
     gh
     grc
+    just
     lazygit
     neofetch
     ripgrep

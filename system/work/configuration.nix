@@ -13,6 +13,8 @@ in {
     brews = [
       "coreutils"
       "libpq"
+      "msodbcsql18"
+      "mssql-tools"
       "pipx"
       "postgresql"
       "unixodbc"
@@ -23,6 +25,9 @@ in {
       "pycharm"
       "postman"
       "datagrip"
+    ];
+    taps = [
+      "microsoft/mssql-release"
     ];
     # Cleanup must be in child configs (not common) to prevent double-application
     # which causes packages to be removed and reinstalled on every rebuild
