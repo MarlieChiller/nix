@@ -24,6 +24,7 @@
       # Note: Run `uv tool install keyring --with keyrings.codeartifact` to install keyring
       set -x UV_KEYRING_PROVIDER subprocess
       set -x UV_INDEX_ZEGO_USERNAME aws
+      set -x POETRY_HTTP_BASIC_ZEGO_USERNAME aws
     '';
 
     shellAliases = {};
@@ -32,6 +33,23 @@
       nconfig = "z ~/Projects/nix";
       Projects = "z ~/Projects";
     };
-    functions = {};
+    functions = {
+      set_artifact_token = ''
+        set -x POETRY_HTTP_BASIC_ZEGO_PASSWORD (artifact_token)
+      '';
+      artifact_token = ''
+        aws codeartifact get-authorization-token \
+            --domain zego \
+            --domain-owner 197161164104 \
+            --region eu-west-1 \
+            --query authorizationToken \
+            --output text | string replace -r '\n$' ""
+      '';
+      copy_artifact_token = ''
+        set token (artifact_token)
+        printf "%s" $token | pbcopy
+        echo "🔑 CodeArtifact token copied to clipboard."
+      '';
+    };
   };
 }

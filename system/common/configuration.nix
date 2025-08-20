@@ -5,6 +5,9 @@
     pkgs.vim
     pkgs.fish
     pkgs.wireshark
+    pkgs.colima
+    pkgs.docker
+    pkgs.docker-compose
   ];
 
   # Auto upgrade nix package and the daemon service.
@@ -19,7 +22,6 @@
   homebrew = {
     enable = true;
     brews = [
-      "docker-compose"
       "node"
       "gettext"
       "coreutils" # provides grealpath needed by yazi.nvim
@@ -34,7 +36,6 @@
       "aerospace"
       "alfred"
       "chatgpt"
-      "docker"
       "firefox"
       "fork"
       "font-hack-nerd-font"
@@ -48,7 +49,7 @@
       "stats"
     ];
     onActivation = {
-      upgrade = true;
+      autoUpdate = true;
     };
   };
   stylix = {

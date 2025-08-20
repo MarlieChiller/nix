@@ -84,8 +84,7 @@
       clipboard = "unnamedplus";
     };
 
-    # Basic colorscheme
-    colorschemes.rose-pine.enable = true;
+    # Colorscheme managed by Stylix
 
     # Essential plugins
     plugins = {
@@ -572,7 +571,7 @@
 
       -- Configure yazi.nvim for proper file opening
       require('yazi').setup({
-        open_for_directories = true,
+        open_for_directories = false,
         open_multiple_tabs = false,
         floating_window_scaling_factor = 0.9,
         yazi_floating_window_winblend = 0,

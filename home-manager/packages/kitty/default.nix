@@ -35,7 +35,7 @@
       
       # Directory restoration
       shell_integration = "enabled";
-
+      
       # Window appearance
       hide_window_decorations = "titlebar-only";
 
