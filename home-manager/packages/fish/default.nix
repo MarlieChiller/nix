@@ -13,6 +13,11 @@
       op completion fish | source  # 1password autocomplete
       atuin init fish | source  # atuin shell
 
+      # Enable vim bindings
+      fish_vi_key_bindings
+
+      # Alt+v: open current command in $EDITOR, then return to the prompt
+      bind -M insert \ev edit_command_buffer
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs

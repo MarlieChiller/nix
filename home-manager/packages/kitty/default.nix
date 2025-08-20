@@ -18,7 +18,7 @@
       dynamic_background_opacity = true;
       enable_audio_bell = true;
       macos_titlebar_color = "background";
-      macos_option_as_alt = "no";
+      macos_option_as_alt = "yes";
       tab_bar_edge = "top";
       mouse_hide_wait = "-1.0";
       window_padding_width = 10;
@@ -32,10 +32,10 @@
       copy_on_select = true;
       strip_trailing_spaces = "smart";
       scrollback_lines = 10000;
-      
+
       # Directory restoration
       shell_integration = "enabled";
-      
+
       # Window appearance
       hide_window_decorations = "titlebar-only";
 

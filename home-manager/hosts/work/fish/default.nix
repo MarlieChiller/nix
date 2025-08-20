@@ -35,7 +35,9 @@
     };
     functions = {
       set_artifact_token = ''
-        set -x POETRY_HTTP_BASIC_ZEGO_PASSWORD (artifact_token)
+        set -l token (artifact_token)
+        set -gx POETRY_HTTP_BASIC_ZEGO_PASSWORD $token
+        set -gx UV_INDEX_ZEGO_PASSWORD $token
       '';
       artifact_token = ''
         aws codeartifact get-authorization-token \
