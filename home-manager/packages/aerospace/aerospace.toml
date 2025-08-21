@@ -13,7 +13,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget /etc/profiles/per-user/charlie.miller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
+  'exec-and-forget /etc/profiles/per-user/charlie.miller/bin/borders active_color=0xFFFF80FF inactive_color=0xff494d64 width=3.0',
   'exec-and-forget /etc/profiles/per-user/marliechiller/bin/borders active_color=0xFF00FFFF inactive_color=0xff494d64 width=3.0',
 ]
 

@@ -229,11 +229,16 @@
             }
             {
               __unkeyed-1 = "<leader>e";
+              desc = "Toggle File Tree";
+              icon = "🌳";
+            }
+            {
+              __unkeyed-1 = "<leader>y";
               desc = "File Manager";
               icon = "📂";
             }
             {
-              __unkeyed-1 = "<leader>E";
+              __unkeyed-1 = "<leader>Y";
               desc = "File Manager (CWD)";
               icon = "📂";
             }
@@ -452,16 +457,22 @@
         options.desc = "Move To Window Right";
       }
 
-      # Yazi file manager keymaps
+      # File manager keymaps
       {
         mode = "n";
         key = "<leader>e";
+        action = "<cmd>NvimTreeToggle<CR>";
+        options.desc = "Toggle file tree";
+      }
+      {
+        mode = "n";
+        key = "<leader>y";
         action = "<cmd>Yazi<CR>";
         options.desc = "Open Yazi file manager";
       }
       {
         mode = "n";
-        key = "<leader>E";
+        key = "<leader>Y";
         action = "<cmd>Yazi cwd<CR>";
         options.desc = "Open Yazi in current working directory";
       }
@@ -568,6 +579,12 @@
           'RainbowDelimiterCyan',
         },
       }
+
+      -- Rose Pine highlight overrides for better visibility
+      vim.cmd([[
+        highlight CursorLine guibg=#2a2837
+        highlight Visual guibg=#403d52
+      ]])
 
       -- Configure yazi.nvim for proper file opening
       require('yazi').setup({
