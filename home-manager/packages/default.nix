@@ -39,7 +39,6 @@
     grc
     just
     lazygit
-    neofetch
     ripgrep
     ruff
     tre-command

@@ -23,9 +23,10 @@ in {
     ];
     casks = [
       # zego
-      "pycharm"
-      "postman"
       "datagrip"
+      "postman"
+      "pycharm"
+      "whimsical"
     ];
     taps = [
       "microsoft/mssql-release"
