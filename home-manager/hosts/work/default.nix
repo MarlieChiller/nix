@@ -29,5 +29,6 @@ in {
     # MacOS specific home manager packages
     awscli2
     terraform
+    kubernetes-helm
   ];
 }

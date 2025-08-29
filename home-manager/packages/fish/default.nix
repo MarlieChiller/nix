@@ -10,8 +10,15 @@
       set -U fish_user_paths /opt/homebrew/bin/
       eval (/opt/homebrew/bin/brew shellenv)
       set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
-      op completion fish | source  # 1password autocomplete
-      atuin init fish | source  # atuin shell
+      # 1password autocomplete with timeout to prevent hanging
+      if command -q op
+        timeout 2s op completion fish | source 2>/dev/null
+      end
+      
+      # atuin shell with timeout to prevent hanging  
+      if command -q atuin
+        timeout 2s atuin init fish | source 2>/dev/null
+      end
 
       # Enable vim bindings
       fish_vi_key_bindings
