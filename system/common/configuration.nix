@@ -8,6 +8,7 @@
     pkgs.colima
     pkgs.docker
     pkgs.docker-compose
+    pkgs.direnv
   ];
 
   # Auto upgrade nix package and the daemon service.

@@ -68,5 +68,11 @@
       in
         (builtins.concatStringsSep "," mappings) + " JetBrainsMono Nerd Font Mono";
     };
+    
+    keybindings = {
+      "ctrl+alt+1" = "set_colors --configured";
+      "ctrl+alt+2" = "set_colors --all foreground=#f8f8f2 background=#282a36";
+      "ctrl+alt+3" = "set_colors --all foreground=#e0def4 background=#191724";
+    };
   };
 }

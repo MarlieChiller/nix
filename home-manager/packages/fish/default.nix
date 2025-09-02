@@ -20,6 +20,11 @@
         timeout 2s atuin init fish | source 2>/dev/null
       end
 
+      # direnv integration
+      if command -q direnv
+        direnv hook fish | source
+      end
+
       # Enable vim bindings
       fish_vi_key_bindings
 
