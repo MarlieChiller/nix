@@ -26,6 +26,7 @@ in {
       "datagrip"
       "postman"
       "pycharm"
+      "intellij-idea"
       "whimsical"
     ];
     taps = [
