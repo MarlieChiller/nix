@@ -30,5 +30,7 @@ in {
     awscli2
     terraform
     kubernetes-helm
+    kubectl
+    k9s
   ];
 }
