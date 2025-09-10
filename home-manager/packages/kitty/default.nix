@@ -38,6 +38,7 @@
 
       # Window appearance
       hide_window_decorations = "titlebar-only";
+      inactive_text_alpha = 0.8;
 
       # Search functionality
       search_result_color = "#3E4451";
@@ -68,11 +69,11 @@
       in
         (builtins.concatStringsSep "," mappings) + " JetBrainsMono Nerd Font Mono";
     };
-    
+
     keybindings = {
       "ctrl+alt+1" = "set_colors --configured";
-      "ctrl+alt+2" = "set_colors --all foreground=#f8f8f2 background=#282a36";
-      "ctrl+alt+3" = "set_colors --all foreground=#e0def4 background=#191724";
+      "ctrl+alt+2" = "set_colors foreground=#f8f8f2 background=#282a36";
+      "ctrl+alt+3" = "set_colors foreground=#e0def4 background=#191724";
     };
   };
 }
