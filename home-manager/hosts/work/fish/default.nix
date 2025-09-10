@@ -52,6 +52,11 @@
         printf "%s" $token | pbcopy
         echo "🔑 CodeArtifact token copied to clipboard."
       '';
+      knines = ''
+        assume staging.developer-nonprod
+        aws eks update-kubeconfig --name staging
+        k9s
+      '';
     };
   };
 }
