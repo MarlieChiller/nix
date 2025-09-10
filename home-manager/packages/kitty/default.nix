@@ -71,9 +71,10 @@
     };
 
     keybindings = {
-      "ctrl+alt+1" = "set_colors --configured";
-      "ctrl+alt+2" = "set_colors foreground=#f8f8f2 background=#282a36";
-      "ctrl+alt+3" = "set_colors foreground=#e0def4 background=#191724";
+      "ctrl+alt+1" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine.conf";
+      "ctrl+alt+2" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine-Dawn.conf";
+      "ctrl+alt+3" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_dark.conf";
+      "ctrl+alt+4" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_light.conf";
     };
   };
 }
