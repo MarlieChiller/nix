@@ -38,6 +38,7 @@
     go
     gh
     grc
+    jujutsu
     just
     lazygit
     ripgrep
