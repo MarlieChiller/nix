@@ -10,6 +10,7 @@
     ./bat
     ./fish
     ./git
+    ./jujutsu
     ./kitty
     ./helix
     ./nixvim
