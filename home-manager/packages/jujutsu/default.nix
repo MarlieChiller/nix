@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  userConfig,
-  ...
-}: {
+{userConfig, ...}: {
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -17,3 +12,4 @@
     };
   };
 }
+
