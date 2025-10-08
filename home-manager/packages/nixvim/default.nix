@@ -125,6 +125,16 @@
       # LSP support
       lsp = {
         enable = true;
+        keymaps.lspBuf = {
+          "gd" = "definition";
+          "gD" = "declaration";
+          "gr" = "references";
+          "gi" = "implementation";
+          "gt" = "type_definition";
+          "K" = "hover";
+          "<leader>rn" = "rename";
+          "<leader>ca" = "code_action";
+        };
         servers = {
           nil_ls = {
             enable = true;
