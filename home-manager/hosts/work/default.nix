@@ -32,5 +32,6 @@ in {
     kubernetes-helm
     kubectl
     k9s
+    dbeaver-bin
   ];
 }
