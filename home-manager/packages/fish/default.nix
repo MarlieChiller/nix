@@ -14,8 +14,8 @@
       if command -q op
         timeout 2s op completion fish | source 2>/dev/null
       end
-      
-      # atuin shell with timeout to prevent hanging  
+
+      # atuin shell with timeout to prevent hanging
       if command -q atuin
         timeout 2s atuin init fish | source 2>/dev/null
       end
@@ -27,9 +27,6 @@
 
       # Enable vim bindings
       fish_vi_key_bindings
-
-      # Alt+v: open current command in $EDITOR, then return to the prompt
-      bind -M insert \ev edit_command_buffer
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
