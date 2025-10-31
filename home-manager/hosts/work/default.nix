@@ -28,10 +28,11 @@ in {
   home.packages = with pkgs; [
     # MacOS specific home manager packages
     awscli2
-    terraform
-    kubernetes-helm
-    kubectl
-    k9s
     dbeaver-bin
+    k9s
+    kubectl
+    kubernetes-helm
+    mise
+    terraform
   ];
 }
