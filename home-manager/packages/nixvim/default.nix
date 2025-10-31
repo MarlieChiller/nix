@@ -359,15 +359,17 @@
       # Better treesitter text objects
       treesitter-textobjects = {
         enable = true;
-        select = {
-          enable = true;
-          keymaps = {
-            "af" = "@function.outer";
-            "if" = "@function.inner";
-            "ac" = "@class.outer";
-            "ic" = "@class.inner";
-            "aa" = "@parameter.outer";
-            "ia" = "@parameter.inner";
+        settings = {
+          select = {
+            enable = true;
+            keymaps = {
+              "af" = "@function.outer";
+              "if" = "@function.inner";
+              "ac" = "@class.outer";
+              "ic" = "@class.inner";
+              "aa" = "@parameter.outer";
+              "ia" = "@parameter.inner";
+            };
           };
         };
       };

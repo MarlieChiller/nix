@@ -4,7 +4,7 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.fish
-    pkgs.wireshark
+    # pkgs.wireshark # Temporarily disabled - build fails due to Qt 6.10.0 requiring macOS 12.0+ deployment target
     pkgs.colima
     pkgs.docker
     pkgs.docker-compose

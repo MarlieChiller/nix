@@ -6,7 +6,7 @@
 }: {
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       color.ui = true;
       core.editor = "nvim";
       credential.helper = "store";
@@ -19,9 +19,11 @@
       };
       push.autoSetupRemote = true;
       rerere.enable = true;
+      user = {
+        email = userConfig.email;
+        name = userConfig.gitName;
+      };
     };
-    userEmail = userConfig.email;
-    userName = userConfig.gitName;
     signing = {
       # SSH key managed by 1Password - no need to hardcode
       signByDefault = true;
