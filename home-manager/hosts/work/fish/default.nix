@@ -57,6 +57,14 @@
         aws eks update-kubeconfig --name staging
         k9s
       '';
+      unset_aws = ''
+        set -e AWS_ACCESS_KEY_ID
+        set -e AWS_SECRET_ACCESS_KEY
+        set -e AWS_SESSION_TOKEN
+        set -e AWS_PROFILE
+        set -e AWS_REGION
+        set -e AWS_DEFAULT_REGION
+      '';
     };
   };
 }
