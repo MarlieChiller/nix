@@ -1,4 +1,7 @@
-{...}: {
+{
+  userConfig,
+  ...
+}: {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -17,4 +20,7 @@
       };
     };
   };
+
+  # Create allowed signers file for Git SSH commit signing
+  home.file.".ssh/allowed_signers".text = "${userConfig.email} ${userConfig.sshSigningKey}";
 }
