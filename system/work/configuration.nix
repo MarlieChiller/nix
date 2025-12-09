@@ -13,7 +13,6 @@ in {
     brews = [
       "coreutils"
       "libpq"
-      "msodbcsql17"
       "msodbcsql18"
       "mssql-tools"
       "pipx"

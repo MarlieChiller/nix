@@ -4,15 +4,16 @@
 # to prevent committing your personal changes
 
 {
-  gitName = "Your Name";
+  gitName = "MarlieChiller";
   
   home = {
-    username = "your-home-username";
-    email = "your-email@example.com";
+    username = "marliechiller";
+    email = "marliechiller@proton.me";
   };
   
   work = {
-    username = "your-work-username";
-    email = "your-work-email@company.com";
+    username = "charlie.miller";
+    email = "charlie.miller@zego.com";
+    sshSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvT8OYoGidygyDAhEC6M7XiDNFy5DZ1eSn256uAqHPa";
   };
 }

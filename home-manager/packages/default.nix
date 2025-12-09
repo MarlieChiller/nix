@@ -2,6 +2,8 @@
 {
   pkgs,
   inputs,
+  config,
+  lib,
   ...
 }: {
   imports = [
@@ -70,5 +72,11 @@
   programs.home-manager = {
     enable = true;
     # backupFileExtension = true;
+  };
+
+  # Copy GUI apps to ~/Applications for Spotlight/Alfred discovery
+  targets.darwin = {
+    linkApps.enable = false;  # Disable old symlink-based approach
+    copyApps.enable = true;   # Enable new copy-based approach (works with Spotlight)
   };
 }
