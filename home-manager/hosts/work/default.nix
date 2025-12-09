@@ -10,7 +10,6 @@ in {
     ../../packages
     ../../packages/granted
     ./fish
-    #    inputs.mac-app-util.homeManagerModules.default
   ];
 
   home = {

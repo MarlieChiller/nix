@@ -28,7 +28,6 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mac-app-util.url = "github:hraban/mac-app-util";
     nix-yazi-plugins = {
       url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +42,6 @@
     nixvim,
     alejandra,
     stylix,
-    mac-app-util,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -63,7 +61,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           system/home/configuration.nix
-          mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -84,7 +81,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           system/work/configuration.nix
-          mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

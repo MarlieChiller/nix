@@ -18,7 +18,6 @@
     ./ssh
     ./wezterm
     ./yazi
-    inputs.mac-app-util.homeManagerModules.default
   ];
 
   news.display = "show";
@@ -62,7 +61,6 @@
 
   programs.fzf.enable = true;
   programs.fish.enable = true;
-
 
   home.sessionVariables = {
     EDITOR = "nvim";

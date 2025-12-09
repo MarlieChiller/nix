@@ -7,6 +7,10 @@
   programs.git = {
     enable = true;
     settings = {
+      user = {
+        email = userConfig.email;
+        name = userConfig.gitName;
+      };
       color.ui = true;
       core.editor = "nvim";
       credential.helper = "store";
@@ -19,10 +23,6 @@
       gpg.format = "ssh";
       push.autoSetupRemote = true;
       rerere.enable = true;
-      user = {
-        email = userConfig.email;
-        name = userConfig.gitName;
-      };
     };
     signing = {
       # SSH key managed by 1Password
