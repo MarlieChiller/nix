@@ -41,6 +41,7 @@
       "fork"
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"
+      "ghostty"
       "google-chrome"
       "jordanbaird-ice"
       "karabiner-elements"

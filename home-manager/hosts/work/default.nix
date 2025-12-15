@@ -32,6 +32,7 @@ in {
     kubectl
     kubernetes-helm
     mise
+    stern
     terraform
   ];
 }
