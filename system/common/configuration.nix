@@ -23,13 +23,14 @@
   homebrew = {
     enable = true;
     brews = [
-      "node"
+      "bun"
       "gettext"
       "coreutils" # provides grealpath needed by yazi.nvim
     ];
     taps = [
       "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
       "FelixKratz/formulae" # janky borders - highlight active window borders
+      "oven-sh/bun" # bun - fast all-in-one JavaScript runtime
     ];
     casks = [
       "1password"
