@@ -43,9 +43,38 @@ This repo uses a template-based approach for personal information:
    sudo darwin-rebuild switch --flake .#work_machine
    ```
 
+## Claude Code Statusline
+
+A custom statusline for Claude Code that displays your Starship prompt plus Claude-specific information.
+
+**Setup:**
+
+1. Copy the statusline script to your Claude config:
+   ```bash
+   cp statusline-command.sh ~/.claude/statusline-command.sh
+   chmod +x ~/.claude/statusline-command.sh
+   ```
+
+2. Update `~/.claude/settings.json`:
+   ```json
+   {
+     "statusLine": {
+       "type": "command",
+       "command": "/Users/YOUR_USERNAME/.claude/statusline-command.sh"
+     }
+   }
+   ```
+
+**Features:**
+- Displays your Starship prompt with full color support
+- Shows Claude model name (cyan)
+- Shows token usage (green <80%, yellow >80%)
+- Shows active agent when running (magenta)
+- Shows todo completion status when applicable (blue)
+
 ## Karabiner Configuration
 
-- Add to karabiner: 
+- Add to karabiner:
 
 ```json
   {

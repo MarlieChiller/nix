@@ -36,7 +36,6 @@
     fish
     fzf
     gcc
-    ghostty
     glow
     go
     gh
