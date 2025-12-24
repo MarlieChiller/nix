@@ -53,9 +53,15 @@ in {
   # Enable the X11 windowing system
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment (you can change this)
+  # Enable the GNOME Desktop Environment
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Enable Sway (Wayland tiling window manager)
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -96,6 +102,17 @@ in {
   # Ensure Tailscale starts on boot
   systemd.services.tailscaled.wantedBy = [ "multi-user.target" ];
 
+  # Network routing configuration for Tailscale + ProtonVPN coexistence
+  # Ensure Tailscale traffic bypasses ProtonVPN
+  networking.firewall = {
+    # Allow Tailscale through the firewall
+    trustedInterfaces = [ "tailscale0" ];
+    # Allow Tailscale UDP port
+    allowedUDPPorts = [ 41641 ];
+    # If you need to allow specific TCP ports for services, add them here
+    # allowedTCPPorts = [ ... ];
+  };
+
   # Define a user account
   users.users.${userConfig.username} = {
     isNormalUser = true;
@@ -116,6 +133,7 @@ in {
     curl
     htop
     tailscale
+    protonvpn-cli
   ];
 
   # Enable nix flakes
@@ -137,6 +155,16 @@ in {
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Enable Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports for Source Dedicated Server
+  };
+
+  # Enable GameMode for better gaming performance
+  programs.gamemode.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

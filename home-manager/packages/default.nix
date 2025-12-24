@@ -18,6 +18,7 @@
     ./nixvim
     ./starship
     ./ssh
+    ./sway
     ./wezterm
     ./yazi
   ];
