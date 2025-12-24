@@ -7,7 +7,6 @@
   ...
 }: {
   imports = [
-    ./aerospace
     ./atuin
     ./bat
     ./fish
@@ -20,6 +19,8 @@
     ./ssh
     ./wezterm
     ./yazi
+  ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    ./aerospace
   ];
 
   news.display = "show";
@@ -49,9 +50,6 @@
     uv
     yazi
 
-    # darwin
-    jankyborders
-
     # nix
     alejandra
     cachix
@@ -59,6 +57,9 @@
     nix-info
     nixci
     nix-health
+  ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    # darwin-only packages
+    jankyborders
   ];
 
   programs.fzf.enable = true;
@@ -74,8 +75,8 @@
     # backupFileExtension = true;
   };
 
-  # Copy GUI apps to ~/Applications for Spotlight/Alfred discovery
-  targets.darwin = {
+  # Copy GUI apps to ~/Applications for Spotlight/Alfred discovery (macOS only)
+  targets.darwin = lib.mkIf pkgs.stdenv.isDarwin {
     linkApps.enable = false; # Disable old symlink-based approach
     copyApps.enable = true; # Enable new copy-based approach (works with Spotlight)
   };

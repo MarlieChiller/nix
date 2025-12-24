@@ -65,7 +65,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${users.nixos.username} = import home-manager/hosts/nixos/default.nix;
+            home-manager.users.${users.nixos.username} = ./home-manager/hosts/nixos;
             home-manager.extraSpecialArgs = {
               inherit inputs;
             };
