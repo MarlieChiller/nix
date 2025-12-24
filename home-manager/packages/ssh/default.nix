@@ -10,17 +10,16 @@
     '';
     matchBlocks = {
       "nixos-home" = {
-        hostname = "NIXOS_IP_HERE";  # Replace with your NixOS machine's IP or hostname
+        hostname = "192.168.1.125";
         user = "marliechiller";
         port = 22;
         identityFile = "~/.ssh/id_ed25519_nixos";
       };
-      "*" = {
+      "github.com" = {
         controlMaster = "auto";
         controlPersist = "30m";
         extraOptions = {preferredAuthentications = "publickey";};
         forwardAgent = false;
-        hostname = "github.com";
         serverAliveInterval = 60;
         user = "git";
       };
