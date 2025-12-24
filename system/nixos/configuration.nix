@@ -92,9 +92,7 @@ in {
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
-      # TODO: Add your SSH public key from your MacBook here
-      # Get it by running: ssh-add -L
-      # Example: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAA..."
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqaM3HaYC/wBPTOKMaK1wS21xiUtGdL74Bc/6yw95I9 macbook-to-nixos"
     ];
   };
 
