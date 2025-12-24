@@ -56,7 +56,7 @@
     system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
     nixosConfigurations = {
-      nixos-home = nixpkgs.lib.nixosSystem {
+      home-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [

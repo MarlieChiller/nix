@@ -7,6 +7,7 @@
   ...
 }: {
   imports = [
+    ./aerospace
     ./atuin
     ./bat
     ./fish
@@ -19,8 +20,6 @@
     ./ssh
     ./wezterm
     ./yazi
-  ] ++ lib.optionals pkgs.stdenv.isDarwin [
-    ./aerospace
   ];
 
   news.display = "show";

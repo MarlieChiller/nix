@@ -16,7 +16,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
-  networking.hostName = "nixos-home";
+  networking.hostName = "home-desktop";
   networking.networkmanager.enable = true;
 
   # Time zone and locale
@@ -85,6 +85,17 @@ in {
     };
   };
 
+  # Enable Tailscale for remote access
+  services.tailscale = {
+    enable = true;
+    # Optional: Generate an auth key at https://login.tailscale.com/admin/settings/keys
+    # and use it here to auto-authenticate on first boot
+    # authKeyFile = "/path/to/auth-key-file";
+  };
+
+  # Ensure Tailscale starts on boot
+  systemd.services.tailscaled.wantedBy = [ "multi-user.target" ];
+
   # Define a user account
   users.users.${userConfig.username} = {
     isNormalUser = true;
@@ -104,6 +115,7 @@ in {
     wget
     curl
     htop
+    tailscale
   ];
 
   # Enable nix flakes
