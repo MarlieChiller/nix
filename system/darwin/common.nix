@@ -1,23 +1,14 @@
 {pkgs, ...}: {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
+  # Darwin-specific shared configuration (imported by both home and work)
+
+  # Darwin-specific packages
   environment.systemPackages = [
-    pkgs.vim
-    pkgs.fish
     # pkgs.wireshark # Temporarily disabled - build fails due to Qt 6.10.0 requiring macOS 12.0+ deployment target
     pkgs.colima
     pkgs.docker
     pkgs.docker-compose
     pkgs.direnv
   ];
-
-  # Auto upgrade nix package and the daemon service.
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-    };
-  };
   # Use homebrew to install casks and Mac App Store apps
   # https://daiderd.com/nix-darwin/manual/index.html
   homebrew = {
@@ -55,21 +46,15 @@
       autoUpdate = true;
     };
   };
+  # Enable stylix for theming
   stylix = {
     enable = true;
   };
-  # Use a custom configuration.nix location.
-  # $ work-rebuild switch -I work-config=$HOME/.config/nixpkgs/work/configuration.nix
 
-  # Auto upgrade nix package and the daemon service.
-  # nix.package = pkgs.nix;
+  # Enable zsh (macOS default shell)
+  programs.zsh.enable = true;
 
-  # Create /etc/zshrc that loads the nix-work environment.
-  programs.zsh.enable = true; # default shell on catalina
-  programs.fish.enable = true; # default shell on catalina
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ work-rebuild changelog
+  # This is the initial nix-darwin stateVersion from first install. Do not change.
   system.stateVersion = 5;
   system.keyboard = {
     enableKeyMapping = true;

@@ -9,6 +9,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
+    ../common # system/common - shared across all systems
   ];
 
   # Bootloader
@@ -16,7 +17,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
-  networking.hostName = "home-desktop";
+  networking.hostName = "home-nixos";
   networking.networkmanager.enable = true;
 
   # Time zone and locale
@@ -34,15 +35,15 @@ in {
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable Stylix for consistent theming
+  # Stylix theming
   stylix = {
     enable = true;
     image = ../../home-manager/assets/wallpapers/mountain.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
       };
       sizes = {
         terminal = 14;
@@ -100,15 +101,15 @@ in {
   };
 
   # Ensure Tailscale starts on boot
-  systemd.services.tailscaled.wantedBy = [ "multi-user.target" ];
+  systemd.services.tailscaled.wantedBy = ["multi-user.target"];
 
   # Network routing configuration for Tailscale + ProtonVPN coexistence
   # Ensure Tailscale traffic bypasses ProtonVPN
   networking.firewall = {
     # Allow Tailscale through the firewall
-    trustedInterfaces = [ "tailscale0" ];
+    trustedInterfaces = ["tailscale0"];
     # Allow Tailscale UDP port
-    allowedUDPPorts = [ 41641 ];
+    allowedUDPPorts = [41641];
     # If you need to allow specific TCP ports for services, add them here
     # allowedTCPPorts = [ ... ];
   };
@@ -124,10 +125,8 @@ in {
     ];
   };
 
-  # System packages
+  # NixOS-specific system packages
   environment.systemPackages = with pkgs; [
-    vim
-    fish
     git
     wget
     curl
@@ -136,22 +135,16 @@ in {
     protonvpn-cli
   ];
 
-  # Enable nix flakes
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+  # NixOS-specific nix configuration
+  nix.settings = {
+    auto-optimise-store = true;
   };
 
-  # Enable fish shell
-  programs.fish.enable = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -166,9 +159,7 @@ in {
   # Enable GameMode for better gaming performance
   programs.gamemode.enable = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
+  # This is the initial NixOS release version from first install. Do not change.
+  # See: https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "24.11";
 }

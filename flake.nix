@@ -56,7 +56,7 @@
     system = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
     nixosConfigurations = {
-      home-desktop = nixpkgs.lib.nixosSystem {
+      home-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -65,9 +65,15 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${users.nixos.username} = ./home-manager/hosts/nixos;
+            home-manager.users.${users.nixos.username} = {
+              imports = [
+                ./home-manager/packages
+                ./home-manager/hosts/home/nixos
+              ];
+            };
             home-manager.extraSpecialArgs = {
               inherit inputs;
+              userConfig = users.nixos // {gitName = users.gitName;};
             };
           }
           stylix.nixosModules.stylix
@@ -76,41 +82,55 @@
     };
 
     darwinConfigurations = {
-      home_machine = nix-darwin.lib.darwinSystem {
+      home-darwin = nix-darwin.lib.darwinSystem {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
         };
         specialArgs = {inherit inputs outputs;};
         modules = [
-          system/home/configuration.nix
+          ./system/darwin/home.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${users.home.username} = import home-manager/hosts/home/default.nix;
+            home-manager.users.${users.home.username} = {
+              imports = [
+                ./home-manager/packages
+                ./home-manager/hosts/home/darwin
+              ];
+            };
             home-manager.extraSpecialArgs = {
               inherit inputs;
+              userConfig = users.home // {gitName = users.gitName;};
             };
           }
           stylix.darwinModules.stylix
         ];
       };
-      work_machine = nix-darwin.lib.darwinSystem {
+      work-darwin = nix-darwin.lib.darwinSystem {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
         };
         specialArgs = {inherit inputs outputs;};
         modules = [
-          system/work/configuration.nix
+          ./system/darwin/work.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${users.work.username} = import home-manager/hosts/work/default.nix;
+            home-manager.users.${users.work.username} = {
+              imports = [
+                ./home-manager/packages
+                ./home-manager/packages/granted
+                ./home-manager/hosts/work/darwin
+                ./home-manager/hosts/work/darwin/fish
+              ];
+            };
             home-manager.extraSpecialArgs = {
               inherit inputs;
+              userConfig = users.work // {gitName = users.gitName;};
             };
           }
           stylix.darwinModules.stylix

@@ -2,16 +2,20 @@
   users = import ../../users.nix;
   userConfig = users.work;
 in {
-  imports = [../common/configuration.nix];
-  # Use a custom configuration.nix location.
-  environment.darwinConfig = "$HOME/Projects/nix/system/work/configuration.nix";
+  imports = [
+    ../common # system/common - shared across all systems
+    ./common.nix # system/darwin/common.nix - darwin-specific shared
+  ];
+
+  environment.darwinConfig = "$HOME/Projects/nix/system/darwin/work.nix";
+
+  # Disable nix-darwin's nix package management since we use Determinate Systems installer
+  # which manages nix itself (auto-updates, etc.)
   nix.enable = false;
 
-  # Use homebrew to install casks and Mac App Store apps
-  # https://daiderd.com/nix-darwin/manual/index.html
+  # Work-specific homebrew packages
   homebrew = {
     brews = [
-      "coreutils"
       "libpq"
       "msodbcsql18"
       "mssql-tools"
@@ -38,13 +42,14 @@ in {
     };
   };
 
+  # Work-specific stylix theming
   stylix = {
     image = ../../home-manager/assets/wallpapers/leaves.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
       };
       sizes = {
         terminal = 14;
