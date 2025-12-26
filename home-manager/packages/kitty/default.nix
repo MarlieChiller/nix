@@ -1,16 +1,8 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
-    font = lib.mkForce {
-      package = pkgs.nerd-fonts.jetbrains-mono;
-      name = "JetBrainsMono Nerd Font Mono";
-      size = 14;
-    };
+    # Font is managed by Stylix (JetBrainsMono Nerd Font Mono)
     settings = {
       shell = "${pkgs.fish}/bin/fish";
       editor = "${pkgs.neovim}/bin/nvim";
@@ -45,8 +37,9 @@
       search_result_bg_color = "#528BFF";
       search_current_match_color = "#000000";
       search_current_match_bg_color = "#FFD700";
+      # Map Nerd Font icon ranges to JetBrainsMono Nerd Font
       symbol_map = let
-        mappings = [
+        nerdFontRanges = [
           "U+23FB-U+23FE"
           "U+2B58"
           "U+E200-U+E2A9"
@@ -67,7 +60,10 @@
           "U+E5FA-U+E62B"
         ];
       in
-        (builtins.concatStringsSep "," mappings) + " JetBrainsMono Nerd Font Mono";
+        (builtins.concatStringsSep "," nerdFontRanges) + " JetBrainsMono Nerd Font Mono";
+
+      # Let macOS handle emoji rendering with system emoji font
+      # Emojis will use Apple Color Emoji font automatically
     };
 
     keybindings = {

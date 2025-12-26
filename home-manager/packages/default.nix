@@ -25,42 +25,45 @@
 
   news.display = "show";
 
-  home.packages = with pkgs; [
-    # cli
-    btop
-    cargo
-    claude-code
-    curl
-    erdtree
-    eza
-    fd
-    fish
-    fzf
-    gcc
-    glow
-    go
-    gh
-    grc
-    jujutsu
-    just
-    lazygit
-    ripgrep
-    ruff
-    tre-command
-    uv
-    yazi
+  home.packages = with pkgs;
+    [
+      # cli
+      btop
+      cargo
+      claude-code
+      curl
+      erdtree
+      eza
+      fd
+      fish
+      fzf
+      gcc
+      glow
+      go
+      gping
+      gh
+      grc
+      jujutsu
+      just
+      lazygit
+      ripgrep
+      ruff
+      tre-command
+      uv
+      yazi
 
-    # nix
-    alejandra
-    cachix
-    nil
-    nix-info
-    nixci
-    nix-health
-  ] ++ lib.optionals pkgs.stdenv.isDarwin [
-    # darwin-only packages
-    jankyborders
-  ];
+      # nix
+      alejandra
+      cachix
+      nil
+      nix-info
+      nixci
+      nix-health
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
+      # darwin-only packages
+      jankyborders
+    ];
 
   programs.fzf.enable = true;
   programs.fish.enable = true;

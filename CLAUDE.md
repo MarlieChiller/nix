@@ -1,10 +1,11 @@
 # Nix Darwin + Home Manager Configuration
 
-Multi-host macOS configuration for personal and work environments.
+Multi-platform configuration for macOS (Darwin) and Linux (NixOS) environments.
 
 ## Quick Context
 
-- **Platform**: macOS (Apple Silicon)
+- **Platforms**: macOS (Apple Silicon) + NixOS (x86_64)
+- **Machines**: `home-darwin`, `home-nixos`, `work-darwin`
 - **Users**: marliechiller (home), charlie.miller (work)
 - **Theming**: Stylix with Nord (home) / Rose Pine (work)
 - **Font**: JetBrains Mono Nerd Font
@@ -13,11 +14,19 @@ Multi-host macOS configuration for personal and work environments.
 ## Build Commands
 
 ```bash
-# Build and switch
-darwin-rebuild switch --flake .
+# Build and switch - Home Darwin
+darwin-rebuild switch --flake .#home-darwin
 
-# Build only (test changes)
-darwin-rebuild build --flake .
+# Build and switch - Work Darwin
+darwin-rebuild switch --flake .#work-darwin
+
+# Build and switch - Home NixOS (run on the NixOS machine)
+sudo nixos-rebuild switch --flake .#home-nixos
+
+# Build only (test changes before switching)
+darwin-rebuild build --flake .#home-darwin
+darwin-rebuild build --flake .#work-darwin
+sudo nixos-rebuild build --flake .#home-nixos
 
 # Format code
 alejandra .
@@ -31,13 +40,21 @@ nix flake check
 ```
 ├── flake.nix                    # Main flake configuration
 ├── system/
-│   ├── common/                  # Shared system config
-│   ├── home/                    # Home-specific system config
-│   └── work/                    # Work-specific system config
+│   ├── common/                  # Shared config (darwin + nixos)
+│   ├── darwin/
+│   │   ├── common.nix           # Darwin-specific shared config
+│   │   ├── home.nix             # Home machine config
+│   │   └── work.nix             # Work machine config
+│   └── nixos/
+│       └── configuration.nix    # NixOS desktop config
 └── home-manager/
-    ├── packages/                # Application configurations
-    ├── hosts/                   # Host-specific user configs
-    └── common/                  # Shared user configs
+    ├── packages/                # Shared application configs
+    └── hosts/                   # Host-specific user configs
+        ├── home/
+        │   ├── darwin/          # Home macOS user config
+        │   └── nixos/           # Home Linux user config
+        └── work/
+            └── darwin/          # Work macOS user config
 ```
 
 ## Key Applications

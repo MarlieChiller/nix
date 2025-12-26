@@ -11,7 +11,7 @@
     '';
     matchBlocks = {
       "home-desktop" = {
-        hostname = "192.168.1.125";  # Local network IP
+        hostname = "192.168.1.125"; # Local network IP
         user = "marliechiller";
         port = 22;
         identityFile = "~/.ssh/id_ed25519_nixos";

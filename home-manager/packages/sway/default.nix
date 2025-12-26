@@ -33,105 +33,106 @@
       # Key bindings
       keybindings = let
         mod = modifier;
-      in lib.mkOptionDefault {
-        # Focus windows (hjkl like Aerospace)
-        "${mod}+h" = "focus left";
-        "${mod}+j" = "focus down";
-        "${mod}+k" = "focus up";
-        "${mod}+l" = "focus right";
+      in
+        lib.mkOptionDefault {
+          # Focus windows (hjkl like Aerospace)
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+          "${mod}+l" = "focus right";
 
-        # Move windows (Mod+Cmd in Aerospace = Mod+Mod4 in Sway)
-        "${mod}+Mod4+h" = "move left";
-        "${mod}+Mod4+j" = "move down";
-        "${mod}+Mod4+k" = "move up";
-        "${mod}+Mod4+l" = "move right";
+          # Move windows (Mod+Cmd in Aerospace = Mod+Mod4 in Sway)
+          "${mod}+Mod4+h" = "move left";
+          "${mod}+Mod4+j" = "move down";
+          "${mod}+Mod4+k" = "move up";
+          "${mod}+Mod4+l" = "move right";
 
-        # Resize (matching Aerospace -/=)
-        "${mod}+minus" = "resize shrink width 50px";
-        "${mod}+equal" = "resize grow width 50px";
+          # Resize (matching Aerospace -/=)
+          "${mod}+minus" = "resize shrink width 50px";
+          "${mod}+equal" = "resize grow width 50px";
 
-        # Fullscreen (matching Aerospace)
-        "${mod}+f" = "fullscreen toggle";
+          # Fullscreen (matching Aerospace)
+          "${mod}+f" = "fullscreen toggle";
 
-        # Layout toggle (matching Aerospace slash/comma)
-        "${mod}+slash" = "layout toggle split";
-        "${mod}+comma" = "layout tabbed";
+          # Layout toggle (matching Aerospace slash/comma)
+          "${mod}+slash" = "layout toggle split";
+          "${mod}+comma" = "layout tabbed";
 
-        # Enable/disable tiling (matching Aerospace esc)
-        "${mod}+Escape" = "floating toggle";
+          # Enable/disable tiling (matching Aerospace esc)
+          "${mod}+Escape" = "floating toggle";
 
-        # Workspaces 1-9
-        "${mod}+1" = "workspace number 1";
-        "${mod}+2" = "workspace number 2";
-        "${mod}+3" = "workspace number 3";
-        "${mod}+4" = "workspace number 4";
-        "${mod}+5" = "workspace number 5";
-        "${mod}+6" = "workspace number 6";
-        "${mod}+7" = "workspace number 7";
-        "${mod}+8" = "workspace number 8";
-        "${mod}+9" = "workspace number 9";
+          # Workspaces 1-9
+          "${mod}+1" = "workspace number 1";
+          "${mod}+2" = "workspace number 2";
+          "${mod}+3" = "workspace number 3";
+          "${mod}+4" = "workspace number 4";
+          "${mod}+5" = "workspace number 5";
+          "${mod}+6" = "workspace number 6";
+          "${mod}+7" = "workspace number 7";
+          "${mod}+8" = "workspace number 8";
+          "${mod}+9" = "workspace number 9";
 
-        # Named workspaces A-Z (matching Aerospace)
-        "${mod}+a" = "workspace A";
-        "${mod}+b" = "workspace B";
-        "${mod}+c" = "workspace C";
-        "${mod}+d" = "workspace D";
-        "${mod}+e" = "workspace E";
-        "${mod}+g" = "workspace G";
-        "${mod}+i" = "workspace I";
-        "${mod}+n" = "workspace N";
-        "${mod}+o" = "workspace O";
-        "${mod}+p" = "workspace P";
-        "${mod}+q" = "workspace Q";
-        "${mod}+r" = "workspace R";
-        "${mod}+s" = "workspace S";
-        "${mod}+t" = "workspace T";
-        "${mod}+u" = "workspace U";
-        "${mod}+v" = "workspace V";
-        "${mod}+w" = "workspace W";
-        "${mod}+x" = "workspace X";
-        "${mod}+y" = "workspace Y";
-        "${mod}+z" = "workspace Z";
+          # Named workspaces A-Z (matching Aerospace)
+          "${mod}+a" = "workspace A";
+          "${mod}+b" = "workspace B";
+          "${mod}+c" = "workspace C";
+          "${mod}+d" = "workspace D";
+          "${mod}+e" = "workspace E";
+          "${mod}+g" = "workspace G";
+          "${mod}+i" = "workspace I";
+          "${mod}+n" = "workspace N";
+          "${mod}+o" = "workspace O";
+          "${mod}+p" = "workspace P";
+          "${mod}+q" = "workspace Q";
+          "${mod}+r" = "workspace R";
+          "${mod}+s" = "workspace S";
+          "${mod}+t" = "workspace T";
+          "${mod}+u" = "workspace U";
+          "${mod}+v" = "workspace V";
+          "${mod}+w" = "workspace W";
+          "${mod}+x" = "workspace X";
+          "${mod}+y" = "workspace Y";
+          "${mod}+z" = "workspace Z";
 
-        # Move to workspaces 1-9
-        "${mod}+Mod4+1" = "move container to workspace number 1";
-        "${mod}+Mod4+2" = "move container to workspace number 2";
-        "${mod}+Mod4+3" = "move container to workspace number 3";
-        "${mod}+Mod4+4" = "move container to workspace number 4";
-        "${mod}+Mod4+5" = "move container to workspace number 5";
-        "${mod}+Mod4+6" = "move container to workspace number 6";
-        "${mod}+Mod4+7" = "move container to workspace number 7";
-        "${mod}+Mod4+8" = "move container to workspace number 8";
-        "${mod}+Mod4+9" = "move container to workspace number 9";
+          # Move to workspaces 1-9
+          "${mod}+Mod4+1" = "move container to workspace number 1";
+          "${mod}+Mod4+2" = "move container to workspace number 2";
+          "${mod}+Mod4+3" = "move container to workspace number 3";
+          "${mod}+Mod4+4" = "move container to workspace number 4";
+          "${mod}+Mod4+5" = "move container to workspace number 5";
+          "${mod}+Mod4+6" = "move container to workspace number 6";
+          "${mod}+Mod4+7" = "move container to workspace number 7";
+          "${mod}+Mod4+8" = "move container to workspace number 8";
+          "${mod}+Mod4+9" = "move container to workspace number 9";
 
-        # Move to named workspaces A-Z
-        "${mod}+Mod4+a" = "move container to workspace A";
-        "${mod}+Mod4+b" = "move container to workspace B";
-        "${mod}+Mod4+c" = "move container to workspace C";
-        "${mod}+Mod4+d" = "move container to workspace D";
-        "${mod}+Mod4+e" = "move container to workspace E";
-        "${mod}+Mod4+g" = "move container to workspace G";
-        "${mod}+Mod4+i" = "move container to workspace I";
-        "${mod}+Mod4+n" = "move container to workspace N";
-        "${mod}+Mod4+o" = "move container to workspace O";
-        "${mod}+Mod4+p" = "move container to workspace P";
-        "${mod}+Mod4+q" = "move container to workspace Q";
-        "${mod}+Mod4+r" = "move container to workspace R";
-        "${mod}+Mod4+s" = "move container to workspace S";
-        "${mod}+Mod4+t" = "move container to workspace T";
-        "${mod}+Mod4+u" = "move container to workspace U";
-        "${mod}+Mod4+v" = "move container to workspace V";
-        "${mod}+Mod4+w" = "move container to workspace W";
-        "${mod}+Mod4+x" = "move container to workspace X";
-        "${mod}+Mod4+y" = "move container to workspace Y";
-        "${mod}+Mod4+z" = "move container to workspace Z";
+          # Move to named workspaces A-Z
+          "${mod}+Mod4+a" = "move container to workspace A";
+          "${mod}+Mod4+b" = "move container to workspace B";
+          "${mod}+Mod4+c" = "move container to workspace C";
+          "${mod}+Mod4+d" = "move container to workspace D";
+          "${mod}+Mod4+e" = "move container to workspace E";
+          "${mod}+Mod4+g" = "move container to workspace G";
+          "${mod}+Mod4+i" = "move container to workspace I";
+          "${mod}+Mod4+n" = "move container to workspace N";
+          "${mod}+Mod4+o" = "move container to workspace O";
+          "${mod}+Mod4+p" = "move container to workspace P";
+          "${mod}+Mod4+q" = "move container to workspace Q";
+          "${mod}+Mod4+r" = "move container to workspace R";
+          "${mod}+Mod4+s" = "move container to workspace S";
+          "${mod}+Mod4+t" = "move container to workspace T";
+          "${mod}+Mod4+u" = "move container to workspace U";
+          "${mod}+Mod4+v" = "move container to workspace V";
+          "${mod}+Mod4+w" = "move container to workspace W";
+          "${mod}+Mod4+x" = "move container to workspace X";
+          "${mod}+Mod4+y" = "move container to workspace Y";
+          "${mod}+Mod4+z" = "move container to workspace Z";
 
-        # Workspace back and forth (matching Aerospace tab)
-        "${mod}+Tab" = "workspace back_and_forth";
+          # Workspace back and forth (matching Aerospace tab)
+          "${mod}+Tab" = "workspace back_and_forth";
 
-        # Reload config
-        "${mod}+Mod4+semicolon" = "reload";
-      };
+          # Reload config
+          "${mod}+Mod4+semicolon" = "reload";
+        };
 
       # Colors (Nord theme to match your Stylix)
       colors = {
@@ -177,15 +178,24 @@
       window.commands = [
         # Make Steam windows floating by default (except main window)
         {
-          criteria = {class = "^steam$"; title = "^Steam - News";};
+          criteria = {
+            class = "^steam$";
+            title = "^Steam - News";
+          };
           command = "floating enable";
         }
         {
-          criteria = {class = "^steam$"; title = "^Friends List";};
+          criteria = {
+            class = "^steam$";
+            title = "^Friends List";
+          };
           command = "floating enable";
         }
         {
-          criteria = {class = "^steam$"; title = "^Settings";};
+          criteria = {
+            class = "^steam$";
+            title = "^Settings";
+          };
           command = "floating enable";
         }
         # Auto-fullscreen for games
@@ -213,16 +223,16 @@
 
   # Install Sway-related packages
   home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
-    wofi           # Application launcher (like dmenu/rofi)
-    waybar         # Status bar
-    wl-clipboard   # Clipboard utilities
-    grim           # Screenshot tool
-    slurp          # Screen area selection
-    swaylock       # Screen locker
-    swayidle       # Idle management
-    mako           # Notification daemon
-    mangohud       # Gaming performance overlay
-    gamemode       # Gaming optimizations
+    wofi # Application launcher (like dmenu/rofi)
+    waybar # Status bar
+    wl-clipboard # Clipboard utilities
+    grim # Screenshot tool
+    slurp # Screen area selection
+    swaylock # Screen locker
+    swayidle # Idle management
+    mako # Notification daemon
+    mangohud # Gaming performance overlay
+    gamemode # Gaming optimizations
   ]);
 
   # Waybar configuration

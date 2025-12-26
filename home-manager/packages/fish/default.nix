@@ -48,8 +48,6 @@
       }
     ];
 
-    shellAliases = {};
-
     shellAbbrs = {
       # nix abbreviations
       "vim" = "nvim";

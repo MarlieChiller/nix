@@ -6,14 +6,15 @@
   users = import ../../users.nix;
   userConfig = users.home;
 in {
-  imports = [../common/configuration.nix];
-  # Use a custom configuration.nix location.
-  environment.darwinConfig = "$HOME/Projects/nix/system/home/configuration.nix";
+  imports = [
+    ../common # system/common - shared across all systems
+    ./common.nix # system/darwin/common.nix - darwin-specific shared
+  ];
 
-  # Use homebrew to install casks and Mac App Store apps
-  # https://daiderd.com/nix-darwin/manual/index.html
+  environment.darwinConfig = "$HOME/Projects/nix/system/darwin/home.nix";
+
+  # Home-specific homebrew packages
   homebrew = {
-    enable = true;
     # mac store apps
     masApps = {
       nextdns = 1464122853;
@@ -37,14 +38,14 @@ in {
       cleanup = "zap";
     };
   };
+  # Home-specific stylix theming
   stylix = {
-    enable = true;
     image = ../../home-manager/assets/wallpapers/mountain.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
       };
       sizes = {
         terminal = 14;
