@@ -1,5 +1,6 @@
 {
   # Import required modules
+  pkgs,
   inputs,
   ...
 }: {
@@ -340,20 +341,41 @@
       treesitter = {
         enable = true;
         settings = {
-          ensure_installed = [
-            "python"
-            "rust"
-            "go"
-            "nix"
-            "lua"
-            "javascript"
-            "typescript"
-            "tsx"
-            "json"
-            "html"
-            "css"
-          ];
+          # Disable auto-install since parsers are managed by nix
+          auto_install = false;
+          highlight.enable = true;
+          indent.enable = true;
         };
+        # Declaratively install parsers via nix
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          # Languages
+          python
+          rust
+          go
+          nix
+          lua
+          javascript
+          typescript
+          tsx
+          # Markup & Config
+          json
+          yaml
+          toml
+          html
+          css
+          markdown
+          markdown_inline
+          # Shell & DevOps
+          bash
+          fish
+          dockerfile
+          terraform
+          hcl
+          # Misc
+          vim
+          regex
+          comment
+        ];
       };
 
       # Better treesitter text objects
