@@ -13,6 +13,10 @@ in {
 
   environment.darwinConfig = "$HOME/Projects/nix/system/darwin/home.nix";
 
+  # Networking (hostname matching flake config name)
+  networking.hostName = "home-darwin";
+  networking.computerName = "home-darwin";
+
   # Home-specific homebrew packages
   homebrew = {
     # mac store apps
