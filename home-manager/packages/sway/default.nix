@@ -214,6 +214,18 @@
 
       # Default orientation
       default_orientation auto
+
+      # Mouse/pointer configuration
+      input type:pointer {
+        accel_profile flat
+        pointer_accel 0
+      }
+
+      # Display scaling (150%)
+      output * scale 1.5
+
+      # XWayland configuration for Steam
+      xwayland force
     '';
   };
 

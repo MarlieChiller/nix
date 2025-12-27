@@ -161,6 +161,15 @@ in {
     enable = true;
     remotePlay.openFirewall = true; # Open ports for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports for Source Dedicated Server
+    # Fix mouse sensitivity issues in XWayland
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
+  # Steam environment variables for better Wayland/XWayland support
+  environment.sessionVariables = {
+    STEAM_FORCE_DESKTOPUI_SCALING = "1";
   };
 
   # Enable GameMode for better gaming performance
