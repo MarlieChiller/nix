@@ -10,6 +10,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./tailscale.nix
+    ./jellyfin.nix
     ../common # system/common - shared across all systems
   ];
 
@@ -52,6 +53,17 @@ in {
         terminal = 14;
       };
     };
+  };
+
+  # Enable Intel graphics drivers for hardware transcoding
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # For newer formats (HEVC, etc.)
+      intel-vaapi-driver # For older formats (H.264)
+      libva-vdpau-driver
+      libvdpau-va-gl
+    ];
   };
 
   # Enable the X11 windowing system
@@ -118,7 +130,7 @@ in {
   users.users.${userConfig.username} = {
     isNormalUser = true;
     description = userConfig.username;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "render" "video"];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqaM3HaYC/wBPTOKMaK1wS21xiUtGdL74Bc/6yw95I9 macbook-to-nixos"
@@ -174,6 +186,14 @@ in {
 
   # Enable GameMode for better gaming performance
   programs.gamemode.enable = true;
+
+  # qBittorrent web UI (headless)
+  services.qbittorrent = {
+    enable = true;
+    openFirewall = false; # We only want VPN traffic, not direct access
+    user = userConfig.username;
+    group = "users";
+  };
 
   # This is the initial NixOS release version from first install. Do not change.
   # See: https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
