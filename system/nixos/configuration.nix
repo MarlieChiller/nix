@@ -40,7 +40,7 @@ in {
   # Stylix theming
   stylix = {
     enable = true;
-    image = ../../home-manager/assets/wallpapers/mountain.jpg;
+    image = ../../home-manager/assets/wallpapers/leaves.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts = {
       monospace = {
