@@ -52,6 +52,9 @@
       uv
       yazi
 
+      # gui
+      firefox
+
       # nix
       alejandra
       cachix

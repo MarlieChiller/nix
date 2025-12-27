@@ -7,14 +7,21 @@
   wayland.windowManager.sway = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     config = rec {
-      # Meh key (Alt+Shift+Ctrl) - matches Aerospace
-      modifier = "Mod1+Shift+Control";
+      # Disable default bar (we use waybar instead)
+      bars = [];
+
+      # Modifier is set to Mod4 but not used (we override all keybindings below)
+      # This is just to satisfy the config option
+      modifier = "Mod4";
+
+      # Floating modifier must be a simple key (use Alt for dragging windows)
+      floating.modifier = "Mod1";
 
       # Terminal
       terminal = "kitty";
 
-      # Application launcher
-      menu = "wofi --show drun";
+      # Application launcher (ulauncher for Alfred-like experience)
+      menu = "ulauncher-toggle";
 
       # Window borders and gaps (matching Aerospace 8px)
       gaps = {
@@ -30,22 +37,29 @@
       # Focus follows mouse
       focus.followMouse = "yes";
 
-      # Key bindings
+      # Key bindings - using Meh (Ctrl+Alt+Shift) to match Aerospace on macOS
+      # Configure your Moonlander to send Ctrl+Alt+Shift on a layer key
       keybindings = let
-        mod = modifier;
+        # Meh modifier (matching Aerospace: alt-shift-ctrl)
+        mod = "Ctrl+Mod1+Shift";
+        # For move operations, add Mod4 (Super/Cmd)
+        modMove = "Ctrl+Mod1+Shift+Mod4";
       in
         lib.mkOptionDefault {
+          # Ulauncher (Super+Space like Alfred on macOS)
+          "Mod4+space" = "exec ulauncher-toggle";
+
           # Focus windows (hjkl like Aerospace)
           "${mod}+h" = "focus left";
           "${mod}+j" = "focus down";
           "${mod}+k" = "focus up";
           "${mod}+l" = "focus right";
 
-          # Move windows (Mod+Cmd in Aerospace = Mod+Mod4 in Sway)
-          "${mod}+Mod4+h" = "move left";
-          "${mod}+Mod4+j" = "move down";
-          "${mod}+Mod4+k" = "move up";
-          "${mod}+Mod4+l" = "move right";
+          # Move windows (Meh+Cmd matching Aerospace)
+          "${modMove}+h" = "move left";
+          "${modMove}+j" = "move down";
+          "${modMove}+k" = "move up";
+          "${modMove}+l" = "move right";
 
           # Resize (matching Aerospace -/=)
           "${mod}+minus" = "resize shrink width 50px";
@@ -53,6 +67,9 @@
 
           # Fullscreen (matching Aerospace)
           "${mod}+f" = "fullscreen toggle";
+
+          # Close window (matching Cmd+W on macOS)
+          "Mod4+w" = "kill";
 
           # Layout toggle (matching Aerospace slash/comma)
           "${mod}+slash" = "layout toggle split";
@@ -94,70 +111,48 @@
           "${mod}+y" = "workspace Y";
           "${mod}+z" = "workspace Z";
 
-          # Move to workspaces 1-9
-          "${mod}+Mod4+1" = "move container to workspace number 1";
-          "${mod}+Mod4+2" = "move container to workspace number 2";
-          "${mod}+Mod4+3" = "move container to workspace number 3";
-          "${mod}+Mod4+4" = "move container to workspace number 4";
-          "${mod}+Mod4+5" = "move container to workspace number 5";
-          "${mod}+Mod4+6" = "move container to workspace number 6";
-          "${mod}+Mod4+7" = "move container to workspace number 7";
-          "${mod}+Mod4+8" = "move container to workspace number 8";
-          "${mod}+Mod4+9" = "move container to workspace number 9";
+          # Move to workspaces 1-9 (Meh+Cmd matching Aerospace)
+          "${modMove}+1" = "move container to workspace number 1";
+          "${modMove}+2" = "move container to workspace number 2";
+          "${modMove}+3" = "move container to workspace number 3";
+          "${modMove}+4" = "move container to workspace number 4";
+          "${modMove}+5" = "move container to workspace number 5";
+          "${modMove}+6" = "move container to workspace number 6";
+          "${modMove}+7" = "move container to workspace number 7";
+          "${modMove}+8" = "move container to workspace number 8";
+          "${modMove}+9" = "move container to workspace number 9";
 
-          # Move to named workspaces A-Z
-          "${mod}+Mod4+a" = "move container to workspace A";
-          "${mod}+Mod4+b" = "move container to workspace B";
-          "${mod}+Mod4+c" = "move container to workspace C";
-          "${mod}+Mod4+d" = "move container to workspace D";
-          "${mod}+Mod4+e" = "move container to workspace E";
-          "${mod}+Mod4+g" = "move container to workspace G";
-          "${mod}+Mod4+i" = "move container to workspace I";
-          "${mod}+Mod4+n" = "move container to workspace N";
-          "${mod}+Mod4+o" = "move container to workspace O";
-          "${mod}+Mod4+p" = "move container to workspace P";
-          "${mod}+Mod4+q" = "move container to workspace Q";
-          "${mod}+Mod4+r" = "move container to workspace R";
-          "${mod}+Mod4+s" = "move container to workspace S";
-          "${mod}+Mod4+t" = "move container to workspace T";
-          "${mod}+Mod4+u" = "move container to workspace U";
-          "${mod}+Mod4+v" = "move container to workspace V";
-          "${mod}+Mod4+w" = "move container to workspace W";
-          "${mod}+Mod4+x" = "move container to workspace X";
-          "${mod}+Mod4+y" = "move container to workspace Y";
-          "${mod}+Mod4+z" = "move container to workspace Z";
+          # Move to named workspaces A-Z (Meh+Cmd matching Aerospace)
+          "${modMove}+a" = "move container to workspace A";
+          "${modMove}+b" = "move container to workspace B";
+          "${modMove}+c" = "move container to workspace C";
+          "${modMove}+d" = "move container to workspace D";
+          "${modMove}+e" = "move container to workspace E";
+          "${modMove}+g" = "move container to workspace G";
+          "${modMove}+i" = "move container to workspace I";
+          "${modMove}+n" = "move container to workspace N";
+          "${modMove}+o" = "move container to workspace O";
+          "${modMove}+p" = "move container to workspace P";
+          "${modMove}+q" = "move container to workspace Q";
+          "${modMove}+r" = "move container to workspace R";
+          "${modMove}+s" = "move container to workspace S";
+          "${modMove}+t" = "move container to workspace T";
+          "${modMove}+u" = "move container to workspace U";
+          "${modMove}+v" = "move container to workspace V";
+          "${modMove}+w" = "move container to workspace W";
+          "${modMove}+x" = "move container to workspace X";
+          "${modMove}+y" = "move container to workspace Y";
+          "${modMove}+z" = "move container to workspace Z";
 
           # Workspace back and forth (matching Aerospace tab)
           "${mod}+Tab" = "workspace back_and_forth";
 
-          # Reload config
-          "${mod}+Mod4+semicolon" = "reload";
+          # Reload config (Meh+Cmd+semicolon enters service mode in Aerospace)
+          "${modMove}+semicolon" = "reload";
         };
 
-      # Colors (Nord theme to match your Stylix)
-      colors = {
-        focused = {
-          border = "#88c0d0";
-          background = "#88c0d0";
-          text = "#2e3440";
-          indicator = "#88c0d0";
-          childBorder = "#88c0d0";
-        };
-        focusedInactive = {
-          border = "#4c566a";
-          background = "#4c566a";
-          text = "#d8dee9";
-          indicator = "#4c566a";
-          childBorder = "#4c566a";
-        };
-        unfocused = {
-          border = "#3b4252";
-          background = "#3b4252";
-          text = "#d8dee9";
-          indicator = "#3b4252";
-          childBorder = "#3b4252";
-        };
-      };
+      # Colors managed by Stylix (Nord theme)
+      # Removed manual color config to avoid conflicts with Stylix
 
       # Application-specific workspace assignments (matching Aerospace)
       assigns = {
@@ -208,6 +203,7 @@
       # Startup applications
       startup = [
         {command = "waybar";}
+        {command = "ulauncher --hide-window";}  # Start ulauncher daemon in background
       ];
     };
 
@@ -223,7 +219,7 @@
 
   # Install Sway-related packages
   home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
-    wofi # Application launcher (like dmenu/rofi)
+    ulauncher # Application launcher (Alfred-like)
     waybar # Status bar
     wl-clipboard # Clipboard utilities
     grim # Screenshot tool
@@ -242,7 +238,7 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 36;
 
         modules-left = ["sway/workspaces" "sway/mode"];
         modules-center = ["sway/window"];

@@ -12,9 +12,11 @@ in {
     ../common # system/common - shared across all systems
   ];
 
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Bootloader (GRUB for BIOS/Legacy boot)
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda"; # Install GRUB to MBR
+  };
 
   # Networking
   networking.hostName = "home-nixos";
@@ -55,8 +57,8 @@ in {
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable Sway (Wayland tiling window manager)
   programs.sway = {
@@ -73,8 +75,27 @@ in {
   # Configure console keymap
   console.keyMap = "uk";
 
+  # keyd - Remap Caps Lock to Meh (Ctrl+Alt+Shift)
+  # This matches the Aerospace configuration on macOS
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            # Caps Lock becomes Meh modifier (Ctrl+Alt+Shift)
+            capslock = "layer(meh)";
+          };
+          # Meh layer: Ctrl+Alt+Shift (matching Aerospace)
+          "meh:C-A-S" = {};
+        };
+      };
+    };
+  };
+
   # Enable sound with pipewire
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -132,7 +153,7 @@ in {
     curl
     htop
     tailscale
-    protonvpn-cli
+    protonvpn-gui
   ];
 
   # NixOS-specific nix configuration

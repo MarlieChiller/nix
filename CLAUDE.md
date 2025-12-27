@@ -46,7 +46,8 @@ nix flake check
 │   │   ├── home.nix             # Home machine config
 │   │   └── work.nix             # Work machine config
 │   └── nixos/
-│       └── configuration.nix    # NixOS desktop config
+│       ├── configuration.nix    # NixOS desktop config
+│       └── hardware-configuration.nix  # Machine-specific hardware config
 └── home-manager/
     ├── packages/                # Shared application configs
     └── hosts/                   # Host-specific user configs
@@ -65,8 +66,25 @@ nix flake check
 - **File Manager**: Yazi
 - **Window Manager**: Aerospace
 
+## NixOS Hardware Configuration
+
+The `system/nixos/hardware-configuration.nix` file contains machine-specific hardware settings including:
+- File system UUIDs and mount points
+- Boot loader configuration
+- Hardware detection (CPU, GPU, etc.)
+- Kernel modules
+
+**Important:**
+- This file is committed for backup/reference purposes
+- Contains machine-specific UUIDs and is NOT portable to other machines
+- **If you reinstall NixOS**, regenerate this file:
+  ```bash
+  sudo nixos-generate-config --show-hardware-config > ~/Projects/nix/system/nixos/hardware-configuration.nix
+  ```
+
 ## Security Notes
 
 - SSH keys managed by 1Password
 - No hardcoded secrets in configuration
+- `hardware-configuration.nix` contains machine-specific UUIDs (not sensitive but specific to this machine)
 - Stylix handles theming consistently

@@ -7,9 +7,18 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      set -U fish_user_paths /opt/homebrew/bin/
-      eval (/opt/homebrew/bin/brew shellenv)
-      set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
+
+      ${
+        if pkgs.stdenv.isDarwin
+        then ''
+          # macOS: Initialize Homebrew
+          set -U fish_user_paths /opt/homebrew/bin/
+          eval (/opt/homebrew/bin/brew shellenv)
+          set -U fish_user_paths /usr/local/nvim/nvim-macos-arm64/bin $fish_user_paths
+        ''
+        else ""
+      }
+
       # 1password autocomplete with timeout to prevent hanging
       if command -q op
         timeout 2s op completion fish | source 2>/dev/null
