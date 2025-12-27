@@ -146,6 +146,13 @@ in {
     ];
   };
 
+  # Enable 1Password desktop and SSH agent
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [userConfig.username];
+  };
+
   # NixOS-specific system packages
   environment.systemPackages = with pkgs; [
     git
@@ -154,6 +161,7 @@ in {
     htop
     tailscale
     protonvpn-gui
+    _1password-cli
   ];
 
   # NixOS-specific nix configuration

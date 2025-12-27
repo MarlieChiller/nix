@@ -1,14 +1,20 @@
 {
   userConfig,
   lib,
+  pkgs,
   ...
 }: {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    extraConfig = ''
-      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    '';
+    extraConfig =
+      if pkgs.stdenv.isDarwin
+      then ''
+        IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+      ''
+      else ''
+        IdentityAgent ~/.1password/agent.sock
+      '';
     matchBlocks = {
       "home-desktop" = {
         hostname = "192.168.1.125"; # Local network IP
