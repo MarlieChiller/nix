@@ -23,9 +23,9 @@
         identityFile = "~/.ssh/id_ed25519_nixos";
       };
       "home-desktop-remote" = {
-        # Update this with your Tailscale hostname after setup
-        # Example: hostname = "home-desktop.tailXXXX.ts.net";
-        hostname = "TAILSCALE_HOSTNAME_HERE";
+        # Tailscale hostname (MagicDNS enabled)
+        # Can also use IP directly: 100.103.154.90
+        hostname = "home-nixos";
         user = "marliechiller";
         port = 22;
         identityFile = "~/.ssh/id_ed25519_nixos";

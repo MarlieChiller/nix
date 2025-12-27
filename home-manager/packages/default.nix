@@ -43,6 +43,7 @@
       gping
       gh
       grc
+      jq
       jujutsu
       just
       lazygit

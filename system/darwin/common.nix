@@ -29,6 +29,7 @@
       "aerospace"
       "alfred"
       "chatgpt"
+      "claude-code"
       "firefox"
       "fork"
       "font-hack-nerd-font"
@@ -41,6 +42,7 @@
       "sf-symbols"
       "spotify"
       "stats"
+      "tailscale"
     ];
     onActivation = {
       autoUpdate = true;

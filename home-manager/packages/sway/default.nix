@@ -242,7 +242,7 @@
 
         modules-left = ["sway/workspaces" "sway/mode"];
         modules-center = ["sway/window"];
-        modules-right = ["network" "cpu" "memory" "clock"];
+        modules-right = ["custom/tailscale" "network" "cpu" "memory" "clock"];
 
         "sway/workspaces" = {
           all-outputs = true;
@@ -265,6 +265,14 @@
           format-wifi = "WiFi: {essid}";
           format-ethernet = "ETH: {ipaddr}";
           format-disconnected = "Disconnected";
+        };
+
+        "custom/tailscale" = {
+          exec = "tailscale status --json | ${pkgs.jq}/bin/jq -r 'if .BackendState == \"Running\" then \"TS: \" + .Self.TailscaleIPs[0] else \"TS: Off\" end'";
+          interval = 10;
+          format = "{}";
+          tooltip = true;
+          exec-tooltip = "tailscale status | head -5";
         };
       };
     };
