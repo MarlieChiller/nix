@@ -242,7 +242,7 @@
 
         modules-left = ["sway/workspaces" "sway/mode"];
         modules-center = ["sway/window"];
-        modules-right = ["custom/tailscale" "network" "cpu" "memory" "clock"];
+        modules-right = ["custom/protonvpn" "custom/tailscale" "network" "cpu" "memory" "clock"];
 
         "sway/workspaces" = {
           all-outputs = true;
@@ -273,6 +273,21 @@
           format = "{}";
           tooltip = true;
           exec-tooltip = "tailscale status | head -5";
+        };
+
+        "custom/protonvpn" = {
+          exec = ''
+            if ${pkgs.procps}/bin/pgrep -x "protonvpn" > /dev/null || ${pkgs.networkmanager}/bin/nmcli connection show --active | ${pkgs.gnugrep}/bin/grep -i proton > /dev/null; then
+              echo "VPN: On"
+            else
+              echo "VPN: Off"
+            fi
+          '';
+          interval = 5;
+          format = "{}";
+          on-click = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
+          tooltip = true;
+          exec-tooltip = "${pkgs.networkmanager}/bin/nmcli connection show --active | ${pkgs.gnugrep}/bin/grep -i proton || echo 'ProtonVPN: Disconnected'";
         };
       };
     };

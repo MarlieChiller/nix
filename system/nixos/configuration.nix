@@ -9,6 +9,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
+    ./tailscale.nix
     ../common # system/common - shared across all systems
   ];
 
@@ -113,28 +114,6 @@ in {
     };
   };
 
-  # Enable Tailscale for remote access
-  services.tailscale = {
-    enable = true;
-    # Optional: Generate an auth key at https://login.tailscale.com/admin/settings/keys
-    # and use it here to auto-authenticate on first boot
-    # authKeyFile = "/path/to/auth-key-file";
-  };
-
-  # Ensure Tailscale starts on boot
-  systemd.services.tailscaled.wantedBy = ["multi-user.target"];
-
-  # Network routing configuration for Tailscale + ProtonVPN coexistence
-  # Ensure Tailscale traffic bypasses ProtonVPN
-  networking.firewall = {
-    # Allow Tailscale through the firewall
-    trustedInterfaces = ["tailscale0"];
-    # Allow Tailscale UDP port
-    allowedUDPPorts = [41641];
-    # If you need to allow specific TCP ports for services, add them here
-    # allowedTCPPorts = [ ... ];
-  };
-
   # Define a user account
   users.users.${userConfig.username} = {
     isNormalUser = true;
@@ -159,7 +138,6 @@ in {
     wget
     curl
     htop
-    tailscale
     protonvpn-gui
     _1password-cli
   ];
