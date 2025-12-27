@@ -29,8 +29,6 @@ in {
     casks = [
       "discord"
       "protonvpn"
-      "pycharm-ce"
-      "qbittorrent"
       "rawtherapee"
       "signal"
       "steam"

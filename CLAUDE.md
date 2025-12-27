@@ -11,6 +11,10 @@ Multi-platform configuration for macOS (Darwin) and Linux (NixOS) environments.
 - **Font**: JetBrains Mono Nerd Font
 - **Shell**: Fish + Zellij
 
+## Important: Claude Instructions
+
+**NEVER run `darwin-rebuild` or `nixos-rebuild` commands.** The user will manually run these commands themselves after you make configuration changes.
+
 ## Build Commands
 
 ```bash
