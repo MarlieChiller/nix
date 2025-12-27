@@ -175,6 +175,20 @@ in {
   # Enable GameMode for better gaming performance
   programs.gamemode.enable = true;
 
+  # Jellyfin media server
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  # qBittorrent web UI (headless)
+  services.qbittorrent = {
+    enable = true;
+    openFirewall = false; # We only want VPN traffic, not direct access
+    user = userConfig.username;
+    group = "users";
+  };
+
   # This is the initial NixOS release version from first install. Do not change.
   # See: https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "24.11";
