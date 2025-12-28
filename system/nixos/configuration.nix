@@ -53,6 +53,8 @@ in {
         terminal = 14;
       };
     };
+    # Disable Qt styling to avoid warning (GNOME handles it)
+    targets.qt.enable = false;
   };
 
   # Enable Intel graphics drivers for hardware transcoding
@@ -73,10 +75,10 @@ in {
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  # Enable Sway (Wayland tiling window manager)
-  programs.sway = {
+  # Enable Hyprland (Wayland tiling window manager)
+  programs.hyprland = {
     enable = true;
-    wrapperFeatures.gtk = true;
+    xwayland.enable = true;
   };
 
   # Configure keymap in X11

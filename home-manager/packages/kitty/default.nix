@@ -16,6 +16,10 @@
       window_padding_width = 10;
       background_blur = 0;
 
+      # Center cursor in bottom portion of window
+      # This adds significant top padding to push content down
+      window_margin_height = "60% 0";
+
       # Performance settings
       sync_to_monitor = true;
       input_delay = 3;
