@@ -201,8 +201,9 @@
         "$modMove, semicolon, exec, hyprctl reload"
 
         # Screenshot utilities
-        ", Print, exec, grim -g \"$(slurp)\" - | wl-copy"
-        "SHIFT, Print, exec, grim - | wl-copy"
+        ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -" # Area screenshot with annotation
+        "SHIFT, Print, exec, grim - | swappy -f -" # Full screen screenshot with annotation
+        "CTRL, Print, exec, grim -g \"$(slurp)\" - | wl-copy" # Quick area screenshot to clipboard
       ];
 
       # Resize bindings (matching Aerospace -/=)
@@ -270,14 +271,13 @@
         "immediate, class:^(steam_app_.*)$"
       ];
 
-      # Startup applications
       exec-once = [
         "waybar"
         "ulauncher --hide-window"
-        "swaync" # Notification center with system tray
-        "1password --silent" # 1Password daemon
-        "tailscale-systray" # Tailscale system tray icon
-        "protonvpn-app" # ProtonVPN system tray
+        "swaync"
+        "1password --silent"
+        "tailscale-systray"
+        "blueman-applet"
       ];
     };
   };
@@ -289,6 +289,8 @@
     wl-clipboard # Clipboard utilities
     grim # Screenshot tool
     slurp # Screen area selection
+    swappy # Screenshot annotation tool
+    nautilus # GNOME file manager
     swaylock # Screen locker
     swayidle # Idle management
     swaynotificationcenter # Notification center with history and tray icon
@@ -297,6 +299,7 @@
     wlogout # Logout/power menu
     mangohud # Gaming performance overlay
     gamemode # Gaming optimizations
+    pavucontrol # PulseAudio/PipeWire volume control
   ]);
 
   # Waybar configuration (updated for Hyprland)
@@ -311,7 +314,7 @@
 
         modules-left = ["hyprland/workspaces" "hyprland/submap"];
         modules-center = ["hyprland/window"];
-        modules-right = ["network" "cpu" "memory" "clock" "tray" "custom/power"];
+        modules-right = ["pulseaudio" "bluetooth" "network" "cpu" "memory" "clock" "tray" "custom/power"];
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -350,6 +353,30 @@
           format = "MEM {percentage}%";
           tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
           interval = 2;
+        };
+
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-muted = " Muted";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            default = ["" "" ""];
+          };
+          on-click = "pavucontrol";
+          tooltip-format = "{desc}\nVolume: {volume}%";
+        };
+
+        bluetooth = {
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          on-click = "blueman-manager";
         };
 
         network = {
@@ -425,6 +452,8 @@
       #clock,
       #cpu,
       #memory,
+      #pulseaudio,
+      #bluetooth,
       #network,
       #tray,
       #custom-power {

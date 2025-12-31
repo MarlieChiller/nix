@@ -55,6 +55,10 @@
         name = "z";
         src = pkgs.fishPlugins.z.src;
       }
+      {
+        name = "foreign-env";
+        src = pkgs.fishPlugins.foreign-env.src;
+      }
     ];
 
     shellAbbrs = {

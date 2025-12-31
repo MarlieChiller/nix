@@ -20,9 +20,13 @@ in {
     device = "/dev/sda"; # Install GRUB to MBR
   };
 
-  # Networking
   networking.hostName = "home-nixos";
   networking.networkmanager.enable = true;
+
+  services.nextdns = {
+    enable = true;
+    arguments = ["-config" "661869"];
+  };
 
   # Time zone and locale
   time.timeZone = "Europe/London";
@@ -109,7 +113,6 @@ in {
     };
   };
 
-  # Enable sound with pipewire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -118,6 +121,13 @@ in {
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  services.blueman.enable = true;
 
   # Enable SSH
   services.openssh = {
@@ -139,14 +149,11 @@ in {
     ];
   };
 
-  # Enable 1Password desktop and SSH agent
-  programs._1password.enable = true;
-  programs._1password-gui = {
+  programs.fish = {
     enable = true;
-    polkitPolicyOwners = [userConfig.username];
+    useBabelfish = true;
   };
 
-  # NixOS-specific system packages
   environment.systemPackages = with pkgs; [
     git
     wget
@@ -155,11 +162,22 @@ in {
     protonvpn-gui
     _1password-cli
     tailscale-systray
+    lutris
   ];
+
+  # Enable 1Password desktop and SSH agent
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [userConfig.username];
+  };
 
   # NixOS-specific nix configuration
   nix.settings = {
     auto-optimise-store = true;
+    # Download performance tuning (optimized for ~1 Gbps connection)
+    http-connections = 128; # Max parallel downloads for fast connection
+    connect-timeout = 20; # Quick timeout for fast/reliable connection
   };
 
   nix.gc = {
