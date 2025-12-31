@@ -274,8 +274,10 @@
       exec-once = [
         "waybar"
         "ulauncher --hide-window"
-        "mako" # Notification daemon
+        "swaync" # Notification center with system tray
         "1password --silent" # 1Password daemon
+        "tailscale-systray" # Tailscale system tray icon
+        "protonvpn-app" # ProtonVPN system tray
       ];
     };
   };
@@ -289,7 +291,7 @@
     slurp # Screen area selection
     swaylock # Screen locker
     swayidle # Idle management
-    mako # Notification daemon
+    swaynotificationcenter # Notification center with history and tray icon
     hyprpicker # Color picker
     hyprpaper # Wallpaper daemon (alternative to swaybg)
     wlogout # Logout/power menu
@@ -309,7 +311,7 @@
 
         modules-left = ["hyprland/workspaces" "hyprland/submap"];
         modules-center = ["hyprland/window"];
-        modules-right = ["custom/1password" "custom/protonvpn" "custom/tailscale" "network" "cpu" "memory" "clock" "tray" "custom/power"];
+        modules-right = ["network" "cpu" "memory" "clock" "tray" "custom/power"];
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -363,37 +365,6 @@
         tray = {
           icon-size = 18;
           spacing = 8;
-        };
-
-        "custom/1password" = {
-          format = "1P";
-          on-click = "1password --toggle";
-          tooltip = true;
-          tooltip-format = "1Password";
-        };
-
-        "custom/tailscale" = {
-          exec = "tailscale status --json | ${pkgs.jq}/bin/jq -r 'if .BackendState == \"Running\" then \"TS \" + .Self.TailscaleIPs[0] else \"TS Off\" end'";
-          interval = 10;
-          format = "{}";
-          tooltip = true;
-          exec-tooltip = "tailscale status | head -5";
-          on-click = "kitty -e tailscale status";
-        };
-
-        "custom/protonvpn" = {
-          exec = ''
-            if ${pkgs.procps}/bin/pgrep -x "protonvpn" > /dev/null || ${pkgs.networkmanager}/bin/nmcli connection show --active | ${pkgs.gnugrep}/bin/grep -i proton > /dev/null; then
-              echo "VPN On"
-            else
-              echo "VPN Off"
-            fi
-          '';
-          interval = 5;
-          format = "{}";
-          on-click = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
-          tooltip = true;
-          exec-tooltip = "${pkgs.networkmanager}/bin/nmcli connection show --active | ${pkgs.gnugrep}/bin/grep -i proton || echo 'ProtonVPN: Disconnected'";
         };
 
         "custom/power" = {
@@ -456,9 +427,6 @@
       #memory,
       #network,
       #tray,
-      #custom-1password,
-      #custom-protonvpn,
-      #custom-tailscale,
       #custom-power {
         margin: 4px 4px;
         padding: 4px 12px;
@@ -477,32 +445,39 @@
     '';
   };
 
-  # Mako notification daemon configuration
-  services.mako = lib.mkIf pkgs.stdenv.isLinux {
+  # SwayNC notification center configuration
+  services.swaync = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
-
     settings = {
-      default-timeout = 5000; # Auto-dismiss after 5 seconds
-      ignore-timeout = false;
+      positionX = "right";
+      positionY = "top";
+      timeout = 5;
+      timeout-low = 3;
+      timeout-critical = 0;
+      notification-window-width = 400;
+      keyboard-shortcuts = true;
+      image-visibility = "when-available";
+      transition-time = 200;
+      hide-on-clear = false;
+      hide-on-action = true;
+      script-fail-notify = true;
 
-      # Visual settings
-      width = 350;
-      height = 150;
-      margin = "10";
-      padding = "15";
-      border-size = 2;
-      border-radius = 8;
+      widgets = [
+        "title"
+        "dnd"
+        "notifications"
+      ];
 
-      # Font managed by Stylix
-
-      # Position notifications in top-right
-      anchor = "top-right";
-
-      # Max number of visible notifications
-      max-visible = 5;
-
-      # Sort by time (newest first)
-      sort = "-time";
+      widget-config = {
+        title = {
+          text = "Notifications";
+          clear-all-button = true;
+          button-text = "Clear All";
+        };
+        dnd = {
+          text = "Do Not Disturb";
+        };
+      };
     };
   };
 }

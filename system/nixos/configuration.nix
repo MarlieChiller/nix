@@ -154,6 +154,7 @@ in {
     htop
     protonvpn-gui
     _1password-cli
+    tailscale-systray
   ];
 
   # NixOS-specific nix configuration
