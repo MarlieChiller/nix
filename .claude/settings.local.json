@@ -14,7 +14,8 @@
       "Bash(dmesg:*)",
       "Bash(amixer:*)",
       "Bash(wpctl status:*)",
-      "Bash(speaker-test:*)"
+      "Bash(speaker-test:*)",
+      "Bash(journalctl:*)"
     ],
     "deny": []
   }

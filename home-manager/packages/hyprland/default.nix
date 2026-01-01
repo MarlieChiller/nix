@@ -103,9 +103,6 @@
         # Terminal
         "$mod, Return, exec, kitty"
 
-        # Close window (matching Cmd+W on macOS)
-        "SUPER, W, killactive,"
-
         # Focus windows (hjkl like Aerospace)
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"
