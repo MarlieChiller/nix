@@ -163,6 +163,8 @@ in {
     _1password-cli
     tailscale-systray
     lutris
+    alsa-utils
+    pulseaudio
   ];
 
   # Enable 1Password desktop and SSH agent
@@ -208,10 +210,15 @@ in {
   # Enable GameMode for better gaming performance
   programs.gamemode.enable = true;
 
-  # qBittorrent web UI (headless)
+  systemd.tmpfiles.rules = [
+    "d /srv/media 0755 ${userConfig.username} users -"
+    "d /srv/media/Movies 0755 ${userConfig.username} users -"
+    "d /srv/media/TV 0755 ${userConfig.username} users -"
+  ];
+
   services.qbittorrent = {
     enable = true;
-    openFirewall = false; # We only want VPN traffic, not direct access
+    openFirewall = false;
     user = userConfig.username;
     group = "users";
   };

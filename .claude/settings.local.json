@@ -10,7 +10,11 @@
       "WebSearch",
       "WebFetch(domain:gist.github.com)",
       "WebFetch(domain:github.com)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(dmesg:*)",
+      "Bash(amixer:*)",
+      "Bash(wpctl status:*)",
+      "Bash(speaker-test:*)"
     ],
     "deny": []
   }

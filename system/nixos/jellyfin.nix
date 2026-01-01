@@ -13,13 +13,14 @@ in {
     openFirewall = true;
     user = userConfig.username;
     group = "users";
-    dataDir = "/home/${userConfig.username}/.jellyfin";
-    cacheDir = "/home/${userConfig.username}/.cache/jellyfin";
+    dataDir = "/var/lib/jellyfin";
+    cacheDir = "/var/cache/jellyfin";
   };
 
-  # Give Jellyfin access to GPU for hardware transcoding
+  # Give Jellyfin access to GPU for hardware transcoding and media directories
   systemd.services.jellyfin.serviceConfig = {
     SupplementaryGroups = ["render" "video"];
     DeviceAllow = ["/dev/dri/renderD128"];
+    ReadWritePaths = ["/srv/media"];
   };
 }
