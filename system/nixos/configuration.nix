@@ -84,6 +84,10 @@ in {
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  # Disable GNOME components that conflict with Blueman Bluetooth management
+  # This prevents gsd-rfkill from interfering with Bluetooth audio profile switching
+  systemd.user.services."org.gnome.SettingsDaemon.Rfkill".enable = false;
+
   # Enable Hyprland (Wayland tiling window manager)
   programs.hyprland = {
     enable = true;
@@ -125,13 +129,38 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+
+    # Bluetooth/WirePlumber configuration for proper headset profile switching
+    wireplumber = {
+      enable = true;
+      configPackages = [
+        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-bluetooth-profile-switching.conf" ''
+          # Improve Bluetooth headset profile switching (A2DP <-> HSP/HFP)
+          monitor.bluez.properties = {
+            bluez5.enable-sbc-xq = true
+            bluez5.enable-msbc = true
+            bluez5.enable-hw-volume = true
+            bluez5.headset-roles = [ "hsp_hs" "hfp_hf" ]
+            bluez5.hfphsp-backend = "native"
+          }
+        '')
+      ];
+    };
   };
 
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    # Improve Bluetooth audio profile switching
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
+    };
   };
 
+  # Use Blueman for Bluetooth management (works consistently in both GNOME and Hyprland)
   services.blueman.enable = true;
 
   # Enable SSH
@@ -164,6 +193,7 @@ in {
     wget
     curl
     htop
+    nvtopPackages.amd
     protonvpn-gui
     _1password-cli
     tailscale-systray
