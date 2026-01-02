@@ -244,7 +244,28 @@ in {
   };
 
   # Enable GameMode for better gaming performance
-  programs.gamemode.enable = true;
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        # Use performance CPU governor when gaming
+        renice = 10;
+      };
+      custom = {
+        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        end = "${pkgs.libnotify}/bin/notify-send 'GameMode stopped'";
+      };
+    };
+  };
+
+  # CPU performance optimizations for gaming
+  powerManagement.cpuFreqGovernor = "performance";
+
+  # Improve scheduler for gaming (reduce latency)
+  boot.kernel.sysctl = {
+    "kernel.sched_autogroup_enabled" = 0; # Disable autogroup for better game performance
+    "vm.swappiness" = 10; # Reduce swapping (you have plenty of RAM)
+  };
 
   # Mount 1TB HDD at /mnt/storage
   fileSystems."/mnt/storage" = {
