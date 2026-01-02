@@ -21,6 +21,6 @@ in {
   systemd.services.jellyfin.serviceConfig = {
     SupplementaryGroups = ["render" "video"];
     DeviceAllow = ["/dev/dri/renderD128"];
-    ReadWritePaths = ["/srv/media"];
+    ReadWritePaths = ["/mnt/storage/media" "/srv/media"]; # New HDD storage + legacy path
   };
 }

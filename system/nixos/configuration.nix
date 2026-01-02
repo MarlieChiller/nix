@@ -215,7 +215,22 @@ in {
   # Enable GameMode for better gaming performance
   programs.gamemode.enable = true;
 
+  # Mount 1TB HDD at /mnt/storage
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/c8f55f79-207e-4b8b-9a28-58806ea455cf";
+    fsType = "ext4";
+    options = ["defaults" "nofail"]; # nofail allows boot even if drive is disconnected
+  };
+
   systemd.tmpfiles.rules = [
+    # Create storage subdirectories on 1TB HDD
+    "d /mnt/storage 0755 ${userConfig.username} users -"
+    "d /mnt/storage/media 0755 ${userConfig.username} users -"
+    "d /mnt/storage/media/Movies 0755 ${userConfig.username} users -"
+    "d /mnt/storage/media/TV 0755 ${userConfig.username} users -"
+    "d /mnt/storage/games 0755 ${userConfig.username} users -"
+    "d /mnt/storage/torrents 0755 ${userConfig.username} users -"
+    # Legacy /srv/media for compatibility (can remove later if not needed)
     "d /srv/media 0755 ${userConfig.username} users -"
     "d /srv/media/Movies 0755 ${userConfig.username} users -"
     "d /srv/media/TV 0755 ${userConfig.username} users -"

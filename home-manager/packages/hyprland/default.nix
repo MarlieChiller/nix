@@ -100,6 +100,9 @@
         # Application launcher (Super+Space like Alfred on macOS)
         "SUPER, Space, exec, ulauncher-toggle"
 
+        # Kill active window
+        "SUPER, Q, killactive,"
+
         # Terminal
         "$mod, Return, exec, kitty"
 
