@@ -55,7 +55,12 @@
 
       # gui
       firefox
-
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      # linux-only gui packages
+      discord
+    ]
+    ++ [
       # nix
       alejandra
       cachix
