@@ -61,16 +61,21 @@ in {
     targets.qt.enable = false;
   };
 
-  # Enable Intel graphics drivers for hardware transcoding
+  # Enable AMD graphics drivers for hardware acceleration
   hardware.graphics = {
     enable = true;
+    enable32Bit = true; # For 32-bit applications (gaming, Steam, etc.)
     extraPackages = with pkgs; [
-      intel-media-driver # For newer formats (HEVC, etc.)
-      intel-vaapi-driver # For older formats (H.264)
+      # RADV (Mesa Vulkan driver) is enabled by default
+      rocmPackages.clr.icd # OpenCL driver for compute tasks
+      # Video acceleration (VA-API)
       libva-vdpau-driver
       libvdpau-va-gl
     ];
   };
+
+  # Load AMD GPU kernel modules
+  boot.initrd.kernelModules = ["amdgpu"];
 
   # Enable the X11 windowing system
   services.xserver.enable = true;
