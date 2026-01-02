@@ -201,6 +201,7 @@ in {
     enable = true;
     remotePlay.openFirewall = true; # Open ports for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports for Source Dedicated Server
+    gamescopeSession.enable = true; # Better Wayland/gaming session support
     # Fix mouse sensitivity issues in XWayland
     extraCompatPackages = with pkgs; [
       proton-ge-bin
