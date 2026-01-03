@@ -57,8 +57,8 @@ in {
         terminal = 14;
       };
     };
-    # Disable Qt styling to avoid warning (GNOME handles it)
-    targets.qt.enable = false;
+    # Enable Qt styling for KDE Plasma
+    targets.qt.enable = true;
   };
 
   # Enable AMD graphics drivers for hardware acceleration
@@ -80,13 +80,9 @@ in {
   # Enable the X11 windowing system
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-  # Disable GNOME components that conflict with Blueman Bluetooth management
-  # This prevents gsd-rfkill from interfering with Bluetooth audio profile switching
-  systemd.user.services."org.gnome.SettingsDaemon.Rfkill".enable = false;
+  # Enable the KDE Plasma Desktop Environment
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable Hyprland (Wayland tiling window manager)
   programs.hyprland = {
