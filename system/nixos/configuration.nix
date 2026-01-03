@@ -125,29 +125,12 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
-    # Bluetooth/WirePlumber configuration for proper headset profile switching
-    wireplumber = {
-      enable = true;
-      configPackages = [
-        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-bluetooth-profile-switching.conf" ''
-          # Improve Bluetooth headset profile switching (A2DP <-> HSP/HFP)
-          monitor.bluez.properties = {
-            bluez5.enable-sbc-xq = true
-            bluez5.enable-msbc = true
-            bluez5.enable-hw-volume = true
-            bluez5.headset-roles = [ "hsp_hs" "hfp_hf" ]
-            bluez5.hfphsp-backend = "native"
-          }
-        '')
-      ];
-    };
+    wireplumber.enable = true;
   };
 
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    # Improve Bluetooth audio profile switching
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
@@ -156,7 +139,7 @@ in {
     };
   };
 
-  # Use Blueman for Bluetooth management (works consistently in both GNOME and Hyprland)
+  # Use Blueman for Bluetooth management (works consistently in both KDE and Hyprland)
   services.blueman.enable = true;
 
   # Enable SSH
@@ -196,6 +179,9 @@ in {
     lutris
     alsa-utils
     pulseaudio
+    # Audio control tools for troubleshooting Bluetooth
+    pavucontrol # PulseAudio/PipeWire volume control (useful for switching profiles)
+    helvum # PipeWire patchbay (graphical audio routing)
   ];
 
   # Enable 1Password desktop and SSH agent

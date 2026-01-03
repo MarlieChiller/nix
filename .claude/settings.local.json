@@ -15,7 +15,8 @@
       "Bash(amixer:*)",
       "Bash(wpctl status:*)",
       "Bash(speaker-test:*)",
-      "Bash(journalctl:*)"
+      "Bash(journalctl:*)",
+      "Bash(pactl list:*)"
     ],
     "deny": []
   }
