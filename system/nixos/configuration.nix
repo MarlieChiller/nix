@@ -127,21 +127,22 @@ in {
     pulse.enable = true;
     wireplumber = {
       enable = true;
-      extraLuaConfig.main."51-device-defaults" = ''
-        -- Always keep built-in audio card active with analog stereo duplex
-        -- This ensures headphones are available when plugged in
-        rule = {
-          matches = {
-            {
-              { "device.name", "equals", "alsa_card.pci-0000_00_1b.0" },
-            },
-          },
-          apply_properties = {
-            ["device.profile"] = "output:analog-stereo+input:analog-stereo",
-          },
-        }
-        table.insert(alsa_monitor.rules, rule)
-      '';
+      extraConfig."51-device-defaults" = {
+        "monitor.alsa.rules" = [
+          {
+            matches = [
+              {
+                "device.name" = "alsa_card.pci-0000_00_1b.0";
+              }
+            ];
+            actions = {
+              update-props = {
+                "device.profile" = "output:analog-stereo+input:analog-stereo";
+              };
+            };
+          }
+        ];
+      };
     };
   };
 
@@ -259,6 +260,15 @@ in {
 
   # CPU performance optimizations for gaming
   powerManagement.cpuFreqGovernor = "performance";
+
+  # Enable USB devices to wake from suspend
+  powerManagement.enable = true;
+  services.upower.enable = true;
+
+  # Disable USB autosuspend to allow keyboard/mouse wake
+  boot.extraModprobeConfig = ''
+    options usbcore autosuspend=-1
+  '';
 
   # Improve scheduler for gaming (reduce latency)
   boot.kernel.sysctl = {
