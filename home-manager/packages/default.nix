@@ -59,6 +59,7 @@
     ++ lib.optionals pkgs.stdenv.isLinux [
       # linux-only gui packages
       discord
+      wowup-cf
     ]
     ++ [
       # nix
