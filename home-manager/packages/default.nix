@@ -55,6 +55,7 @@
 
       # gui
       firefox
+      spotify
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # linux-only gui packages
