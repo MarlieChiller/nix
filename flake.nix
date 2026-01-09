@@ -65,6 +65,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.${users.nixos.username} = {
               imports = [
                 ./home-manager/packages

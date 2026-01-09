@@ -379,22 +379,23 @@
       };
 
       # Better treesitter text objects
-      treesitter-textobjects = {
-        enable = true;
-        settings = {
-          select = {
-            enable = true;
-            keymaps = {
-              "af" = "@function.outer";
-              "if" = "@function.inner";
-              "ac" = "@class.outer";
-              "ic" = "@class.inner";
-              "aa" = "@parameter.outer";
-              "ia" = "@parameter.inner";
-            };
-          };
-        };
-      };
+      # Temporarily disabled due to nixpkgs packaging issue
+      # treesitter-textobjects = {
+      #   enable = true;
+      #   settings = {
+      #     select = {
+      #       enable = true;
+      #       keymaps = {
+      #         "af" = "@function.outer";
+      #         "if" = "@function.inner";
+      #         "ac" = "@class.outer";
+      #         "ic" = "@class.inner";
+      #         "aa" = "@parameter.outer";
+      #         "ia" = "@parameter.inner";
+      #       };
+      #     };
+      #   };
+      # };
 
       # Commenting functionality
       comment = {

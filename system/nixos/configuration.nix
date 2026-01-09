@@ -47,7 +47,8 @@ in {
   stylix = {
     enable = true;
     image = ../../home-manager/assets/wallpapers/leaves.jpg;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
