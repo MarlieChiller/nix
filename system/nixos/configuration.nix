@@ -271,6 +271,42 @@ in {
     options usbcore autosuspend=-1
   '';
 
+  # Enable wake from keyboard, mouse, and power button
+  # This systemd service runs on boot to enable ACPI wake sources
+  systemd.services.enable-wake-devices = {
+    description = "Enable keyboard/mouse wake from suspend";
+    wantedBy = ["multi-user.target"];
+    after = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      # Enable PS/2 keyboard and mouse wake
+      for device in PS2K PS2M PWRB; do
+        if grep -q "$device.*disabled" /proc/acpi/wakeup 2>/dev/null; then
+          echo "Enabling wake for $device"
+          echo "$device" > /proc/acpi/wakeup
+        fi
+      done
+
+      # Enable USB device wake (for USB keyboards/mice)
+      for device in EHC1 EHC2 XHC; do
+        if grep -q "$device.*disabled" /proc/acpi/wakeup 2>/dev/null; then
+          echo "Enabling wake for $device"
+          echo "$device" > /proc/acpi/wakeup
+        fi
+      done
+
+      # Enable wake for all USB input devices
+      for usb_device in /sys/bus/usb/devices/*/power/wakeup; do
+        if [ -f "$usb_device" ]; then
+          echo enabled > "$usb_device" 2>/dev/null || true
+        fi
+      done
+    '';
+  };
+
   # Improve scheduler for gaming (reduce latency)
   boot.kernel.sysctl = {
     "kernel.sched_autogroup_enabled" = 0; # Disable autogroup for better game performance

@@ -60,6 +60,8 @@
     ++ lib.optionals pkgs.stdenv.isLinux [
       # linux-only gui packages
       discord
+      signal-desktop
+      wasistlos # WhatsApp client for Linux
       wowup-cf
     ]
     ++ [

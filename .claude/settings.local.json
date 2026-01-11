@@ -16,7 +16,9 @@
       "Bash(wpctl status:*)",
       "Bash(speaker-test:*)",
       "Bash(journalctl:*)",
-      "Bash(pactl list:*)"
+      "Bash(pactl list:*)",
+      "Bash(for device in /sys/bus/usb/devices/*/power/wakeup)",
+      "Bash(done)"
     ],
     "deny": []
   }
