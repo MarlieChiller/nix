@@ -55,6 +55,7 @@
 
       # gui
       firefox
+      obsidian
       spotify
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
