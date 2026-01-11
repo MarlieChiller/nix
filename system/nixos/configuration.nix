@@ -107,7 +107,32 @@ in {
             capslock = "layer(meh)";
           };
           # Meh layer: Ctrl+Alt+Shift (matching Aerospace)
-          "meh:C-A-S" = {};
+          # Define key mappings so keys pass through with modifiers
+          "meh:C-A-S" = {
+            # Numbers for workspace switching (1-5 only)
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+
+            # Letters for navigation and other shortcuts
+            h = "h";
+            j = "j";
+            k = "k";
+            l = "l";
+            f = "f";
+            q = "q";
+
+            # Special keys
+            tab = "tab";
+            minus = "minus";
+            equal = "equal";
+            slash = "slash";
+            comma = "comma";
+            semicolon = "semicolon";
+            esc = "esc";
+          };
         };
       };
     };
