@@ -85,12 +85,6 @@ in {
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # Enable Hyprland (Wayland tiling window manager)
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "gb";
@@ -158,7 +152,7 @@ in {
     };
   };
 
-  # Use Blueman for Bluetooth management (works consistently in both KDE and Hyprland)
+  # Use Blueman for Bluetooth management
   services.blueman.enable = true;
 
   # Enable SSH

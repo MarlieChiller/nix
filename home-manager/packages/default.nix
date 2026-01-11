@@ -19,7 +19,6 @@
     ./plasma
     ./starship
     ./ssh
-    ./hyprland
     ./wezterm
     ./yazi
   ];
