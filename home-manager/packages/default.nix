@@ -16,6 +16,7 @@
     ./kitty
     ./helix
     ./nixvim
+    ./plasma
     ./starship
     ./ssh
     ./hyprland

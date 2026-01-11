@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
@@ -70,6 +75,7 @@
               imports = [
                 ./home-manager/packages
                 ./home-manager/hosts/home/nixos
+                inputs.plasma-manager.homeModules.plasma-manager
               ];
             };
             home-manager.extraSpecialArgs = {
