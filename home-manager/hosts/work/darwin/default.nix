@@ -19,6 +19,7 @@
     # MacOS specific home manager packages
     awscli2
     dbeaver-bin
+    gemini-cli
     k9s
     kubectl
     kubernetes-helm
