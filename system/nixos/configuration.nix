@@ -177,9 +177,6 @@ in {
     };
   };
 
-  # Use Blueman for Bluetooth management
-  services.blueman.enable = true;
-
   # Enable SSH
   services.openssh = {
     enable = true;
