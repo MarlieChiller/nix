@@ -10,13 +10,13 @@
     ./aerospace
     ./atuin
     ./bat
+    ./claude
     ./fish
     ./git
     ./jujutsu
     ./kitty
     ./helix
     ./nixvim
-    ./plasma
     ./starship
     ./ssh
     ./wezterm

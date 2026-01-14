@@ -203,7 +203,7 @@
       # Startup applications
       startup = [
         {command = "waybar";}
-        {command = "ulauncher --hide-window";}  # Start ulauncher daemon in background
+        {command = "ulauncher --hide-window";} # Start ulauncher daemon in background
       ];
     };
 

@@ -1,25 +1,27 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:docs.anthropic.com)",
       "Bash(nix search:*)",
-      "Bash(ls:*)",
-      "Bash(find:*)",
-      "WebFetch(domain:api.github.com)",
-      "Bash(mkdir:*)",
+      "Bash(nix flake:*)",
+      "Bash(nix build:*)",
+      "Bash(nix eval:*)",
+      "Bash(alejandra:*)",
+      "Bash(tree:*)",
       "WebSearch",
-      "WebFetch(domain:gist.github.com)",
-      "WebFetch(domain:github.com)",
+      "WebFetch(domain:wiki.nixos.org)",
+      "WebFetch(domain:search.nixos.org)",
+      "WebFetch(domain:nix.dev)",
       "Bash(echo:*)",
       "Bash(dmesg:*)",
       "Bash(amixer:*)",
       "Bash(wpctl status:*)",
       "Bash(speaker-test:*)",
       "Bash(journalctl:*)",
-      "Bash(pactl list:*)",
-      "Bash(for device in /sys/bus/usb/devices/*/power/wakeup)",
-      "Bash(done)"
+      "Bash(pactl list:*)"
     ],
-    "deny": []
+    "deny": [
+      "Bash(darwin-rebuild:*)",
+      "Bash(nixos-rebuild:*)"
+    ]
   }
 }

@@ -74,6 +74,7 @@
             home-manager.users.${users.nixos.username} = {
               imports = [
                 ./home-manager/packages
+                ./home-manager/packages/plasma
                 ./home-manager/hosts/home/nixos
                 inputs.plasma-manager.homeModules.plasma-manager
               ];
@@ -101,6 +102,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.${users.home.username} = {
               imports = [
                 ./home-manager/packages
@@ -127,6 +129,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.${users.work.username} = {
               imports = [
                 ./home-manager/packages

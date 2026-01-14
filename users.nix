@@ -2,7 +2,6 @@
 # Modify this file locally with your actual values
 # Use: git update-index --skip-worktree users.nix
 # to prevent committing your personal changes
-
 {
   gitName = "MarlieChiller";
 
