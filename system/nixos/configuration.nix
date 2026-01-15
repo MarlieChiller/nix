@@ -109,13 +109,6 @@ in {
           # Meh layer: Ctrl+Alt+Shift (matching Aerospace)
           # Define key mappings so keys pass through with modifiers
           "meh:C-A-S" = {
-            # Numbers for workspace switching (1-5 only)
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-
             # Letters for navigation and other shortcuts
             h = "h";
             j = "j";
