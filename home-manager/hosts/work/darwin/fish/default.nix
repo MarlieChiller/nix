@@ -49,17 +49,21 @@
         echo "🔑 CodeArtifact token copied to clipboard."
       '';
       knines = ''
+        set -l fish_trace 1
         assume staging.developer-nonprod
         aws eks update-kubeconfig --name staging
         k9s
       '';
       unset_aws = ''
+        set -l fish_trace 1
         set -e AWS_ACCESS_KEY_ID
         set -e AWS_SECRET_ACCESS_KEY
         set -e AWS_SESSION_TOKEN
         set -e AWS_PROFILE
         set -e AWS_REGION
         set -e AWS_DEFAULT_REGION
+        set -e AWS_SESSION_EXPIRATION
+        set -e AWS_CREDENTIAL_EXPIRATION
       '';
     };
   };
