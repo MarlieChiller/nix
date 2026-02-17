@@ -10,7 +10,6 @@
     ./aerospace
     ./atuin
     ./bat
-    ./claude
     ./fish
     ./git
     ./jujutsu
@@ -30,7 +29,6 @@
       # cli
       btop
       cargo
-      claude-code
       curl
       erdtree
       eza

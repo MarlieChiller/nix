@@ -29,7 +29,6 @@
       "aerospace"
       "alfred"
       "chatgpt"
-      "claude-code"
       "firefox"
       "fork"
       "font-hack-nerd-font"
