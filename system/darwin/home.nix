@@ -27,7 +27,9 @@ in {
       "postgresql@17"
     ];
     casks = [
+      "darktable"
       "discord"
+      "krita"
       "protonvpn"
       "rawtherapee"
       "signal"
