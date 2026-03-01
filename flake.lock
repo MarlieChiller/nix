@@ -312,11 +312,19 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776705663,
         "narHash": "sha256-VYpehR7lZGL658dmFFHVjEq6F4V2tThcCOP5mzguCW8=",
         "owner": "helix-editor",
         "repo": "helix",
         "rev": "1ffcd3a65d8e0d389b0a0d528bd06d14e63cfbea",
+=======
+        "lastModified": 1771915240,
+        "narHash": "sha256-lu3yU2yw8nb/1F2AUCF3QqBgiBRicxBgpKNM1xa2huU=",
+        "owner": "helix-editor",
+        "repo": "helix",
+        "rev": "c01d024f293240ae9ed4b3fb826f8292105fe3b2",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -332,11 +340,19 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776777932,
         "narHash": "sha256-0R3Yow/NzSeVGUke5tL7CCkqmss4Vmi6BbV6idHzq/8=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "5d5640599a0050b994330328b9fd45709c909720",
+=======
+        "lastModified": 1772218752,
+        "narHash": "sha256-G8nArvOTZXU8DRvrzAdz3Elcj6kA/vMtvY9mrGLATtA=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "f3a30376bb9eb2f6f61816be7d6ed954b6d2a3b9",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -352,11 +368,19 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1775037210,
         "narHash": "sha256-KM2WYj6EA7M/FVZVCl3rqWY+TFV5QzSyyGE2gQxeODU=",
         "owner": "LnL7",
         "repo": "nix-darwin",
         "rev": "06648f4902343228ce2de79f291dd5a58ee12146",
+=======
+        "lastModified": 1771992996,
+        "narHash": "sha256-Y/ijH/unOPxzUicbla6yT/14RJgubUWnY2I2A6Ast2Q=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "3bfa436c1975674ca465ce34586467be301ff509",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -392,11 +416,19 @@
     },
     "nixos-hardware": {
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776830795,
         "narHash": "sha256-PAfvLwuHc1VOvsLcpk6+HDKgMEibvZjCNvbM1BJOA7o=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
         "rev": "72674a6b5599e844c045ae7449ba91f803d44ebc",
+=======
+        "lastModified": 1771969195,
+        "narHash": "sha256-qwcDBtrRvJbrrnv1lf/pREQi8t2hWZxVAyeMo7/E9sw=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "41c6b421bdc301b2624486e11905c9af7b8ec68e",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -423,11 +455,19 @@
     },
     "nixpkgs_2": {
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776329215,
         "narHash": "sha256-a8BYi3mzoJ/AcJP8UldOx8emoPRLeWqALZWu4ZvjPXw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "b86751bc4085f48661017fa226dee99fab6c651b",
+=======
+        "lastModified": 1772173633,
+        "narHash": "sha256-MOH58F4AIbCkh6qlQcwMycyk5SWvsqnS/TCfnqDlpj4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c0f3d81a7ddbc2b1332be0d8481a672b4f6004d6",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -439,11 +479,19 @@
     },
     "nixpkgs_3": {
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776548001,
         "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
+=======
+        "lastModified": 1771848320,
+        "narHash": "sha256-0MAd+0mun3K/Ns8JATeHT1sX28faLII5hVLq0L3BdZU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2fc6539b481e1d2569f25f8799236694180c0993",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -478,11 +526,19 @@
         "systems": "systems_2"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776830812,
         "narHash": "sha256-L2q0bpa6evlzE4IfIQ7JWqhTAuINggUSIxMmOAxUsCg=",
         "owner": "nix-community",
         "repo": "nixvim",
         "rev": "53aad7a9aaadaec21d740117ba0f0531b9a9b3cd",
+=======
+        "lastModified": 1771135771,
+        "narHash": "sha256-wyvBIhDuyCRyjB3yPg77qoyxrlgQtBR1rVW3c9knV3E=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "ed0424f0b08d303a7348f52f7850ad1b2704f9ba",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -522,11 +578,19 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776845162,
         "narHash": "sha256-mhPzo1pylcHTWoqOHRaGaGE3DgkrjDi5E9LTJzEMu88=",
         "owner": "nix-community",
         "repo": "NUR",
         "rev": "01c71cab933d89869cd0a29fd3c32fc693f322f2",
+=======
+        "lastModified": 1772291884,
+        "narHash": "sha256-JHnHs+KiFjkkT3RB7PUdpEz4hlntnNguMSXxOYgEpRQ=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "a541d1ddbbd21194c66f2b23e78dc8a3f0bf7633",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {
@@ -620,11 +684,19 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
+<<<<<<< HEAD
         "lastModified": 1776830588,
         "narHash": "sha256-1X4L6+F7DgYTUDah+PDs7IYJiQrb7MwYfateq2fBxGY=",
         "owner": "rycee",
         "repo": "nur-expressions",
         "rev": "f3db83bc13aee22474fab41fa838e50a691dfbc5",
+=======
+        "lastModified": 1772264066,
+        "narHash": "sha256-8Gv8BWVwp4GG7shbtaI1DqmkSXQ4oWDgjSCx162EqKI=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "fa97bd7dda6cd2552bf67a7481b882a4701434d6",
+>>>>>>> 1a866be (fix atuin)
         "type": "gitlab"
       },
       "original": {
@@ -652,11 +724,19 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1776170745,
         "narHash": "sha256-Tl1aZVP5EIlT+k0+iAKH018GLHJpLz3hhJ0LNQOWxCc=",
         "owner": "danth",
         "repo": "stylix",
         "rev": "e3861617645a43c9bbefde1aa6ac54dd0a44bfa9",
+=======
+        "lastModified": 1771787992,
+        "narHash": "sha256-Vg4bGwwenNYI8p3nJTl9FRyeIyrjATeZrZr+GyUSDrw=",
+        "owner": "danth",
+        "repo": "stylix",
+        "rev": "30054cca073b49b42a71289edec858f535b27fe9",
+>>>>>>> 1a866be (fix atuin)
         "type": "github"
       },
       "original": {

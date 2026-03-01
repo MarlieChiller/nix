@@ -24,11 +24,6 @@
         timeout 2s op completion fish | source 2>/dev/null
       end
 
-      # atuin shell with timeout to prevent hanging
-      if command -q atuin
-        timeout 2s atuin init fish | source 2>/dev/null
-      end
-
       # direnv integration
       if command -q direnv
         direnv hook fish | source

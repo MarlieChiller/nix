@@ -56,11 +56,11 @@
       # gui
       firefox
       obsidian
-      spotify
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # linux-only gui packages
       discord
+      spotify # macOS uses Homebrew cask instead
       signal-desktop
       wasistlos # WhatsApp client for Linux
       wowup-cf
