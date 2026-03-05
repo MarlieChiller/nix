@@ -11,6 +11,7 @@
     ./atuin
     ./bat
     ./fish
+    ./ghostty
     ./git
     ./jujutsu
     ./kitty

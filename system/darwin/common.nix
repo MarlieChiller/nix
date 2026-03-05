@@ -52,6 +52,9 @@
     enable = true;
   };
 
+  # Touch ID for sudo (falls back to password)
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   # Enable zsh (macOS default shell)
   programs.zsh.enable = true;
 
