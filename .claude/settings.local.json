@@ -17,7 +17,11 @@
       "Bash(wpctl status:*)",
       "Bash(speaker-test:*)",
       "Bash(journalctl:*)",
-      "Bash(pactl list:*)"
+      "Bash(pactl list:*)",
+      "WebFetch(domain:yazi-rs.github.io)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(cat:*)"
     ],
     "deny": [
       "Bash(darwin-rebuild:*)",
