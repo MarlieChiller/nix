@@ -4,6 +4,10 @@
     shellIntegration.enableFishIntegration = true;
     # Font is managed by Stylix (JetBrainsMono Nerd Font Mono)
     settings = {
+      # Ensure Nix paths are in the environment before fish starts,
+      # so conf.d plugins (like grc) can find Nix-installed binaries.
+      # Ghostty inherits these from macOS launchd, but Kitty does not.
+      "env" = "PATH=/etc/profiles/per-user/$USER/bin:$HOME/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH";
       shell = "${pkgs.fish}/bin/fish";
       editor = "${pkgs.neovim}/bin/nvim";
       confirm_os_window_close = 0;
