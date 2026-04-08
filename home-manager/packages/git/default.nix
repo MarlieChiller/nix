@@ -34,6 +34,7 @@
       # SSH key managed by 1Password
       signByDefault = true;
       key = userConfig.sshSigningKey;
+      format = "ssh";
     };
   };
 }

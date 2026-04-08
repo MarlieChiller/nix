@@ -41,7 +41,7 @@
       "sf-symbols"
       "spotify"
       "stats"
-      "tailscale"
+      "tailscale-app"
     ];
     onActivation = {
       autoUpdate = true;
