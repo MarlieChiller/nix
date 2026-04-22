@@ -20,6 +20,10 @@
       window_padding_width = 10;
       background_blur = 0;
 
+      # Remote control (used by the random-theme keybinding below)
+      allow_remote_control = "yes";
+      listen_on = "unix:/tmp/mykitty";
+
       # Performance settings
       sync_to_monitor = true;
       input_delay = 3;
@@ -75,6 +79,7 @@
       "ctrl+alt+2" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine-Dawn.conf";
       "ctrl+alt+3" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_dark.conf";
       "ctrl+alt+4" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_light.conf";
+      "ctrl+alt+0" = ''launch --type=background ${pkgs.fish}/bin/fish -c 'set t (find ${pkgs.kitty-themes}/share/kitty-themes/themes -name "*.conf" | shuf -n 1); kitty @ set-colors $t; kitty @ send-notification "Kitty theme" (basename $t .conf)' '';
     };
   };
 }
