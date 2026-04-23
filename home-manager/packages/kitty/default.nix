@@ -1,13 +1,53 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  # Python kitten: runs inside kitty's own process, applies a random theme
+  # via the documented remote-control API. Avoids the listen_on socket and
+  # any PATH/env issues from GUI launchers.
+  randomThemeKitten = pkgs.writeText "random-theme.py" ''
+    import os
+    import random
+    import traceback
+    from kitty.boss import Boss
+    from kittens.tui.handler import result_handler
+
+    THEMES_DIR = "${pkgs.kitty-themes}/share/kitty-themes/themes"
+    LOG = "/tmp/kitty-random-theme.log"
+
+    def _log(msg):
+        try:
+            with open(LOG, "a") as f:
+                f.write(msg + "\n")
+        except Exception:
+            pass
+
+    def main(args):
+        return None
+
+    @result_handler(no_ui=True)
+    def handle_result(args, answer, target_window_id, boss):
+        try:
+            themes = [f for f in os.listdir(THEMES_DIR) if f.endswith(".conf")]
+            if not themes:
+                _log("no themes found in " + THEMES_DIR)
+                return
+            theme = random.choice(themes)
+            path = os.path.join(THEMES_DIR, theme)
+            w = boss.window_id_map.get(target_window_id)
+            _log(f"applying {theme} to window={w!r}")
+            boss.call_remote_control(w, ("set-colors", path))
+        except Exception:
+            _log("handle_result exception:\n" + traceback.format_exc())
+  '';
+in {
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
     # Font is managed by Stylix (JetBrainsMono Nerd Font Mono)
     settings = {
-      # Ensure Nix paths are in the environment before fish starts,
-      # so conf.d plugins (like grc) can find Nix-installed binaries.
-      # Ghostty inherits these from macOS launchd, but Kitty does not.
-      "env" = "PATH=/etc/profiles/per-user/$USER/bin:$HOME/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH";
+      # env PATH/USER are set via extraConfig below (multiple `env` directives).
       shell = "${pkgs.fish}/bin/fish";
       editor = "${pkgs.neovim}/bin/nvim";
       confirm_os_window_close = 0;
@@ -19,10 +59,6 @@
       mouse_hide_wait = "-1.0";
       window_padding_width = 10;
       background_blur = 0;
-
-      # Remote control (used by the random-theme keybinding below)
-      allow_remote_control = "yes";
-      listen_on = "unix:/tmp/mykitty";
 
       # Performance settings
       sync_to_monitor = true;
@@ -79,7 +115,16 @@
       "ctrl+alt+2" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine-Dawn.conf";
       "ctrl+alt+3" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_dark.conf";
       "ctrl+alt+4" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_light.conf";
-      "ctrl+alt+0" = ''launch --type=background ${pkgs.fish}/bin/fish -c 'set t (find ${pkgs.kitty-themes}/share/kitty-themes/themes -name "*.conf" | shuf -n 1); kitty @ set-colors $t; kitty @ send-notification "Kitty theme" (basename $t .conf)' '';
+      "ctrl+alt+0" = "kitten ${randomThemeKitten}";
     };
+
+    # Zego's MDM sets $USER to the email address after macOS updates; that
+    # breaks nix-darwin's set-environment script which expands
+    # /etc/profiles/per-user/$USER/bin. Pin USER + PATH at kitty-launch time
+    # so downstream shell init (fish foreign-env) sees the correct values.
+    extraConfig = ''
+      env USER=${config.home.username}
+      env PATH=/etc/profiles/per-user/${config.home.username}/bin:${config.home.homeDirectory}/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    '';
   };
 }
