@@ -51,6 +51,7 @@
       tre-command
       uv
       yazi
+      zellij
 
       # gui
       firefox
