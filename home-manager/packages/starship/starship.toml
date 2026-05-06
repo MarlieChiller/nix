@@ -1,3 +1,5 @@
+right_format = '$time'
+
 [aws]
 format = '\[[$symbol$profile]($style)\]'
 symbol = '󰸏 '
@@ -181,7 +183,10 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol$workspace]($style)\]'
 
 [time]
+disabled = false
 format = '\[[$time]($style)\]'
+time_format = '%H:%M:%S'
+utc_time_offset = '0'
 
 [username]
 format = '\[[$user]($style)\]'
