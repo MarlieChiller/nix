@@ -8,6 +8,7 @@
 
   programs.nixvim = {
     enable = true;
+    nixpkgs.source = inputs.nixpkgs;
 
     # General Settings
     # copied from https://github.com/spector700/Akari/blob/main/config/settings.nix#L18

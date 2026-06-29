@@ -15,30 +15,30 @@
       else ''
         IdentityAgent ~/.1password/agent.sock
       '';
-    matchBlocks = {
+    settings = {
       "home-desktop" = {
-        hostname = "192.168.1.125"; # Local network IP
-        user = "marliechiller";
-        port = 22;
-        identityFile = "~/.ssh/id_ed25519_nixos";
+        Hostname = "192.168.1.125"; # Local network IP
+        User = "marliechiller";
+        Port = 22;
+        IdentityFile = "~/.ssh/id_ed25519_nixos";
       };
       "home-desktop-remote" = {
         # Tailscale hostname (MagicDNS enabled)
         # Can also use IP directly: 100.103.154.90
-        hostname = "home-nixos";
-        user = "marliechiller";
-        port = 22;
-        identityFile = "~/.ssh/id_ed25519_nixos";
+        Hostname = "home-nixos";
+        User = "marliechiller";
+        Port = 22;
+        IdentityFile = "~/.ssh/id_ed25519_nixos";
       };
       "github.com" = {
-        user = "git";
+        User = "git";
       };
       "*" = {
-        controlMaster = "auto";
-        controlPersist = "30m";
-        extraOptions = {preferredAuthentications = "publickey";};
-        forwardAgent = false;
-        serverAliveInterval = 60;
+        ControlMaster = "auto";
+        ControlPersist = "30m";
+        PreferredAuthentications = "publickey";
+        ForwardAgent = false;
+        ServerAliveInterval = 60;
       };
     };
   };
