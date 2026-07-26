@@ -1,15 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
-  yazi-plugins = pkgs.fetchFromGitHub {
-    owner = "yazi-rs";
-    repo = "plugins";
-    rev = "3d1efb706924112daed986a4eef634e408bad65e";
-    sha256 = "sha256-GgEg1A5sxaH7hR1CUOO9WV21kH8B2YUGAtOapcWLP7Y=";
-  };
-in {
+{pkgs, ...}: {
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
@@ -28,37 +17,67 @@ in {
         max_width = 1000;
         max_height = 1000;
       };
-      plugin.prepend_previewers = [
-        {
-          name = "*.md";
+      plugin.prepend_previewers = let
+        glowPreviewer = url: {
+          inherit url;
           run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-        }
-        {
-          name = "*.markdown";
-          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-        }
-        {
-          name = "*.mdown";
-          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-        }
-        {
-          name = "*.mkd";
-          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-        }
-        {
-          name = "*.mkdn";
-          run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-        }
-      ];
+        };
+      in
+        map glowPreviewer [
+          "*.md"
+          "*.markdown"
+          "*.mdown"
+          "*.mkd"
+          "*.mkdn"
+        ];
     };
 
     plugins = {
-      full-border = "${pkgs.yaziPlugins.full-border}";
-      smart-enter = "${pkgs.yaziPlugins.smart-enter}";
-      starship = "${pkgs.yaziPlugins.starship}";
-      jump-to-char = "${pkgs.yaziPlugins.jump-to-char}";
-      relative-motions = "${pkgs.yaziPlugins.relative-motions}";
-      piper = "${yazi-plugins}/piper.yazi";
+      # `setup = true` emits the require(...):setup() call in init.lua;
+      # without it the plugin is linked into place but never loaded.
+      full-border = {
+        package = pkgs.yaziPlugins.full-border;
+        setup = true;
+      };
+      starship = {
+        package = pkgs.yaziPlugins.starship;
+        setup = true;
+      };
+      relative-motions = {
+        package = pkgs.yaziPlugins.relative-motions;
+        setup = true;
+        settings = {
+          show_numbers = "relative";
+          show_motion = true;
+        };
+      };
+
+      # Driven by keymap.toml below rather than a setup call.
+      smart-enter = pkgs.yaziPlugins.smart-enter;
+      jump-to-char = pkgs.yaziPlugins.jump-to-char;
+
+      # Used by the glow markdown previewer above.
+      piper = pkgs.yaziPlugins.piper;
     };
+
+    keymap.mgr.prepend_keymap =
+      [
+        {
+          on = "l";
+          run = "plugin smart-enter";
+          desc = "Enter the child directory, or open the file";
+        }
+        {
+          on = "f";
+          run = "plugin jump-to-char";
+          desc = "Jump to char";
+        }
+      ]
+      # Digits start a relative motion, e.g. `3k` / `12j`.
+      ++ map (n: {
+        on = toString n;
+        run = "plugin relative-motions ${toString n}";
+        desc = "Move in relative steps";
+      }) [1 2 3 4 5 6 7 8 9];
   };
 }

@@ -1,8 +1,8 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
+  # Atuin's fish integration is sourced after fzf's and already wins Ctrl-R.
+  # Make that explicit so home-manager stops warning about the clash.
+  programs.fzf.historyWidget.fish.command = "";
+
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;

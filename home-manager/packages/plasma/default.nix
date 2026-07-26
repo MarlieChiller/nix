@@ -16,7 +16,6 @@
         };
       };
 
-
       # Keyboard shortcuts (using CapsLock = Meh = Ctrl+Alt+Shift)
       shortcuts = {
         kwin = {

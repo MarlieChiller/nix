@@ -62,7 +62,7 @@
       discord
       spotify # macOS uses Homebrew cask instead
       signal-desktop
-      wasistlos # WhatsApp client for Linux
+      karere # WhatsApp client for Linux (replaces removed wasistlos)
       wowup-cf
     ]
     ++ [

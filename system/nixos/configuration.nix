@@ -201,7 +201,7 @@ in {
     curl
     htop
     nvtopPackages.amd
-    protonvpn-gui
+    proton-vpn
     _1password-cli
     tailscale-systray
     lutris

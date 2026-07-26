@@ -21,7 +21,9 @@
       "WebFetch(domain:yazi-rs.github.io)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(brew list *)",
+      "Bash(brew info *)"
     ],
     "deny": [
       "Bash(darwin-rebuild:*)",

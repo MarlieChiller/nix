@@ -297,7 +297,7 @@
           '';
           interval = 5;
           format = "{}";
-          on-click = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
+          on-click = "${pkgs.proton-vpn}/bin/protonvpn-app";
           tooltip = true;
           exec-tooltip = "${pkgs.networkmanager}/bin/nmcli connection show --active | ${pkgs.gnugrep}/bin/grep -i proton || echo 'ProtonVPN: Disconnected'";
         };
