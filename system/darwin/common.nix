@@ -18,10 +18,23 @@
       "gettext"
       "coreutils" # provides grealpath needed by yazi.nvim
     ];
+    # Homebrew 6 refuses to load formulae/casks from non-official taps that
+    # aren't trusted, which aborts nix-darwin activation. Per-formula `trusted`
+    # only applies to fully-qualified names, so it can't cover plain names or
+    # transitive dependencies — trust has to be declared at tap level.
     taps = [
-      "nikitabobko/tap" # aerospace - an i3-like tiling window manager for macOS
-      "FelixKratz/formulae" # janky borders - highlight active window borders
-      "oven-sh/bun" # bun - fast all-in-one JavaScript runtime
+      {
+        name = "nikitabobko/tap"; # aerospace - an i3-like tiling window manager for macOS
+        trusted = true;
+      }
+      {
+        name = "FelixKratz/formulae"; # janky borders - highlight active window borders
+        trusted = true;
+      }
+      {
+        name = "oven-sh/bun"; # bun - fast all-in-one JavaScript runtime
+        trusted = true;
+      }
     ];
     casks = [
       "1password"

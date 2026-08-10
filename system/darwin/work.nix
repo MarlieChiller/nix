@@ -16,7 +16,7 @@ in {
   # Work-specific homebrew packages
   homebrew = {
     brews = [
-      "buildkite/buildkite/bk"
+      "buildkite/buildkite/bk@3"
       "libpq"
       "msodbcsql18"
       "mssql-tools"
@@ -34,8 +34,14 @@ in {
       "whimsical"
     ];
     taps = [
-      "buildkite/buildkite"
-      "microsoft/mssql-release"
+      {
+        name = "buildkite/buildkite";
+        trusted = true;
+      }
+      {
+        name = "microsoft/mssql-release";
+        trusted = true;
+      }
     ];
     # Cleanup must be in child configs (not common) to prevent double-application
     # which causes packages to be removed and reinstalled on every rebuild
