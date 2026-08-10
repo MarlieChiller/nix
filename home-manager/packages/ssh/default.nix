@@ -35,6 +35,10 @@
       };
       "*" = {
         ControlMaster = "auto";
+        # Without ControlPath, OpenSSH defaults it to "none" and multiplexing
+        # never happens. %C hashes the connection tuple to stay under the
+        # 104-char unix socket path limit.
+        ControlPath = "~/.ssh/sockets/%C";
         ControlPersist = "30m";
         PreferredAuthentications = "publickey";
         ForwardAgent = false;
@@ -43,8 +47,13 @@
     };
   };
 
-  # Create allowed signers file for Git SSH commit signing (only if signing key exists)
-  home.file = lib.optionalAttrs (userConfig ? sshSigningKey) {
-    ".ssh/allowed_signers".text = "${userConfig.email} ${userConfig.sshSigningKey}";
-  };
+  home.file =
+    {
+      # ssh won't create the ControlPath parent directory itself
+      ".ssh/sockets/.keep".text = "";
+    }
+    # Allowed signers file for Git SSH commit signing (only if signing key exists)
+    // lib.optionalAttrs (userConfig ? sshSigningKey) {
+      ".ssh/allowed_signers".text = "${userConfig.email} ${userConfig.sshSigningKey}";
+    };
 }
