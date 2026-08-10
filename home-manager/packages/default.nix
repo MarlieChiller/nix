@@ -43,7 +43,6 @@
       gh
       grc
       jq
-      jujutsu
       just
       lazygit
       ripgrep
@@ -51,7 +50,6 @@
       tre-command
       uv
       yazi
-      zellij
 
       # gui
       firefox

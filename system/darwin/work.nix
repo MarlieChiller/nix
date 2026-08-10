@@ -27,9 +27,6 @@ in {
     ];
     casks = [
       # zego
-      "datagrip"
-      "postman"
-      "pycharm"
       "intellij-idea"
       "whimsical"
     ];
