@@ -52,11 +52,11 @@
       yazi
 
       # gui
-      firefox
       obsidian
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # linux-only gui packages
+      firefox # macOS uses Homebrew cask instead (no darwin binary cache = 2h+ source build)
       discord
       spotify # macOS uses Homebrew cask instead
       signal-desktop
