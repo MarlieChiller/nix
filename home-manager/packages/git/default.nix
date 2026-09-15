@@ -1,5 +1,5 @@
 {
-  pkgs,
+  config,
   lib,
   userConfig,
   ...
@@ -21,19 +21,12 @@
         rerere.enable = true;
       }
       // lib.optionalAttrs (userConfig ? sshSigningKey) {
-        "gpg \"ssh\"" = {
-          program =
-            if pkgs.stdenv.isDarwin
-            then "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-            else "${pkgs._1password-gui}/share/1password/op-ssh-sign";
-          allowedSignersFile = "~/.ssh/allowed_signers";
-        };
+        "gpg \"ssh\"".allowedSignersFile = "~/.ssh/allowed_signers";
         gpg.format = "ssh";
       };
     signing = lib.mkIf (userConfig ? sshSigningKey) {
-      # SSH key managed by 1Password
       signByDefault = true;
-      key = userConfig.sshSigningKey;
+      key = "${config.home.homeDirectory}/${userConfig.sshSigningKeyFile}";
       format = "ssh";
     };
   };

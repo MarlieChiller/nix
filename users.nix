@@ -13,7 +13,8 @@
   work = {
     username = "charlie.miller";
     email = "charlie.miller@zego.com";
-    sshSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvT8OYoGidygyDAhEC6M7XiDNFy5DZ1eSn256uAqHPa";
+    sshSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC52GkKOE90Y/6tEaHVcNW28M9VJJAQmM990B2rzoRHk";
+    sshSigningKeyFile = ".ssh/id_ed25519_signing";
   };
 
   nixos = {
