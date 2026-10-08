@@ -60,6 +60,7 @@
       # nix abbreviations
       "vim" = "nvim";
       nconfig = "z ~/Projects/nix";
+      vault = "z ~/vault";
       Projects = "z ~/Projects";
       ncg = "nix-collect-garbage";
       cp = "cp -v";
