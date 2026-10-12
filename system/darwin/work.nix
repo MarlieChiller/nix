@@ -27,6 +27,7 @@ in {
     ];
     casks = [
       # zego
+      "dbeaver-community"
       "intellij-idea"
       "whimsical"
     ];
