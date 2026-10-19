@@ -14,11 +14,15 @@ in {
     ../common # system/common - shared across all systems
   ];
 
-  # Bootloader (GRUB for BIOS/Legacy boot)
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda"; # Install GRUB to MBR
-  };
+  # Bootloader (systemd-boot, UEFI)
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Latest kernel for RX 9060 XT (RDNA 4) support
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Compressed swap in RAM (no swap partition)
+  zramSwap.enable = true;
 
   networking.hostName = "home-nixos";
   networking.networkmanager.enable = true;
@@ -268,9 +272,6 @@ in {
     };
   };
 
-  # CPU performance optimizations for gaming
-  powerManagement.cpuFreqGovernor = "performance";
-
   # Enable USB devices to wake from suspend
   powerManagement.enable = true;
   services.upower.enable = true;
@@ -319,7 +320,7 @@ in {
   # Improve scheduler for gaming (reduce latency)
   boot.kernel.sysctl = {
     "kernel.sched_autogroup_enabled" = 0; # Disable autogroup for better game performance
-    "vm.swappiness" = 10; # Reduce swapping (you have plenty of RAM)
+    "vm.swappiness" = 100; # zram swap is cheap, so let the kernel use it
   };
 
   # Mount 1TB HDD at /mnt/storage
