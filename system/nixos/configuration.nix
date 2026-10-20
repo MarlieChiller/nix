@@ -214,6 +214,7 @@ in {
     # Audio control tools for troubleshooting Bluetooth
     pavucontrol # PulseAudio/PipeWire volume control (useful for switching profiles)
     helvum # PipeWire patchbay (graphical audio routing)
+    claude-code
   ];
 
   # Enable 1Password desktop and SSH agent
