@@ -1,12 +1,21 @@
 {
+  config,
   pkgs,
   lib,
   ...
 }: {
   # Only enable on Linux systems where KDE Plasma is available
   config = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+    # Stylix only themes Qt via qtct and skips Plasma's `kde` platform with a
+    # warning; Plasma gets its colours from Stylix's KDE target instead
+    stylix.targets.qt.enable = false;
+
     programs.plasma = {
       enable = true;
+
+      # Desktop and lock screen both use the Stylix image (system/nixos/configuration.nix)
+      workspace.wallpaper = config.stylix.image;
+      kscreenlocker.appearance.wallpaper = config.stylix.image;
 
       kwin = {
         # KWin Effects

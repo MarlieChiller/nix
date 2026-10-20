@@ -25,6 +25,9 @@
 
   news.display = "show";
 
+  # Rofi isn't used, and Stylix's rofi module sets a renamed option that warns on every build
+  stylix.targets.rofi.enable = false;
+
   home.packages = with pkgs;
     [
       # cli

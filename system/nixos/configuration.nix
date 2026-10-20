@@ -51,7 +51,7 @@ in {
   # Stylix theming
   stylix = {
     enable = true;
-    image = ../../home-manager/assets/wallpapers/leaves.jpg;
+    image = ../../home-manager/assets/wallpapers/mountain.jpg;
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark-dark.yaml";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     fonts = {
