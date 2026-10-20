@@ -20,7 +20,7 @@
 
     # Automatic garbage collection. Only `automatic` and `options` are set here:
     # the schedule attribute differs per platform (`gc.interval` on darwin,
-    # `gc.dates` on NixOS), so each is left at its default weekly/daily run.
+    # `gc.dates` on NixOS), so each platform sets its own (NixOS: weekly).
     # Gated on `nix.enable` so this applies to home-darwin and home-nixos only.
     # work-darwin delegates nix to the Determinate Systems installer and sets
     # `nix.enable = false`, which makes these options unavailable there (both

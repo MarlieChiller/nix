@@ -17,6 +17,8 @@ in {
 
   # Bootloader (systemd-boot, UEFI)
   boot.loader.systemd-boot.enable = true;
+  # Cap boot menu entries (and kernels on /boot) between weekly GC runs
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Latest kernel for RX 9060 XT (RDNA 4) support
@@ -199,11 +201,8 @@ in {
     connect-timeout = 20; # Quick timeout for fast/reliable connection
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
+  # GC is enabled in system/common; only the schedule is NixOS-specific
+  nix.gc.dates = "weekly";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
