@@ -11,6 +11,7 @@ in {
     ./hardware-configuration.nix
     ./tailscale.nix
     ./jellyfin.nix
+    ./vpn.nix
     ../common # system/common - shared across all systems
   ];
 
