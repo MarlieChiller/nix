@@ -59,9 +59,9 @@
     shellAbbrs = {
       # nix abbreviations
       "vim" = "nvim";
-      nconfig = "z ~/Projects/nix";
-      vault = "z ~/vault";
-      Projects = "z ~/Projects";
+      nconfig = "cd ~/Projects/nix";
+      vault = "cd ~/vault";
+      Projects = "cd ~/Projects";
       ncg = "nix-collect-garbage";
       cp = "cp -v";
       ddf = "df -h";
