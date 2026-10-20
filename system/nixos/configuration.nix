@@ -90,13 +90,15 @@ in {
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
+  # US layout to match macOS and the Moonlander firmware, which sends US
+  # keycodes (KC_AT, KC_HASH, KC_TILD etc. are wrong under a gb layout)
   services.xserver.xkb = {
-    layout = "gb";
+    layout = "us";
     variant = "";
   };
 
   # Configure console keymap
-  console.keyMap = "uk";
+  console.keyMap = "us";
 
   # keyd - Remap Caps Lock to Meh (Ctrl+Alt+Shift)
   # This matches the Aerospace configuration on macOS
@@ -111,25 +113,9 @@ in {
             capslock = "layer(meh)";
           };
           # Meh layer: Ctrl+Alt+Shift (matching Aerospace)
-          # Define key mappings so keys pass through with modifiers
-          "meh:C-A-S" = {
-            # Letters for navigation and other shortcuts
-            h = "h";
-            j = "j";
-            k = "k";
-            l = "l";
-            f = "f";
-            q = "q";
-
-            # Special keys
-            tab = "tab";
-            minus = "minus";
-            equal = "equal";
-            slash = "slash";
-            comma = "comma";
-            semicolon = "semicolon";
-            esc = "esc";
-          };
+          # Left empty on purpose: keyd applies the layer's modifiers only to
+          # keys without an explicit binding, so `h = "h"` would send a bare h
+          "meh:C-A-S" = {};
         };
       };
     };
