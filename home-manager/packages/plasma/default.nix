@@ -9,37 +9,17 @@
   meh = "Ctrl+Alt+Shift";
   hyper = "Meta+Ctrl+Alt+Shift";
 
-  # With Shift held, Qt can report a symbol key as its shifted glyph (1 -> !,
-  # / -> ?), so bind both spellings to be safe. Shifted glyphs assume the US
-  # layout set in system/nixos/configuration.nix.
-  shifted = {
-    "1" = "!";
-    "2" = "@";
-    "3" = "#";
-    "4" = "$";
-    "5" = "%";
-    "6" = "^";
-    "7" = "&";
-    "8" = "*";
-    "9" = "(";
-    "/" = "?";
-    "," = "<";
-    "-" = "_";
-    "=" = "+";
-  };
-  bind = mods: key:
-    if shifted ? ${key}
-    then ["${mods}+${key}" "${lib.removeSuffix "+Shift" mods}+${shifted.${key}}"]
-    else "${mods}+${key}";
-
-  # Aerospace workspaces 1-9 plus the lettered ones its app rules use.
-  # KWin desktops are numbered, so letters map onto desktops 10+.
-  workspaces = map toString (lib.range 1 9) ++ ["B" "C" "D" "O" "P" "S" "T" "W"];
-  workspaceShortcuts = lib.listToAttrs (lib.concatLists (lib.imap1 (n: ws: [
-      (lib.nameValuePair "Switch to Desktop ${toString n}" (bind meh ws))
-      (lib.nameValuePair "Window to Desktop ${toString n}" (bind hyper ws))
+  # With Shift held, Qt can report a number key as its shifted glyph (1 -> !),
+  # so bind both spellings. Glyphs assume the US layout set in
+  # system/nixos/configuration.nix.
+  shifted = ["!" "@" "#" "$" "%" "^" "&" "*" "("];
+  workspaceShortcuts = lib.listToAttrs (lib.concatLists (lib.imap1 (n: glyph: let
+      num = toString n;
+    in [
+      (lib.nameValuePair "Switch to Desktop ${num}" ["${meh}+${num}" "Ctrl+Alt+${glyph}"])
+      (lib.nameValuePair "Window to Desktop ${num}" ["${hyper}+${num}" "Meta+Ctrl+Alt+${glyph}"])
     ])
-    workspaces));
+    shifted));
 in {
   # Only enable on Linux systems where KDE Plasma is available
   config = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
@@ -53,18 +33,13 @@ in {
           dimInactive.enable = true;
         };
 
-        virtualDesktops.names = workspaces;
-
-        # Polonium: i3-style tiling, the closest KWin analogue to Aerospace.
-        # Most settings live in configFile below: plasma-manager's polonium.settings
-        # still write pre-1.0 key names that Polonium 1.2 ignores.
-        scripts.polonium = {
-          enable = true;
-          # One of the few settings whose key still matches; writes Borders = 2
-          # (border on the active window only)
-          settings.borderVisibility = "borderSelected";
-        };
+        virtualDesktops.names = map toString (lib.range 1 9);
       };
+
+      # Polonium was tried for Aerospace-style auto-tiling; stock KWin quick
+      # tiling is simpler and leaves games alone. Disabled explicitly because
+      # plasma-manager doesn't remove keys it no longer manages.
+      configFile.kwinrc.Plugins.poloniumEnabled = false;
 
       # KRunner as the Alfred equivalent: centred, Alt+Space like Alfred's default
       krunner = {
@@ -81,64 +56,32 @@ in {
         krunner_konsoleprofilesEnabled = false; # Kitty is the terminal
       };
 
-      configFile.kwinrc."Script-polonium" = {
-        # Never tile games or launchers. Polonium builds `^a|b|c$` from this
-        # list without grouping, so middle entries match anywhere in the class
-        # (e.g. "steam" also covers steam_app_<id> Proton windows).
-        IgnoreWindowClasses = lib.concatStringsSep ", " [
-          # Polonium defaults
-          "krunner"
-          "yakuake"
-          "kded"
-          "polkit"
-          "plasmashell"
-          "xwaylandvideobridge"
-          # Gaming
-          "steam"
-          "gamescope"
-          "[Ll]utris"
-          "[Ww]ow[Uu]p"
-          ".*\\.exe" # Wine/Proton windows report the Windows executable name
-        ];
-      };
-
       # Keyboard shortcuts (using CapsLock = Meh = Ctrl+Alt+Shift)
       shortcuts = {
         kwin =
           workspaceShortcuts
           // {
             # Window focus navigation (vim-style H/J/K/L)
-            "Switch Window Left" = bind meh "H";
-            "Switch Window Down" = bind meh "J";
-            "Switch Window Up" = bind meh "K";
-            "Switch Window Right" = bind meh "L";
+            "Switch Window Left" = "${meh}+H";
+            "Switch Window Down" = "${meh}+J";
+            "Switch Window Up" = "${meh}+K";
+            "Switch Window Right" = "${meh}+L";
 
-            # Move windows within the tiling tree (Aerospace `move`)
-            "PoloniumPlaceLeft" = bind hyper "H";
-            "PoloniumPlaceBelow" = bind hyper "J";
-            "PoloniumPlaceAbove" = bind hyper "K";
-            "PoloniumPlaceRight" = bind hyper "L";
+            # Snap windows to screen halves (closest stock KWin gets to `move`)
+            "Window Quick Tile Left" = "${hyper}+H";
+            "Window Quick Tile Bottom" = "${hyper}+J";
+            "Window Quick Tile Top" = "${hyper}+K";
+            "Window Quick Tile Right" = "${hyper}+L";
 
             # Fullscreen (Meh+F) and maximise (Hyper+F, like native fullscreen)
-            "Window Fullscreen" = bind meh "F";
-            "Window Maximize" = bind hyper "F";
-
-            # Layouts: rotate split (`layout tiles`) and monocle (`layout accordion`)
-            "PoloniumRotateLayout" = bind meh "/";
-            "PoloniumSwitchMonocle" = bind meh ",";
-
-            # Toggle floating for the active window
-            "PoloniumToggleActiveTiling" = bind meh "Esc";
-
-            # Resize (Aerospace `resize smart -50/+50`)
-            "PoloniumResizeLeft" = bind meh "-";
-            "PoloniumResizeRight" = bind meh "=";
+            "Window Fullscreen" = "${meh}+F";
+            "Window Maximize" = "${hyper}+F";
 
             # Send window to the next monitor
-            "Window to Next Screen" = bind hyper "Tab";
+            "Window to Next Screen" = "${hyper}+Tab";
 
             # Window close
-            "Window Close" = bind meh "Q";
+            "Window Close" = "${meh}+Q";
           };
       };
     };

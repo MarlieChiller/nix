@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   # Python kitten: runs inside kitty's own process, applies a random theme
@@ -110,13 +111,20 @@ in {
       # Emojis will use Apple Color Emoji font automatically
     };
 
-    keybindings = {
-      "ctrl+alt+1" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine.conf";
-      "ctrl+alt+2" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine-Dawn.conf";
-      "ctrl+alt+3" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_dark.conf";
-      "ctrl+alt+4" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_light.conf";
-      "ctrl+alt+0" = "kitten ${randomThemeKitten}";
-    };
+    keybindings =
+      {
+        "ctrl+alt+1" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine.conf";
+        "ctrl+alt+2" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/Rose-Pine-Dawn.conf";
+        "ctrl+alt+3" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_dark.conf";
+        "ctrl+alt+4" = "set_colors ${pkgs.kitty-themes}/share/kitty-themes/themes/1984_light.conf";
+        "ctrl+alt+0" = "kitten ${randomThemeKitten}";
+      }
+      # keyd turns Cmd+C/V into Ctrl+C/V on NixOS: copy when text is selected,
+      # otherwise interrupt as usual
+      // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+        "ctrl+c" = "copy_or_interrupt";
+        "ctrl+v" = "paste_from_clipboard";
+      };
 
     # Zego's MDM sets $USER to the email address after macOS updates; that
     # breaks nix-darwin's set-environment script which expands
