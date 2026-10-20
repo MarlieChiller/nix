@@ -14,6 +14,9 @@
       # Photo editing
       darktable
       krita
+
+      # wl-copy/wl-paste: fish's Ctrl+V/Ctrl+X and Neovim's clipboard need them on Wayland
+      wl-clipboard
     ];
   };
 }

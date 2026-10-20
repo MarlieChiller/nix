@@ -46,13 +46,41 @@
 
       # Keyboard shortcuts stay at KDE defaults apart from these
       shortcuts = {
-        # Vim-style tiling alongside the default Meta+arrows
-        kwin = {
-          "Window Quick Tile Left" = ["Meta+H" "Meta+Left"];
-          "Window Quick Tile Bottom" = ["Meta+J" "Meta+Down"];
-          "Window Quick Tile Top" = ["Meta+K" "Meta+Up"];
-          "Window Quick Tile Right" = ["Meta+L" "Meta+Right"];
-        };
+        kwin =
+          {
+            # Vim-style tiling alongside the default Meta+arrows
+            "Window Quick Tile Left" = ["Meta+H" "Meta+Left"];
+            "Window Quick Tile Bottom" = ["Meta+J" "Meta+Down"];
+            "Window Quick Tile Top" = ["Meta+K" "Meta+Up"];
+            "Window Quick Tile Right" = ["Meta+L" "Meta+Right"];
+
+            "Window Maximize" = ["Meta+F" "Meta+PgUp"];
+            # Clear the stale Ctrl+Alt+Shift+F from the old Meh layer (KDE default is unbound)
+            "Window Fullscreen" = [];
+          }
+          # Leftovers from the removed Polonium script, which still hold Meta+HJKL
+          // lib.genAttrs [
+            "PoloniumActivateAbove"
+            "PoloniumActivateBelow"
+            "PoloniumActivateLeft"
+            "PoloniumActivateRight"
+            "PoloniumCycleEngine"
+            "PoloniumPlaceAbove"
+            "PoloniumPlaceBelow"
+            "PoloniumPlaceLeft"
+            "PoloniumPlaceRight"
+            "PoloniumResizeDown"
+            "PoloniumResizeLeft"
+            "PoloniumResizeRight"
+            "PoloniumResizeUp"
+            "PoloniumRotateLayout"
+            "PoloniumSwitchMonocle"
+            "PoloniumToggleActiveTiling"
+            "PoloniumToggleSettingsMenu"
+          ] (_: []);
+
+        # Stale Meta+A from the old setup (KDE default is unbound)
+        plasmashell."next activity" = [];
 
         # Free Meta+L from screen lock; the dedicated Screensaver key still works
         ksmserver."Lock Session" = "Screensaver";
