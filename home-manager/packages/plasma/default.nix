@@ -66,6 +66,21 @@ in {
         };
       };
 
+      # KRunner as the Alfred equivalent: centred, Alt+Space like Alfred's default
+      krunner = {
+        position = "center";
+        activateWhenTypingOnDesktop = true;
+        historyBehavior = "enableSuggestions";
+        shortcuts.launch = ["Alt+Space" "Alt+F2"];
+      };
+
+      # Plugins not covered by plasma-manager options; IDs are the plugin file names
+      configFile.krunnerrc.Plugins = {
+        krunner_appstreamEnabled = false; # Discover packages, unused on NixOS
+        krunner_katesessionsEnabled = false; # Kate isn't used
+        krunner_konsoleprofilesEnabled = false; # Kitty is the terminal
+      };
+
       configFile.kwinrc."Script-polonium" = {
         # Never tile games or launchers. Polonium builds `^a|b|c$` from this
         # list without grouping, so middle entries match anywhere in the class
