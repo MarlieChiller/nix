@@ -36,6 +36,13 @@ in {
         virtualDesktops.names = map toString (lib.range 1 9);
       };
 
+      # Doubles as a media server: never sleep, just dim and blank the screens
+      powerdevil.AC = {
+        autoSuspend.action = "nothing";
+        dimDisplay.idleTimeout = 300;
+        turnOffDisplay.idleTimeout = 600;
+      };
+
       # Polonium was tried for Aerospace-style auto-tiling; stock KWin quick
       # tiling is simpler and leaves games alone. Disabled explicitly because
       # plasma-manager doesn't remove keys it no longer manages.
@@ -80,8 +87,8 @@ in {
             # Send window to the next monitor
             "Window to Next Screen" = "${hyper}+Tab";
 
-            # Window close
-            "Window Close" = "${meh}+Q";
+            # Window close; keep Alt+F4 since keyd maps Cmd+Q to it
+            "Window Close" = ["${meh}+Q" "Alt+F4"];
           };
       };
     };

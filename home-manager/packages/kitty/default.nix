@@ -130,7 +130,8 @@ in {
     # breaks nix-darwin's set-environment script which expands
     # /etc/profiles/per-user/$USER/bin. Pin USER + PATH at kitty-launch time
     # so downstream shell init (fish foreign-env) sees the correct values.
-    extraConfig = ''
+    # Darwin-only: on NixOS this PATH would drop /run/wrappers/bin (setuid sudo).
+    extraConfig = lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
       env USER=${config.home.username}
       env PATH=/etc/profiles/per-user/${config.home.username}/bin:${config.home.homeDirectory}/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     '';

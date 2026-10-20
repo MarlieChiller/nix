@@ -188,6 +188,7 @@ in {
   # Define a user account
   users.users.${userConfig.username} = {
     isNormalUser = true;
+    uid = 1001; # Pinned so file ownership on other drives survives reinstalls
     description = userConfig.username;
     extraGroups = ["networkmanager" "wheel" "render" "video"];
     shell = pkgs.fish;
@@ -279,6 +280,22 @@ in {
   powerManagement.enable = true;
   services.upower.enable = true;
 
+  # Always-on media server: never suspend/hibernate so Jellyfin stays
+  # reachable. Idle power comes from the hardware instead (amd-pstate-epp
+  # C-states, amdgpu DPM, displays off via powerdevil, HDD spindown below).
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "no";
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
+  };
+
+  # Spin down rotational drives after 30 min idle (-S 241). Jellyfin's cache
+  # and transcodes live on the SSD, so the HDD only wakes for playback/scans.
+  services.udev.extraRules = ''
+    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -S 241 /dev/%k"
+  '';
+
   # Disable USB autosuspend to allow keyboard/mouse wake
   boot.extraModprobeConfig = ''
     options usbcore autosuspend=-1
@@ -330,7 +347,7 @@ in {
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/c8f55f79-207e-4b8b-9a28-58806ea455cf";
     fsType = "ext4";
-    options = ["defaults" "nofail"]; # nofail allows boot even if drive is disconnected
+    options = ["defaults" "nofail" "noatime"]; # nofail allows boot even if drive is disconnected; noatime stops reads waking the disk for writes
   };
 
   systemd.tmpfiles.rules = [
@@ -339,7 +356,7 @@ in {
     "d /mnt/storage/media 0755 ${userConfig.username} users -"
     "d /mnt/storage/media/Movies 0755 ${userConfig.username} users -"
     "d /mnt/storage/media/TV 0755 ${userConfig.username} users -"
-    "d /mnt/storage/games 0755 ${userConfig.username} users -"
+    "d /mnt/storage/SteamLibrary 0755 ${userConfig.username} users -"
     "d /mnt/storage/torrents 0755 ${userConfig.username} users -"
     # Legacy /srv/media for compatibility (can remove later if not needed)
     "d /srv/media 0755 ${userConfig.username} users -"
