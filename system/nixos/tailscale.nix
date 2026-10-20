@@ -4,7 +4,11 @@
   # Enable Tailscale service
   services.tailscale = {
     enable = true;
-    # Use default routing (client mode only, no exit node or subnet routing)
+    # Exit node: remote devices can route all traffic via home (public Wi-Fi,
+    # UK services abroad). "server" enables IP forwarding; approve the route
+    # once in the admin console.
+    useRoutingFeatures = "server";
+    extraSetFlags = ["--advertise-exit-node"];
   };
 
   # Ensure Tailscale starts on boot
