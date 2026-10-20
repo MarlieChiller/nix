@@ -44,7 +44,19 @@
         krunner_konsoleprofilesEnabled = false; # Kitty is the terminal
       };
 
-      # Keyboard shortcuts are left at KDE defaults on purpose
+      # Keyboard shortcuts stay at KDE defaults apart from these
+      shortcuts = {
+        # Vim-style tiling alongside the default Meta+arrows
+        kwin = {
+          "Window Quick Tile Left" = ["Meta+H" "Meta+Left"];
+          "Window Quick Tile Bottom" = ["Meta+J" "Meta+Down"];
+          "Window Quick Tile Top" = ["Meta+K" "Meta+Up"];
+          "Window Quick Tile Right" = ["Meta+L" "Meta+Right"];
+        };
+
+        # Free Meta+L from screen lock; the dedicated Screensaver key still works
+        ksmserver."Lock Session" = "Screensaver";
+      };
     };
   };
 }
