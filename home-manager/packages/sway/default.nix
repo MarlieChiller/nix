@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  wayland.windowManager.sway = lib.mkIf pkgs.stdenv.isLinux {
+  wayland.windowManager.sway = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     enable = true;
     config = rec {
       # Disable default bar (we use waybar instead)
@@ -230,7 +230,7 @@
   };
 
   # Install Sway-related packages
-  home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+  home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (with pkgs; [
     ulauncher # Application launcher (Alfred-like)
     waybar # Status bar
     wl-clipboard # Clipboard utilities
@@ -244,7 +244,7 @@
   ]);
 
   # Waybar configuration
-  programs.waybar = lib.mkIf pkgs.stdenv.isLinux {
+  programs.waybar = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     enable = true;
     settings = {
       mainBar = {

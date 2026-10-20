@@ -8,7 +8,7 @@
     enable = true;
     enableDefaultConfig = false;
     extraConfig =
-      if pkgs.stdenv.isDarwin
+      if pkgs.stdenv.hostPlatform.isDarwin
       then ''
         IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
       ''

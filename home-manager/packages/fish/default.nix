@@ -9,7 +9,7 @@
       set fish_greeting # Disable greeting
 
       ${
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then ''
           # macOS: Initialize Homebrew
           set -U fish_user_paths /opt/homebrew/bin/

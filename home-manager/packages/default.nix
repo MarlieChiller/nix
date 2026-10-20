@@ -54,7 +54,7 @@
       # gui
       obsidian
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       # linux-only gui packages
       firefox # macOS uses Homebrew cask instead (no darwin binary cache = 2h+ source build)
       discord
@@ -72,7 +72,7 @@
       nixci
       nix-health
     ]
-    ++ lib.optionals pkgs.stdenv.isDarwin [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       # darwin-only packages
       jankyborders
     ];
@@ -95,7 +95,7 @@
   };
 
   # Copy GUI apps to ~/Applications for Spotlight/Alfred discovery (macOS only)
-  targets.darwin = lib.mkIf pkgs.stdenv.isDarwin {
+  targets.darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     linkApps.enable = false; # Disable old symlink-based approach
     copyApps.enable = true; # Enable new copy-based approach (works with Spotlight)
   };

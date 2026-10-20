@@ -4,7 +4,7 @@
     # macOS installs Ghostty via Homebrew cask; Linux gets it from nixpkgs
     # (a null package there trips the programs.ghostty.systemd assertion).
     package =
-      if pkgs.stdenv.isDarwin
+      if pkgs.stdenv.hostPlatform.isDarwin
       then null
       else pkgs.ghostty;
     settings = {

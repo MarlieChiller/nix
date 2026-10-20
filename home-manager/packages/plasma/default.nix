@@ -4,7 +4,7 @@
   ...
 }: {
   # Only enable on Linux systems where KDE Plasma is available
-  config = lib.mkIf pkgs.stdenv.isLinux {
+  config = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     programs.plasma = {
       enable = true;
 
