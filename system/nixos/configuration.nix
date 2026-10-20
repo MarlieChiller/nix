@@ -100,43 +100,6 @@ in {
   # Configure console keymap
   console.keyMap = "us";
 
-  # keyd - Remap Caps Lock to Meh (Ctrl+Alt+Shift)
-  # This matches the Aerospace configuration on macOS
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = ["*"];
-        settings = {
-          main = {
-            # Caps Lock becomes Meh modifier (Ctrl+Alt+Shift)
-            capslock = "layer(meh)";
-          };
-          # Meh layer: Ctrl+Alt+Shift (matching Aerospace)
-          # Left empty on purpose: keyd applies the layer's modifiers only to
-          # keys without an explicit binding, so `h = "h"` would send a bare h
-          "meh:C-A-S" = {};
-
-          # Cmd (Meta) gives the macOS shortcuts while Ctrl stays Ctrl, so the
-          # terminal keeps Ctrl+C/R/W like on macOS. Bound keys drop Meta (see
-          # above); everything else passes through as Meta for KDE.
-          meta = {
-            c = "C-c";
-            v = "C-v";
-            x = "C-x";
-            z = "C-z";
-            a = "C-a";
-            f = "C-f";
-            s = "C-s";
-            t = "C-t";
-            w = "C-w";
-            q = "A-f4";
-          };
-        };
-      };
-    };
-  };
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
