@@ -24,7 +24,7 @@
           dimInactive.enable = true;
         };
 
-        virtualDesktops.names = map toString (lib.range 1 9);
+        virtualDesktops.number = 1;
       };
 
       # Doubles as a media server: never sleep, just dim and blank the screens
