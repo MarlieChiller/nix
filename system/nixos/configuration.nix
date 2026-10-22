@@ -184,6 +184,7 @@ in {
     pavucontrol # PulseAudio/PipeWire volume control (useful for switching profiles)
     helvum # PipeWire patchbay (graphical audio routing)
     claude-code
+    openrgb # RGB Fusion 2 + mouse lighting; save the normal look as profile "active"
     # Login screen (Breeze SDDM theme) uses the same wallpaper as desktop and lock screen
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
@@ -260,6 +261,12 @@ in {
 
   # Spin down rotational drives after 30 min idle (-S 241). Jellyfin's cache
   # and transcodes live on the SSD, so the HDD only wakes for playback/scans.
+  # OpenRGB udev rules give the logged-in user access to the RGB controllers,
+  # so the swayidle hooks can drive them without a root server
+  services.udev.packages = [pkgs.openrgb];
+  # Expose the SMBus (i2c-piix4) to OpenRGB for RGB RAM / GPU lighting
+  boot.kernelModules = ["i2c-dev"];
+
   services.udev.extraRules = ''
     ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -S 241 /dev/%k"
   '';

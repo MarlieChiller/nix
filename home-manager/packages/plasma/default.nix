@@ -11,7 +11,10 @@
     stylix.targets.qt.enable = false;
 
     # Drop to the power-saver profile (amd-pstate EPP) while idle, so the box
-    # sips power without suspending, then restore the previous profile on input
+    # sips power without suspending, then restore the previous profile on input.
+    # RGB slowly pulses while idle so power-saver is visible, then loads the
+    # OpenRGB profile "active" (saved from the OpenRGB GUI) on input.
+    # Logged under `journalctl --user -t idle-power`.
     services.swayidle = {
       enable = true;
       timeouts = [
@@ -20,10 +23,16 @@
           command = toString (pkgs.writeShellScript "idle-power-saver" ''
             ${pkgs.power-profiles-daemon}/bin/powerprofilesctl get > "$XDG_RUNTIME_DIR/idle-power-profile"
             ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
+            ${pkgs.util-linux}/bin/logger -t idle-power "idle: power-saver"
+            ${pkgs.openrgb}/bin/openrgb --noautoconnect --mode breathing --color 88C0D0 --speed 10 \
+              || ${pkgs.util-linux}/bin/logger -t idle-power "openrgb pulse failed"
           '');
           resumeCommand = toString (pkgs.writeShellScript "idle-power-restore" ''
             profile=$(cat "$XDG_RUNTIME_DIR/idle-power-profile" 2>/dev/null || echo balanced)
             ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set "$profile"
+            ${pkgs.util-linux}/bin/logger -t idle-power "resume: $profile"
+            ${pkgs.openrgb}/bin/openrgb --noautoconnect --profile active \
+              || ${pkgs.util-linux}/bin/logger -t idle-power "openrgb profile 'active' failed"
           '');
         }
       ];
