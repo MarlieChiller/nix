@@ -10,6 +10,25 @@
     # warning; Plasma gets its colours from Stylix's KDE target instead
     stylix.targets.qt.enable = false;
 
+    # Drop to the power-saver profile (amd-pstate EPP) while idle, so the box
+    # sips power without suspending, then restore the previous profile on input
+    services.swayidle = {
+      enable = true;
+      timeouts = [
+        {
+          timeout = 600;
+          command = toString (pkgs.writeShellScript "idle-power-saver" ''
+            ${pkgs.power-profiles-daemon}/bin/powerprofilesctl get > "$XDG_RUNTIME_DIR/idle-power-profile"
+            ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
+          '');
+          resumeCommand = toString (pkgs.writeShellScript "idle-power-restore" ''
+            profile=$(cat "$XDG_RUNTIME_DIR/idle-power-profile" 2>/dev/null || echo balanced)
+            ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set "$profile"
+          '');
+        }
+      ];
+    };
+
     programs.plasma = {
       enable = true;
 
@@ -27,11 +46,12 @@
         virtualDesktops.number = 1;
       };
 
-      # Doubles as a media server: never sleep, just dim and blank the screens
+      # Doubles as a media server: never sleep, just dim and blank the screens.
+      # The swayidle power-saver timeout above fires alongside the dim.
       powerdevil.AC = {
         autoSuspend.action = "nothing";
-        dimDisplay.idleTimeout = 300;
-        turnOffDisplay.idleTimeout = 600;
+        dimDisplay.idleTimeout = 600;
+        turnOffDisplay.idleTimeout = 900;
       };
 
       # Polonium was tried for Aerospace-style auto-tiling; stock KWin quick

@@ -184,6 +184,11 @@ in {
     pavucontrol # PulseAudio/PipeWire volume control (useful for switching profiles)
     helvum # PipeWire patchbay (graphical audio routing)
     claude-code
+    # Login screen (Breeze SDDM theme) uses the same wallpaper as desktop and lock screen
+    (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+      [General]
+      background=${config.stylix.image}
+    '')
   ];
 
   # Enable 1Password desktop and SSH agent
