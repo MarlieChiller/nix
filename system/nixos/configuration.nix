@@ -349,6 +349,20 @@ in {
     group = "users";
   };
 
+  # Local LLMs on the RX 9060 XT (gfx1200, natively supported by ROCm 7.x).
+  # Listens on 127.0.0.1:11434 only. Models stay in /var/lib/ollama on the
+  # SSD rather than /mnt/storage, which is a spun-down HDD and would make
+  # every model load slow.
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm;
+    loadModels = [
+      "qwen3.8:27b" # 18GB: slightly over VRAM, a few layers run on CPU
+      "qwen3.5:9b" # fits entirely in VRAM, fast
+    ];
+  };
+
+  # This is the initial NixOS release version from first install. Do not change.
   # See: https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "24.11";
 }
