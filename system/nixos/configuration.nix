@@ -227,7 +227,8 @@ in {
 
   # Steam environment variables for better Wayland/XWayland support
   environment.sessionVariables = {
-    STEAM_FORCE_DESKTOPUI_SCALING = "1";
+    # Match the KDE display scale (4K @ 1.7); Steam runs under XWayland and won't pick it up itself
+    STEAM_FORCE_DESKTOPUI_SCALING = "1.7";
   };
 
   # Enable GameMode for better gaming performance
@@ -272,8 +273,10 @@ in {
   '';
 
   # Disable USB autosuspend to allow keyboard/mouse wake
+  # btusb: Realtek BT drops BLE gamepads (Xbox controller) when the adapter autosuspends
   boot.extraModprobeConfig = ''
     options usbcore autosuspend=-1
+    options btusb enable_autosuspend=0
   '';
 
   # Enable wake from keyboard, mouse, and power button
@@ -346,7 +349,6 @@ in {
     group = "users";
   };
 
-  # This is the initial NixOS release version from first install. Do not change.
   # See: https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
   system.stateVersion = "24.11";
 }
