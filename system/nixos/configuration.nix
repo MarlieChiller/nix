@@ -6,6 +6,7 @@
 }: let
   users = import ../../users.nix;
   userConfig = users.nixos;
+  rgb = pkgs.callPackage ./rgb.nix {};
 in {
   imports = [
     ./hardware-configuration.nix
@@ -184,7 +185,8 @@ in {
     pavucontrol # PulseAudio/PipeWire volume control (useful for switching profiles)
     helvum # PipeWire patchbay (graphical audio routing)
     claude-code
-    openrgb # RGB Fusion 2 + mouse lighting; save the normal look as profile "active"
+    openrgb # RGB Fusion 2 + mouse lighting
+    rgb # Named lighting presets, defined in ./rgb.nix
     # Login screen (Breeze SDDM theme) uses the same wallpaper as desktop and lock screen
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
@@ -240,8 +242,8 @@ in {
         renice = 10;
       };
       custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-        end = "${pkgs.libnotify}/bin/notify-send 'GameMode stopped'";
+        start = "${rgb}/bin/rgb gaming; ${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        end = "${rgb}/bin/rgb active; ${pkgs.libnotify}/bin/notify-send 'GameMode stopped'";
       };
     };
   };

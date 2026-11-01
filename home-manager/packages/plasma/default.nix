@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  rgb = pkgs.callPackage ../../../system/nixos/rgb.nix {};
+in {
   # Only enable on Linux systems where KDE Plasma is available
   config = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     # Stylix only themes Qt via qtct and skips Plasma's `kde` platform with a
@@ -12,9 +14,8 @@
 
     # Drop to the power-saver profile (amd-pstate EPP) while idle, so the box
     # sips power without suspending, then restore the previous profile on input.
-    # RGB slowly pulses while idle so power-saver is visible, then loads the
-    # OpenRGB profile "active" (saved from the OpenRGB GUI) on input.
-    # Logged under `journalctl --user -t idle-power`.
+    # RGB switches to the idle preset so power-saver is visible, then back on input.
+    # Logged under `journalctl -t idle-power` and `journalctl -t rgb`.
     services.swayidle = {
       enable = true;
       timeouts = [
@@ -24,18 +25,26 @@
             ${pkgs.power-profiles-daemon}/bin/powerprofilesctl get > "$XDG_RUNTIME_DIR/idle-power-profile"
             ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
             ${pkgs.util-linux}/bin/logger -t idle-power "idle: power-saver"
-            ${pkgs.openrgb}/bin/openrgb --noautoconnect --mode breathing --color 88C0D0 --speed 10 \
-              || ${pkgs.util-linux}/bin/logger -t idle-power "openrgb pulse failed"
+            ${rgb}/bin/rgb idle
           '');
           resumeCommand = toString (pkgs.writeShellScript "idle-power-restore" ''
             profile=$(cat "$XDG_RUNTIME_DIR/idle-power-profile" 2>/dev/null || echo balanced)
             ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set "$profile"
             ${pkgs.util-linux}/bin/logger -t idle-power "resume: $profile"
-            ${pkgs.openrgb}/bin/openrgb --noautoconnect --profile active \
-              || ${pkgs.util-linux}/bin/logger -t idle-power "openrgb profile 'active' failed"
+            ${rgb}/bin/rgb auto
           '');
         }
       ];
+    };
+
+    # Nothing else sets the lights after boot; controllers come up on their own defaults
+    systemd.user.services.rgb-login = {
+      Unit.Description = "Apply RGB preset at login";
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${rgb}/bin/rgb auto";
+      };
+      Install.WantedBy = ["graphical-session.target"];
     };
 
     programs.plasma = {
