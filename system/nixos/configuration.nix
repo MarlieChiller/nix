@@ -337,6 +337,7 @@ in {
     "d /mnt/storage/media/Movies 0755 ${userConfig.username} users -"
     "d /mnt/storage/media/TV 0755 ${userConfig.username} users -"
     "d /mnt/storage/SteamLibrary 0755 ${userConfig.username} users -"
+    "d /mnt/storage/BattleNetLibrary 0755 ${userConfig.username} users -"
     "d /mnt/storage/torrents 0755 ${userConfig.username} users -"
     # Legacy /srv/media for compatibility (can remove later if not needed)
     "d /srv/media 0755 ${userConfig.username} users -"
@@ -349,19 +350,6 @@ in {
     openFirewall = false;
     user = userConfig.username;
     group = "users";
-  };
-
-  # Local LLMs on the RX 9060 XT (gfx1200, natively supported by ROCm 7.x).
-  # Listens on 127.0.0.1:11434 only. Models stay in /var/lib/ollama on the
-  # SSD rather than /mnt/storage, which is a spun-down HDD and would make
-  # every model load slow.
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-rocm;
-    loadModels = [
-      "qwen3.8:27b" # 18GB: slightly over VRAM, a few layers run on CPU
-      "qwen3.5:9b" # fits entirely in VRAM, fast
-    ];
   };
 
   # This is the initial NixOS release version from first install. Do not change.
