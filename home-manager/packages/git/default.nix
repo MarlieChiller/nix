@@ -17,6 +17,7 @@
         credential.helper = "store";
         github.user = userConfig.username;
         gitlab.user = userConfig.username;
+        pull.rebase = true;
         push.autoSetupRemote = true;
         rerere.enable = true;
       }

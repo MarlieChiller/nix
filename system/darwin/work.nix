@@ -62,6 +62,23 @@ in {
       };
     };
   };
+
+  # Apps launched from the Dock (DBeaver) must find granted for AWS credential_process.
+  # macOS ignores `launchctl setenv PATH` for apps; only this setting applies, after a reboot.
+  system.activationScripts.postActivation.text = ''
+    launchctl config user path "${builtins.concatStringsSep ":" [
+      "/etc/profiles/per-user/${userConfig.username}/bin"
+      "/run/current-system/sw/bin"
+      "/nix/var/nix/profiles/default/bin"
+      "/opt/homebrew/bin"
+      "/usr/local/bin"
+      "/usr/bin"
+      "/bin"
+      "/usr/sbin"
+      "/sbin"
+    ]}"
+  '';
+
   system.primaryUser = userConfig.username;
 
   users.users.${userConfig.username} = {
